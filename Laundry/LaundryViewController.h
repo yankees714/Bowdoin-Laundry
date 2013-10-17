@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LaundryDataModel.h"
 
-@interface LaundryViewController : UIViewController
+@interface LaundryViewController : UITableViewController
+
+@property (strong, nonatomic) NSArray *machinesAndStatuses;
+@property (nonatomic) LaundryDataModel * roomModel;
+@property (weak, nonatomic) NSString *status;
+@property (weak,nonatomic) NSString *roomID;
+@property (weak, nonatomic) NSString *roomName;
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
