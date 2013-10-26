@@ -11,7 +11,7 @@
 @interface RoomSelectionModel : NSObject
 @property (nonatomic) NSURL *url;
 @property (nonatomic) NSDictionary *idsForRooms;
-@property (nonatomic) NSDictionary *watching;
+@property (nonatomic) NSMutableDictionary *watching;
 @property (nonatomic) NSArray *rooms;
 
 + (RoomSelectionModel *)roomSelectionModel;

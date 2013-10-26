@@ -18,15 +18,7 @@
 	
 	// need a first refresh to fill the list
 	[model refreshRooms];
-	
-	//
-	NSMutableArray * off = [NSMutableArray arrayWithCapacity:model.rooms.count];
-	for (int i = 0 ; i < off.count; i++) {
-		[off replaceObjectAtIndex:i withObject:NO];
-	}
 
-	model.watching = [NSDictionary dictionaryWithObjects:off forKeys:model.rooms];
-	
 	return model;
 }
 

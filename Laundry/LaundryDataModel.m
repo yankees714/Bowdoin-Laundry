@@ -68,6 +68,11 @@
 	for (int i = 0; i < machines.count; i++) {
 		NSString * machineNameString = [[[machines objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
+		// remove a leading zero if present
+		if ([machineNameString characterAtIndex:0] == '0') {
+			machineNameString = [machineNameString substringFromIndex:1];
+		}
+		
 		NSString * machineStatusString = [[[stats objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
 		NSArray * machineWithStatus = [NSArray arrayWithObjects:machineNameString, machineStatusString, nil];

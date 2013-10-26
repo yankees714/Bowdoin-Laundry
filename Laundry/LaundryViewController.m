@@ -30,19 +30,6 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
-	
-	// test local notification - alerts whenever a room is selected
-	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
-	UILocalNotification *notification = [[UILocalNotification alloc] init];
-	notification.alertAction = @"test notification";
-	notification.alertBody = [NSString stringWithFormat:@"Selected the %@ laundry room",self.roomName];
-	notification.fireDate = [NSDate date];
-	notification.applicationIconBadgeNumber = 1;
-	
-	
-	[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-	
-	
 	//set up updates and begin
 	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
 	[self updateMachinesAndStatus];
@@ -72,8 +59,6 @@
 - (void)refreshView:(UIRefreshControl *)sender {
 	[self updateMachinesAndStatus];
 	
-	NSLog(@"%@", self.machinesAndStatuses);
-	
 	[sender endRefreshing];
 }
 
@@ -98,16 +83,27 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 	
-	// adding switch
-	UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-	cell.accessoryView = switchView;
-	[switchView setOn:NO animated:NO];
-	
 	// adjust index for section
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
+	
 	cell.textLabel.text = [[self.machinesAndStatuses objectAtIndex:index] objectAtIndex:0];
 	cell.detailTextLabel.text = [[self.machinesAndStatuses objectAtIndex:index] objectAtIndex:1];
+	
+	
+	// adding switch
+	UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+	cell.accessoryView = switchView;
+	
+	// handle the switch being toggled
+	[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
+	
+	// check user defaults to see if user is watching this machine
+	NSString *key = [self keyForSwitchWithRoom:self.roomName andMachine:cell.textLabel.text];
+	BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+	[switchView setOn:watch animated:NO];
+	
+	
 	
 	// adjust detail color based on status
 	// doing string contains check instead of equality just to be safe
@@ -127,6 +123,27 @@
 	} else {
 		return @"Dryers";
 	}
+}
+
+- (IBAction)watch:(UISwitch *)sender{
+	NSString * machine = ((UITableViewCell *)sender.superview.superview).textLabel.text;
+	NSString * key = [self keyForSwitchWithRoom:self.roomName andMachine:machine];
+	[[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:key];
+	
+	// test local notification - alerts whenever a room is selected
+	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
+	UILocalNotification *notification = [[UILocalNotification alloc] init];
+	notification.alertAction = @"watching notification";
+	notification.alertBody = [NSString stringWithFormat:@"Watching machine %@ in the %@ laundry room!",machine,self.roomName];
+	notification.fireDate = [NSDate date];
+	notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber+1;
+	
+	[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+
+// returns a unique key to associate with a switch for each machine
+- (NSString *)keyForSwitchWithRoom:(NSString *)room andMachine:(NSString *)machine{
+	return [room stringByAppendingString:machine];
 }
 
 
