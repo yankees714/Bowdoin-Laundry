@@ -8,7 +8,7 @@
 
 #import "RoomSelectionViewController.h"
 #import "LaundryViewController.h"
-#import "LaundryDataModel.h"
+#import "RoomSelectionModel.h"
 
 @interface RoomSelectionViewController ()
 
@@ -38,7 +38,7 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
-	self.roomList = [LaundryDataModel getLaundryRooms];
+	self.roomSelection = [RoomSelectionModel roomSelectionModel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +57,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.roomList allKeys].count;
+    return [self.roomSelection numberOfRooms];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,8 +72,12 @@
 	    
     // Configure the cell...
 	
-	// get the key with the proper index from the sorted list of keys
-	cell.textLabel.text = [[self.roomList keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.row];
+	// get the room for this index
+	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row];
+							 
+						   
+						   
+	NSLog(@"row: %d \n key: %@",indexPath.row, cell.textLabel.text);
     
     return cell;
 }
@@ -129,16 +133,16 @@
 	
     // Pass the selected object to the new view controller.
 	
-	//get the index of the selected key
-	NSInteger keyIndex = [[self.tableView indexPathForSelectedRow] row];
-	NSLog(@"Room index: %i",keyIndex);
+	// get the index of the selected key
+	NSInteger selected = [[self.tableView indexPathForSelectedRow] row];
+	NSLog(@"Room index: %i",selected);
 	
-	// grabbing from the sorted list of keys
-	NSString * room = [[self.roomList keysSortedByValueUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:keyIndex];
+	// get the room for the selected row
+	NSString * room = [self.roomSelection roomForIndex:selected];
 	NSLog(@"Room: %@",room);
 	
 	laundryVC.roomName = room;
-	laundryVC.roomID = [self.roomList valueForKey:room];
+	laundryVC.roomID = [self.roomSelection idForRoom:room];
 	
 	NSLog(@"%@",laundryVC.roomID);
 }

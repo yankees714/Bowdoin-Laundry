@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RoomSelectionModel.h"
 
 @interface RoomSelectionViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSDictionary * roomList;
+@property (strong, nonatomic) RoomSelectionModel * roomSelection;
 
 @end

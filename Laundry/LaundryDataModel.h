@@ -18,7 +18,6 @@
 
 + (LaundryDataModel*)laundryDataModelWithID:(NSString*)roomID;
 - (NSArray *)getLaundryData;
-+ (NSDictionary *)getLaundryRooms;
 
 
 @end

@@ -62,7 +62,10 @@
 	self.machinesAndStatuses = [self.roomModel getLaundryData];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
+	// update tableview
 	[self.tableView reloadData];
+	//refresh view
+	[self.view setNeedsDisplay];
 	
 }
 
