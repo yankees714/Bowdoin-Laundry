@@ -103,7 +103,7 @@
 	cell.accessoryView = switchView;
 	[switchView setOn:NO animated:NO];
 	
-	//little trick for adjustment
+	// adjust index for section
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
 	cell.textLabel.text = [[self.machinesAndStatuses objectAtIndex:index] objectAtIndex:0];

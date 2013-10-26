@@ -14,4 +14,5 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) RoomSelectionModel * roomSelection;
 
+
 @end
