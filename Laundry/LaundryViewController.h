@@ -11,7 +11,6 @@
 
 @interface LaundryViewController : UITableViewController
 
-@property (strong, nonatomic) NSArray *machinesAndStatuses;
 @property (nonatomic) LaundryDataModel * roomModel;
 @property (weak, nonatomic) NSString *status;
 @property (weak,nonatomic) NSString *roomID;

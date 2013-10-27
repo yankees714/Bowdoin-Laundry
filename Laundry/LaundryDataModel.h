@@ -11,13 +11,15 @@
 
 @interface LaundryDataModel : NSObject
 
-@property (nonatomic) HTMLParser * roomParser;
-@property (nonatomic) HTMLNode * roomBody;
+@property (nonatomic) NSURL *url;
 @property (nonatomic) NSInteger numberOfWashers;
 @property (nonatomic) NSInteger numberOfDryers;
+@property (nonatomic) NSArray *machinesWithStatuses;
 
 + (LaundryDataModel*)laundryDataModelWithID:(NSString*)roomID;
-- (NSArray *)getLaundryData;
+- (void)refreshLaundryData;
+- (NSString *)machineForIndex:(NSUInteger)index;
+- (NSString *)statusForIndex:(NSUInteger)index;
 
 
 @end

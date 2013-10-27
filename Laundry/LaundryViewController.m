@@ -20,15 +20,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
+	self.tableView.delegate = self;
+	self.tableView.dataSource = self;
+	
 	//interface setup
 	self.navigationItem.title = self.roomName;
 	
 	[self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
 	
 	self.roomModel = [LaundryDataModel  laundryDataModelWithID:self.roomID];
-	
-	self.tableView.delegate = self;
-	self.tableView.dataSource = self;
 	
 	//set up updates and begin
 	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
@@ -46,7 +46,7 @@
 - (void)updateMachinesAndStatus {
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-	self.machinesAndStatuses = [self.roomModel getLaundryData];
+	[self.roomModel refreshLaundryData];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
 	// update tableview
@@ -87,9 +87,8 @@
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
 	
-	cell.textLabel.text = [[self.machinesAndStatuses objectAtIndex:index] objectAtIndex:0];
-	cell.detailTextLabel.text = [[self.machinesAndStatuses objectAtIndex:index] objectAtIndex:1];
-	
+	cell.textLabel.text = [self.roomModel machineForIndex:index];
+	cell.detailTextLabel.text = [self.roomModel statusForIndex:index];
 	
 	// adding switch
 	UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -109,6 +108,22 @@
 	// doing string contains check instead of equality just to be safe
 	if ([cell.detailTextLabel.text rangeOfString:@"available"].location != NSNotFound) {
 		cell.textLabel.textColor = [UIColor greenColor];
+		
+		
+		if (watch) {
+			// notify that the laundry is finsihed if watching
+			UILocalNotification *notification = [[UILocalNotification alloc] init];
+			notification.alertAction = @"laundry finished";
+			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.roomName];
+			notification.fireDate = [NSDate date];
+			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
+			
+			// turn the switch off
+			[switchView setOn:NO animated:YES];
+			[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
+		}
+		
+
 	} else if ([cell.detailTextLabel.text rangeOfString:@"time remaining"].location != NSNotFound) {
 		cell.textLabel.textColor = [UIColor redColor];
 	}
@@ -129,6 +144,7 @@
 	NSString * machine = ((UITableViewCell *)sender.superview.superview).textLabel.text;
 	NSString * key = [self keyForSwitchWithRoom:self.roomName andMachine:machine];
 	[[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:key];
+
 	
 	// test local notification - alerts whenever a room is selected
 	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
