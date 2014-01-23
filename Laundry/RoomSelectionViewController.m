@@ -75,10 +75,6 @@
 	
 	// get the room for this index
 	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row];
-							 
-						   
-						   
-	NSLog(@"row: %d \n key: %@",indexPath.row, cell.textLabel.text);
     
     return cell;
 }
@@ -136,16 +132,12 @@
 	
 	// get the index of the selected key
 	NSInteger selected = [[self.tableView indexPathForSelectedRow] row];
-	NSLog(@"Room index: %i",selected);
 	
 	// get the room for the selected row
 	NSString * room = [self.roomSelection roomForIndex:selected];
-	NSLog(@"Room: %@",room);
 	
 	laundryVC.roomName = room;
 	laundryVC.roomID = [self.roomSelection idForRoom:room];
-	
-	NSLog(@"%@",laundryVC.roomID);
 }
 
 

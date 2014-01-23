@@ -106,6 +106,7 @@
 	
 	// adjust detail color based on status
 	// doing string contains check instead of equality just to be safe
+	//check for machine available status
 	if ([cell.detailTextLabel.text rangeOfString:@"available"].location != NSNotFound) {
 		cell.textLabel.textColor = [UIColor greenColor];
 		
@@ -118,14 +119,38 @@
 			notification.fireDate = [NSDate date];
 			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
 			
+			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+			
 			// turn the switch off
 			[switchView setOn:NO animated:YES];
 			[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
 		}
 		
-
-	} else if ([cell.detailTextLabel.text rangeOfString:@"time remaining"].location != NSNotFound) {
+	//check for cycle in progress status
+	} else if ([cell.detailTextLabel.text rangeOfString:@"time remaining"].location != NSNotFound ||
+			   [cell.detailTextLabel.text rangeOfString:@"extended"].location != NSNotFound) {
 		cell.textLabel.textColor = [UIColor redColor];
+	// check for cycle ended status
+	} else if ([cell.detailTextLabel.text rangeOfString:@"cycle ended"].location != NSNotFound){
+		if (watch){
+			cell.textLabel.textColor = [UIColor blackColor];
+			
+			// notify that the laundry is finsihed if watching
+			UILocalNotification *notification = [[UILocalNotification alloc] init];
+			notification.alertAction = @"laundry finished";
+			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.roomName];
+			notification.fireDate = [NSDate date];
+			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
+		
+			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+			
+			// turn the switch off
+			[switchView setOn:NO animated:YES];
+			[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
+			
+		}
+		
+		
 	}
 	
     return cell;
