@@ -10,7 +10,9 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="6Lr-TH-vXT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FW4-BG-OK7"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sdv-UH-yRq">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
