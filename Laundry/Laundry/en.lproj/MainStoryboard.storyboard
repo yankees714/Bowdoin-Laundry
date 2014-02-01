@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="nkO-ss-8ag" kind="relationship" relationship="rootViewController" id="qIe-gu-rPH"/>
+                        <segue destination="nkO-ss-8ag" kind="relationship" relationship="rootViewController" id="Igc-Cs-b4R"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cg2-Zz-8Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -25,27 +25,27 @@
         <scene sceneID="aU0-Gw-x7m">
             <objects>
                 <tableViewController id="b2S-ba-z7U" customClass="LaundryViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="fxX-sJ-W75">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fxX-sJ-W75">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="machineStatus" textLabel="1nN-KZ-KV8" detailTextLabel="9zt-DF-9hQ" style="IBUITableViewCellStyleSubtitle" id="6uV-4u-Htd">
-                                <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6uV-4u-Htd" id="Pgj-Am-WTV">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1nN-KZ-KV8">
-                                            <rect key="frame" x="15" y="11" width="34" height="22"/>
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9zt-DF-9hQ">
-                                            <rect key="frame" x="15" y="33" width="32" height="15"/>
+                                            <rect key="frame" x="15" y="25" width="32" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -70,78 +70,25 @@
             </objects>
             <point key="canvasLocation" x="150" y="150"/>
         </scene>
-        <!--Settings View Controller - Settings-->
-        <scene sceneID="afV-qA-UZd">
-            <objects>
-                <viewController id="xX6-9a-782" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4cd-gO-YLg"/>
-                        <viewControllerLayoutGuide type="bottom" id="teT-B0-Huh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oaz-uq-U3T">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Developed by Andrew Daniels in Brunswick, ME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gha-2I-KQk">
-                                <rect key="frame" x="43" y="536" width="225" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="noz-ec-2Lj">
-                                <rect key="frame" x="62" y="109" width="197" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Laundry"/>
-                                    <segment title="More Laundry"/>
-                                </segments>
-                                <connections>
-                                    <action selector="levelSelected:" destination="xX6-9a-782" eventType="valueChanged" id="o6p-6d-wNa"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="jry-5e-ujz">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="B8O-ID-94N"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="levelChooser" destination="noz-ec-2Lj" id="jow-xs-Aku"/>
-                        <outlet property="searchDisplayController" destination="qxC-2c-OZY" id="JKP-0y-z2h"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zN8-hv-IFu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="qxC-2c-OZY">
-                    <connections>
-                        <outlet property="delegate" destination="xX6-9a-782" id="rbd-YC-TM8"/>
-                        <outlet property="searchContentsController" destination="xX6-9a-782" id="E70-bP-ktE"/>
-                        <outlet property="searchResultsDataSource" destination="xX6-9a-782" id="gUy-34-6tX"/>
-                        <outlet property="searchResultsDelegate" destination="xX6-9a-782" id="SiS-Bn-TcX"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="-1298" y="-644"/>
-        </scene>
-        <!--Room Selection View Controller - Bowdoin Laundry-->
+        <!--Room Selection View Controller - Select a laundry room-->
         <scene sceneID="iu7-Tk-EVb">
             <objects>
                 <tableViewController id="nkO-ss-8ag" customClass="RoomSelectionViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="m61-j0-pid">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="m61-j0-pid">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="laundryRoom" textLabel="Cmo-g9-VRw" style="IBUITableViewCellStyleDefault" id="W7Q-bM-UlU">
-                                <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W7Q-bM-UlU" id="quF-Ur-V7W">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cmo-g9-VRw">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="59"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <gestureRecognizers/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -158,22 +105,7 @@
                             <outlet property="delegate" destination="nkO-ss-8ag" id="Z4n-BK-rlF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bowdoin Laundry" id="s8A-dx-Fob">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="CL1-g6-zR5">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fgu-rG-ugB">
-                                <rect key="frame" x="281" y="13" width="23" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="glyphicons_137_cogwheels.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="xX6-9a-782" kind="push" identifier="openSettings" id="V2l-O7-Tmg"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Select a laundry room" id="s8A-dx-Fob"/>
                     <connections>
                         <outlet property="tableView" destination="m61-j0-pid" id="ZG9-JZ-Drj"/>
                     </connections>
@@ -183,9 +115,6 @@
             <point key="canvasLocation" x="-314" y="144"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="glyphicons_137_cogwheels.png" width="34" height="27"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -124,20 +124,22 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-	LaundryViewController *laundryVC = [segue destinationViewController];
+    if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
+		// Get the new view controller using [segue destinationViewController].
+		LaundryViewController *laundryVC = [segue destinationViewController];
 										
 	
-    // Pass the selected object to the new view controller.
+		// Pass the selected object to the new view controller.
 	
-	// get the index of the selected key
-	NSInteger selected = [[self.tableView indexPathForSelectedRow] row];
+		// get the index of the selected key
+		NSInteger selected = [[self.tableView indexPathForSelectedRow] row];
 	
-	// get the room for the selected row
-	NSString * room = [self.roomSelection roomForIndex:selected];
+		// get the room for the selected row
+		NSString * room = [self.roomSelection roomForIndex:selected];
 	
-	laundryVC.roomName = room;
-	laundryVC.roomID = [self.roomSelection idForRoom:room];
+		laundryVC.roomName = room;
+		laundryVC.roomID = [self.roomSelection idForRoom:room];
+	}
 }
 
 

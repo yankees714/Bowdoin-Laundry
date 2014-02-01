@@ -54,6 +54,15 @@
 	//refresh view
 	[self.view setNeedsDisplay];
 	
+	// test local notification - alerts whenever a room is selected
+	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
+	UILocalNotification *notification = [[UILocalNotification alloc] init];
+	notification.alertAction = @"refresh notification";
+	notification.alertBody = [NSString stringWithFormat:@"Refreshed data for %@ laundry room!",self.roomName];
+	notification.fireDate = [NSDate date];
+	notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber+1;
+	
+	[[UIApplication sharedApplication] presentLocalNotificationNow:notification];	
 }
 
 - (void)refreshView:(UIRefreshControl *)sender {
@@ -90,17 +99,23 @@
 	cell.textLabel.text = [self.roomModel machineForIndex:index];
 	cell.detailTextLabel.text = [self.roomModel statusForIndex:index];
 	
-	// adding switch
-	UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-	cell.accessoryView = switchView;
+	// adding switch <- *change this to a button*
+	//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+	UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
+	
+	UIImage *shirt = [UIImage imageNamed:@"glyphicons_283_t-shirt.png"];
+	
+	[button setImage:shirt forState:UIControlStateNormal];
+	
+	cell.accessoryView = button;
 	
 	// handle the switch being toggled
-	[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
+	//[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
 	
 	// check user defaults to see if user is watching this machine
 	NSString *key = [self keyForSwitchWithRoom:self.roomName andMachine:cell.textLabel.text];
 	BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
-	[switchView setOn:watch animated:NO];
+	//[switchView setOn:watch animated:NO];
 	
 	
 	
@@ -122,8 +137,8 @@
 			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 			
 			// turn the switch off
-			[switchView setOn:NO animated:YES];
-			[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
+			//[switchView setOn:NO animated:YES];
+			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
 		}
 		
 	//check for cycle in progress status
@@ -145,8 +160,8 @@
 			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 			
 			// turn the switch off
-			[switchView setOn:NO animated:YES];
-			[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
+			//[switchView setOn:NO animated:YES];
+			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
 			
 		}
 		

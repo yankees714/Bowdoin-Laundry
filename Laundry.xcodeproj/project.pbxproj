@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */; };
+		3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */; };
+		3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */; };
+		3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */; };
+		3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179594B189D7527008C09D3 /* SettingsViewController.m */; };
 		31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2AE17E288CE00C568D7 /* UIKit.framework */; };
 		31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B017E288CE00C568D7 /* Foundation.framework */; };
 		31C5D2B317E288CE00C568D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B217E288CE00C568D7 /* CoreGraphics.framework */; };
@@ -28,6 +33,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons_283_t-shirt.png"; sourceTree = "<group>"; };
+		3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_136_cogwheel.png; sourceTree = "<group>"; };
+		3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
+		3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_207_remove_2.png; sourceTree = "<group>"; };
+		3179594A189D7526008C09D3 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		3179594B189D7527008C09D3 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		31C5D2AB17E288CE00C568D7 /* Laundry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laundry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5D2AE17E288CE00C568D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31C5D2B017E288CE00C568D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +116,10 @@
 		31C5D2B417E288CE00C568D7 /* Laundry */ = {
 			isa = PBXGroup;
 			children = (
+				3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */,
+				3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */,
+				3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */,
+				3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */,
 				31DE9F5F181B192800DB407B /* RoomSelectionModel.m */,
 				31DE9F5E181B192800DB407B /* RoomSelectionModel.h */,
 				31C5D2D217E289E100C568D7 /* LaundryDataModel.m */,
@@ -112,6 +127,8 @@
 				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
 				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
 				31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */,
+				3179594A189D7526008C09D3 /* SettingsViewController.h */,
+				3179594B189D7527008C09D3 /* SettingsViewController.m */,
 				31C5D2C917E288CF00C568D7 /* LaundryViewController.h */,
 				31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */,
 				31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */,
@@ -200,8 +217,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C5D2B917E288CE00C568D7 /* InfoPlist.strings in Resources */,
+				3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */,
+				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
+				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
 				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
+				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
 				31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */,
 				31C5D2E517E28C9200C568D7 /* README.md in Resources */,
@@ -218,6 +239,7 @@
 				31C5D2BB17E288CE00C568D7 /* main.m in Sources */,
 				31C5D2BF17E288CF00C568D7 /* LaundryAppDelegate.m in Sources */,
 				31FB5270180B6B6300851792 /* RoomSelectionViewController.m in Sources */,
+				3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */,
 				31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */,
 				31C5D2CB17E288CF00C568D7 /* LaundryViewController.m in Sources */,
 				31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */,
