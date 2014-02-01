@@ -53,16 +53,6 @@
 	[self.tableView reloadData];
 	//refresh view
 	[self.view setNeedsDisplay];
-	
-	// test local notification - alerts whenever a room is selected
-	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
-	UILocalNotification *notification = [[UILocalNotification alloc] init];
-	notification.alertAction = @"refresh notification";
-	notification.alertBody = [NSString stringWithFormat:@"Refreshed data for %@ laundry room!",self.roomName];
-	notification.fireDate = [NSDate date];
-	notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber+1;
-	
-	[[UIApplication sharedApplication] presentLocalNotificationNow:notification];	
 }
 
 - (void)refreshView:(UIRefreshControl *)sender {
