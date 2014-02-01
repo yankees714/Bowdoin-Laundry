@@ -30,9 +30,9 @@
 	
 	self.roomModel = [LaundryDataModel  laundryDataModelWithID:self.roomID];
 	
-	//set up updates and begin
-	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
-	[self updateMachinesAndStatus];
+	//set up updates and begin - not necessary for now
+//	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
+//	[self updateMachinesAndStatus];
 	
 }
 
@@ -101,13 +101,13 @@
 	
 	// adding switch <- *change this to a button*
 	//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-	UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
-	
-	UIImage *shirt = [UIImage imageNamed:@"glyphicons_283_t-shirt.png"];
-	
-	[button setImage:shirt forState:UIControlStateNormal];
-	
-	cell.accessoryView = button;
+//	UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
+//	
+//	UIImage *shirt = [UIImage imageNamed:@"glyphicons_283_t-shirt.png"];
+//	
+//	[button setImage:shirt forState:UIControlStateNormal];
+//	
+//	cell.accessoryView = button;
 	
 	// handle the switch being toggled
 	//[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];

@@ -12,6 +12,10 @@
 		3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */; };
 		3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */; };
 		3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179594B189D7527008C09D3 /* SettingsViewController.m */; };
+		31795954189D7E7B008C09D3 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3179594E189D7E7B008C09D3 /* libTestFlight.a */; };
+		31795955189D7E7C008C09D3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3179594F189D7E7B008C09D3 /* README.md */; };
+		31795956189D7E7C008C09D3 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 31795950189D7E7B008C09D3 /* release_notes.md */; };
+		31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31795957189D7EE3008C09D3 /* libz.dylib */; };
 		31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2AE17E288CE00C568D7 /* UIKit.framework */; };
 		31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B017E288CE00C568D7 /* Foundation.framework */; };
 		31C5D2B317E288CE00C568D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B217E288CE00C568D7 /* CoreGraphics.framework */; };
@@ -39,6 +43,13 @@
 		3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_207_remove_2.png; sourceTree = "<group>"; };
 		3179594A189D7526008C09D3 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3179594B189D7527008C09D3 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		3179594E189D7E7B008C09D3 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		3179594F189D7E7B008C09D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		31795950189D7E7B008C09D3 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		31795951189D7E7B008C09D3 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		31795952189D7E7B008C09D3 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		31795953189D7E7B008C09D3 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		31795957189D7EE3008C09D3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		31C5D2AB17E288CE00C568D7 /* Laundry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laundry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5D2AE17E288CE00C568D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31C5D2B017E288CE00C568D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */,
+				31795954189D7E7B008C09D3 /* libTestFlight.a in Frameworks */,
 				31C5D2EB17E29C7900C568D7 /* libxml2.dylib in Frameworks */,
 				31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */,
 				31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */,
@@ -84,10 +97,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3179594D189D7E7B008C09D3 /* TestFlightSDK2.2.1 */ = {
+			isa = PBXGroup;
+			children = (
+				3179594E189D7E7B008C09D3 /* libTestFlight.a */,
+				3179594F189D7E7B008C09D3 /* README.md */,
+				31795950189D7E7B008C09D3 /* release_notes.md */,
+				31795951189D7E7B008C09D3 /* TestFlight+AsyncLogging.h */,
+				31795952189D7E7B008C09D3 /* TestFlight+ManualSessions.h */,
+				31795953189D7E7B008C09D3 /* TestFlight.h */,
+			);
+			name = TestFlightSDK2.2.1;
+			path = Laundry/TestFlightSDK2.2.1;
+			sourceTree = "<group>";
+		};
 		31C5D2A217E288CE00C568D7 = {
 			isa = PBXGroup;
 			children = (
 				31C5D2EA17E29C7900C568D7 /* libxml2.dylib */,
+				3179594D189D7E7B008C09D3 /* TestFlightSDK2.2.1 */,
 				31C5D2DD17E28C9200C568D7 /* Objective-C-HMTL-Parser */,
 				31C5D2B417E288CE00C568D7 /* Laundry */,
 				31C5D2AD17E288CE00C568D7 /* Frameworks */,
@@ -106,6 +134,7 @@
 		31C5D2AD17E288CE00C568D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				31795957189D7EE3008C09D3 /* libz.dylib */,
 				31C5D2AE17E288CE00C568D7 /* UIKit.framework */,
 				31C5D2B017E288CE00C568D7 /* Foundation.framework */,
 				31C5D2B217E288CE00C568D7 /* CoreGraphics.framework */,
@@ -116,6 +145,12 @@
 		31C5D2B417E288CE00C568D7 /* Laundry */ = {
 			isa = PBXGroup;
 			children = (
+				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
+				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
+				31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */,
+				31C5D2C917E288CF00C568D7 /* LaundryViewController.h */,
+				3179594B189D7527008C09D3 /* SettingsViewController.m */,
+				3179594A189D7526008C09D3 /* SettingsViewController.h */,
 				3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */,
 				3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */,
 				3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */,
@@ -124,12 +159,6 @@
 				31DE9F5E181B192800DB407B /* RoomSelectionModel.h */,
 				31C5D2D217E289E100C568D7 /* LaundryDataModel.m */,
 				31C5D2D117E289E100C568D7 /* LaundryDataModel.h */,
-				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
-				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
-				31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */,
-				3179594A189D7526008C09D3 /* SettingsViewController.h */,
-				3179594B189D7527008C09D3 /* SettingsViewController.m */,
-				31C5D2C917E288CF00C568D7 /* LaundryViewController.h */,
 				31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */,
 				31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */,
 				31C5D2BD17E288CF00C568D7 /* LaundryAppDelegate.h */,
@@ -193,6 +222,11 @@
 				CLASSPREFIX = Laundry;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Andrew Daniels";
+				TargetAttributes = {
+					31C5D2AA17E288CE00C568D7 = {
+						DevelopmentTeam = AV4SWX9A8W;
+					};
+				};
 			};
 			buildConfigurationList = 31C5D2A617E288CE00C568D7 /* Build configuration list for PBXProject "Laundry" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -216,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31795956189D7E7C008C09D3 /* release_notes.md in Resources */,
 				31C5D2B917E288CE00C568D7 /* InfoPlist.strings in Resources */,
 				3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */,
 				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
@@ -225,6 +260,7 @@
 				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
 				31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */,
+				31795955189D7E7C008C09D3 /* README.md in Resources */,
 				31C5D2E517E28C9200C568D7 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,12 +365,19 @@
 		31C5D2CF17E288CF00C568D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Laundry/Laundry-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				INFOPLIST_FILE = "Laundry/Laundry-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/andrewdaniels/Dropbox/Programming/Laundry/Laundry/TestFlightSDK2.2.1,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -342,12 +385,19 @@
 		31C5D2D017E288CF00C568D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Laundry/Laundry-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				INFOPLIST_FILE = "Laundry/Laundry-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/andrewdaniels/Dropbox/Programming/Laundry/Laundry/TestFlightSDK2.2.1,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

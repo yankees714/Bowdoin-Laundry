@@ -7,12 +7,20 @@
 //
 
 #import "LaundryAppDelegate.h"
+#import "TestFlight.h"
 
 @implementation LaundryAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+	
+	// TestFlight integration
+	[TestFlight takeOff:@"0e30d72c-712a-4da4-8f93-4f54be77360e"];
+	
+	// zero out the badge on launch
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	
     return YES;
 }
 							
