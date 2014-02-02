@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "TestFlight.h"
 
 @interface SettingsViewController ()
 
@@ -27,6 +28,8 @@
 {
     [super viewDidLoad];
 	
+	[TestFlight passCheckpoint:@"Settings"];
+	
 	// set current watch level
 	NSInteger watchLevel = [[NSUserDefaults standardUserDefaults]  integerForKey:@"level"];
 	[self.levelChooser setSelectedSegmentIndex:watchLevel];
@@ -42,6 +45,8 @@
 }
 
 - (IBAction)levelSelected:(UISegmentedControl *)sender {
+	[TestFlight passCheckpoint:@"Selected laundry level"];
+	
 	//store watch level
 	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex] forKey:@"level"];
 }

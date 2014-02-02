@@ -8,6 +8,7 @@
 
 #import "LaundryViewController.h"
 #import "LaundryDataModel.h"
+#import "TestFlight.h"
 
 @interface LaundryViewController ()
 
@@ -17,8 +18,11 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    
+	[super viewDidLoad];
+	
 	// Do any additional setup after loading the view, typically from a nib.
+	[TestFlight passCheckpoint:self.roomName];
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
