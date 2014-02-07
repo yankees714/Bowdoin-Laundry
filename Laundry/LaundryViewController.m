@@ -16,22 +16,26 @@
 
 @implementation LaundryViewController
 
-- (void)viewDidLoad
-{
-    
+- (void)viewDidLoad{
 	[super viewDidLoad];
 	
-	// Do any additional setup after loading the view, typically from a nib.
 	[TestFlight passCheckpoint:self.roomName];
+	
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
+	
 	//interface setup
 	self.navigationItem.title = self.roomName;
 	
+	
 	[self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
 	
+	// Let notification center start an update when the app becomes active
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMachinesAndStatus) name:UIApplicationDidBecomeActiveNotification object:nil];
+	
+	// Grab and fill laundry data
 	self.roomModel = [LaundryDataModel  laundryDataModelWithID:self.roomID];
 	
 	//set up updates and begin - not necessary for now
@@ -39,6 +43,8 @@
 //	[self updateMachinesAndStatus];
 	
 }
+
+
 
 
 - (void)didReceiveMemoryWarning
