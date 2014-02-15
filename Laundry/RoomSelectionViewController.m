@@ -9,6 +9,7 @@
 #import "RoomSelectionViewController.h"
 #import "LaundryViewController.h"
 #import "RoomSelectionModel.h"
+#import "Reachability.h"
 
 @interface RoomSelectionViewController ()
 
@@ -29,17 +30,36 @@
 {
     [super viewDidLoad];
 	
+	self.tableView.delegate = self;
+	self.tableView.dataSource = self;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+	
+	if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != ReachableViaWiFi) {
+		UIAlertView * getOnWifi = [[UIAlertView alloc] initWithTitle:@"Please connect to WiFi."
+															 message:@"Laundry is only available on Bowdoin's local Wifi network."
+															delegate:nil
+												   cancelButtonTitle:nil
+												   otherButtonTitles:nil];
+		[getOnWifi show];
+	} else{
+		self.roomSelection = [RoomSelectionModel roomSelectionModel];
+	}
+	
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	
-	self.tableView.delegate = self;
-	self.tableView.dataSource = self;
-	
-	self.roomSelection = [RoomSelectionModel roomSelectionModel];
+}
+
+/*!
+ * Called by Reachability whenever status changes. - this isn't working
+ */
+- (void) reachabilityChanged:(NSNotification *)note
+{
+	NSLog(@"Reachability changed");
 }
 
 - (void)didReceiveMemoryWarning
