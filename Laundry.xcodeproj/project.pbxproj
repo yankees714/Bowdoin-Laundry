@@ -16,6 +16,9 @@
 		31795955189D7E7C008C09D3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3179594F189D7E7B008C09D3 /* README.md */; };
 		31795956189D7E7C008C09D3 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 31795950189D7E7B008C09D3 /* release_notes.md */; };
 		31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31795957189D7EE3008C09D3 /* libz.dylib */; };
+		319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1EB18B1CCDA00858606 /* HTMLNode.m */; };
+		319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1ED18B1CCDA00858606 /* HTMLParser.m */; };
+		319BD1F118B1CCDA00858606 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 319BD1EE18B1CCDA00858606 /* README.md */; };
 		31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2AE17E288CE00C568D7 /* UIKit.framework */; };
 		31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B017E288CE00C568D7 /* Foundation.framework */; };
 		31C5D2B317E288CE00C568D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B217E288CE00C568D7 /* CoreGraphics.framework */; };
@@ -49,6 +52,11 @@
 		31795952189D7E7B008C09D3 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		31795953189D7E7B008C09D3 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		31795957189D7EE3008C09D3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		319BD1EA18B1CCDA00858606 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		319BD1EB18B1CCDA00858606 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		319BD1EC18B1CCDA00858606 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		319BD1ED18B1CCDA00858606 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		319BD1EE18B1CCDA00858606 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		31C5D2AB17E288CE00C568D7 /* Laundry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laundry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5D2AE17E288CE00C568D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31C5D2B017E288CE00C568D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -109,9 +117,22 @@
 			path = Laundry/TestFlightSDK2.2.1;
 			sourceTree = "<group>";
 		};
+		319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */ = {
+			isa = PBXGroup;
+			children = (
+				319BD1EA18B1CCDA00858606 /* HTMLNode.h */,
+				319BD1EB18B1CCDA00858606 /* HTMLNode.m */,
+				319BD1EC18B1CCDA00858606 /* HTMLParser.h */,
+				319BD1ED18B1CCDA00858606 /* HTMLParser.m */,
+				319BD1EE18B1CCDA00858606 /* README.md */,
+			);
+			path = "Objective-C-HMTL-Parser";
+			sourceTree = "<group>";
+		};
 		31C5D2A217E288CE00C568D7 = {
 			isa = PBXGroup;
 			children = (
+				319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */,
 				31C5D2EA17E29C7900C568D7 /* libxml2.dylib */,
 				3179594D189D7E7B008C09D3 /* TestFlightSDK2.2.1 */,
 				31C5D2B417E288CE00C568D7 /* Laundry */,
@@ -245,6 +266,7 @@
 				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
+				319BD1F118B1CCDA00858606 /* README.md in Resources */,
 				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
 				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
@@ -281,9 +303,11 @@
 				31FB5270180B6B6300851792 /* RoomSelectionViewController.m in Sources */,
 				3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */,
 				31F22EC318B0112500590ED2 /* Reachability.m in Sources */,
+				319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */,
 				31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */,
 				31C5D2CB17E288CF00C568D7 /* LaundryViewController.m in Sources */,
 				31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */,
+				319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
