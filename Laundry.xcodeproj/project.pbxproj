@@ -16,6 +16,9 @@
 		31795955189D7E7C008C09D3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3179594F189D7E7B008C09D3 /* README.md */; };
 		31795956189D7E7C008C09D3 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 31795950189D7E7B008C09D3 /* release_notes.md */; };
 		31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31795957189D7EE3008C09D3 /* libz.dylib */; };
+		319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1EB18B1CCDA00858606 /* HTMLNode.m */; };
+		319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1ED18B1CCDA00858606 /* HTMLParser.m */; };
+		319BD1F118B1CCDA00858606 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 319BD1EE18B1CCDA00858606 /* README.md */; };
 		31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2AE17E288CE00C568D7 /* UIKit.framework */; };
 		31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B017E288CE00C568D7 /* Foundation.framework */; };
 		31C5D2B317E288CE00C568D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B217E288CE00C568D7 /* CoreGraphics.framework */; };
@@ -28,9 +31,6 @@
 		31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */; };
 		31C5D2CB17E288CF00C568D7 /* LaundryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */; };
 		31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2D217E289E100C568D7 /* LaundryDataModel.m */; };
-		31C5D2E317E28C9200C568D7 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2DF17E28C9200C568D7 /* HTMLNode.m */; };
-		31C5D2E417E28C9200C568D7 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2E117E28C9200C568D7 /* HTMLParser.m */; };
-		31C5D2E517E28C9200C568D7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2E217E28C9200C568D7 /* README.md */; };
 		31C5D2EB17E29C7900C568D7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2EA17E29C7900C568D7 /* libxml2.dylib */; };
 		31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DE9F5F181B192800DB407B /* RoomSelectionModel.m */; };
 		31F22EC318B0112500590ED2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F22EC218B0112500590ED2 /* Reachability.m */; };
@@ -52,6 +52,11 @@
 		31795952189D7E7B008C09D3 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		31795953189D7E7B008C09D3 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		31795957189D7EE3008C09D3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		319BD1EA18B1CCDA00858606 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		319BD1EB18B1CCDA00858606 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		319BD1EC18B1CCDA00858606 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		319BD1ED18B1CCDA00858606 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		319BD1EE18B1CCDA00858606 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		31C5D2AB17E288CE00C568D7 /* Laundry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laundry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5D2AE17E288CE00C568D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31C5D2B017E288CE00C568D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,11 +75,6 @@
 		31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaundryViewController.m; sourceTree = "<group>"; };
 		31C5D2D117E289E100C568D7 /* LaundryDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryDataModel.h; sourceTree = "<group>"; };
 		31C5D2D217E289E100C568D7 /* LaundryDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryDataModel.m; sourceTree = "<group>"; };
-		31C5D2DE17E28C9200C568D7 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
-		31C5D2DF17E28C9200C568D7 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
-		31C5D2E017E28C9200C568D7 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
-		31C5D2E117E28C9200C568D7 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
-		31C5D2E217E28C9200C568D7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		31C5D2EA17E29C7900C568D7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		31DE9F5E181B192800DB407B /* RoomSelectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSelectionModel.h; sourceTree = "<group>"; };
 		31DE9F5F181B192800DB407B /* RoomSelectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSelectionModel.m; sourceTree = "<group>"; };
@@ -117,12 +117,24 @@
 			path = Laundry/TestFlightSDK2.2.1;
 			sourceTree = "<group>";
 		};
+		319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */ = {
+			isa = PBXGroup;
+			children = (
+				319BD1EA18B1CCDA00858606 /* HTMLNode.h */,
+				319BD1EB18B1CCDA00858606 /* HTMLNode.m */,
+				319BD1EC18B1CCDA00858606 /* HTMLParser.h */,
+				319BD1ED18B1CCDA00858606 /* HTMLParser.m */,
+				319BD1EE18B1CCDA00858606 /* README.md */,
+			);
+			path = "Objective-C-HMTL-Parser";
+			sourceTree = "<group>";
+		};
 		31C5D2A217E288CE00C568D7 = {
 			isa = PBXGroup;
 			children = (
+				319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */,
 				31C5D2EA17E29C7900C568D7 /* libxml2.dylib */,
 				3179594D189D7E7B008C09D3 /* TestFlightSDK2.2.1 */,
-				31C5D2DD17E28C9200C568D7 /* Objective-C-HMTL-Parser */,
 				31C5D2B417E288CE00C568D7 /* Laundry */,
 				31C5D2AD17E288CE00C568D7 /* Frameworks */,
 				31C5D2AC17E288CE00C568D7 /* Products */,
@@ -190,18 +202,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		31C5D2DD17E28C9200C568D7 /* Objective-C-HMTL-Parser */ = {
-			isa = PBXGroup;
-			children = (
-				31C5D2DE17E28C9200C568D7 /* HTMLNode.h */,
-				31C5D2DF17E28C9200C568D7 /* HTMLNode.m */,
-				31C5D2E017E28C9200C568D7 /* HTMLParser.h */,
-				31C5D2E117E28C9200C568D7 /* HTMLParser.m */,
-				31C5D2E217E28C9200C568D7 /* README.md */,
-			);
-			path = "Objective-C-HMTL-Parser";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -266,12 +266,12 @@
 				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
+				319BD1F118B1CCDA00858606 /* README.md in Resources */,
 				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
 				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
 				31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */,
 				31795955189D7E7C008C09D3 /* README.md in Resources */,
-				31C5D2E517E28C9200C568D7 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,11 +303,11 @@
 				31FB5270180B6B6300851792 /* RoomSelectionViewController.m in Sources */,
 				3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */,
 				31F22EC318B0112500590ED2 /* Reachability.m in Sources */,
+				319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */,
 				31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */,
 				31C5D2CB17E288CF00C568D7 /* LaundryViewController.m in Sources */,
 				31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */,
-				31C5D2E317E28C9200C568D7 /* HTMLNode.m in Sources */,
-				31C5D2E417E28C9200C568D7 /* HTMLParser.m in Sources */,
+				319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
