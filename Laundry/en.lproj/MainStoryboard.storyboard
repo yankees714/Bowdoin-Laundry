@@ -11,9 +11,14 @@
                 <navigationController definesPresentationContext="YES" id="6Lr-TH-vXT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FW4-BG-OK7"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sdv-UH-yRq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Sdv-UH-yRq">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="nkO-ss-8ag" kind="relationship" relationship="rootViewController" id="qIe-gu-rPH"/>
@@ -84,7 +89,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Developed by Andrew Daniels and Evan Hoytin Brunswick, ME" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gha-2I-KQk">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Developed by Andrew Daniels and Evan Hoyt in Brunswick, ME" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gha-2I-KQk">
                                 <rect key="frame" x="10" y="523" width="299" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -196,16 +201,18 @@
                             <outlet property="delegate" destination="nkO-ss-8ag" id="Z4n-BK-rlF"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Bowdoin Laundry" id="s8A-dx-Fob">
-                        <barButtonItem key="rightBarButtonItem" image="glyphicons_137_cogwheels.png" width="10" id="ZXj-hL-0p4">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" id="FSI-Ds-obD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="xX6-9a-782" kind="push" id="y0e-NV-8kh"/>
+                                <segue destination="xX6-9a-782" kind="push" id="a8e-Qp-ALU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="settingsBarButton" destination="FSI-Ds-obD" id="KXG-aN-MsJ"/>
                         <outlet property="tableView" destination="m61-j0-pid" id="ZG9-JZ-Drj"/>
                     </connections>
                 </tableViewController>
@@ -214,9 +221,6 @@
             <point key="canvasLocation" x="-314" y="144"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="glyphicons_137_cogwheels.png" width="34" height="27"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

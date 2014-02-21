@@ -26,12 +26,19 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+	
+	
+	// set image for settings button on nav bar
+	UIImage * gearsImage = [UIImage imageNamed:@"glyphicons_137_cogwheels.png"];
+	UIImage * scaledGearsImage = [UIImage imageWithCGImage:[gearsImage CGImage] scale:1.25*gearsImage.scale orientation:gearsImage.imageOrientation];
+	self.settingsBarButton.image = scaledGearsImage;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 	
