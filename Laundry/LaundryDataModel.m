@@ -20,6 +20,7 @@
 	NSString * urlWithIDString = [urlString stringByAppendingString:roomID];
 	model.url = [NSURL URLWithString:urlWithIDString];
 	
+	
 	[model refreshLaundryData];
 	
 	return model;
@@ -28,6 +29,7 @@
 - (void)refreshLaundryData{
 	//parser setup
 	NSError * error = nil;
+	
 	HTMLParser *roomParser = [[HTMLParser alloc] initWithContentsOfURL:self.url error:&error];
 	HTMLNode *roomBody = [roomParser body];
 

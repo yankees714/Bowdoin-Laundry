@@ -25,6 +25,8 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
+	self.tableView.separatorColor = [UIColor blackColor];
+	
 	
 	//interface setup
 	self.navigationItem.title = self.roomName;
@@ -66,7 +68,9 @@
 }
 
 - (void)refreshView:(UIRefreshControl *)sender {
-	[self updateMachinesAndStatus];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self updateMachinesAndStatus];
+	});
 	
 	[sender endRefreshing];
 }
@@ -119,12 +123,17 @@
 	
 	
 	
+	//get rid of the background color of text labels
+	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
+	
 	// adjust detail color based on status
 	// doing string contains check instead of equality just to be safe
+	
 	//check for machine available status
 	if ([cell.detailTextLabel.text rangeOfString:@"available"].location != NSNotFound) {
-		cell.textLabel.textColor = [UIColor greenColor];
-		
+		//cell.textLabel.textColor = [UIColor greenColor];
+		cell.backgroundColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:.1];
 		
 		if (watch) {
 			// notify that the laundry is finsihed if watching
@@ -144,11 +153,16 @@
 	//check for cycle in progress status
 	} else if ([cell.detailTextLabel.text rangeOfString:@"time remaining"].location != NSNotFound ||
 			   [cell.detailTextLabel.text rangeOfString:@"extended"].location != NSNotFound) {
-		cell.textLabel.textColor = [UIColor redColor];
+		//cell.textLabel.textColor = [UIColor redColor];
+		cell.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.1];
+		
+		
 	// check for cycle ended status
 	} else if ([cell.detailTextLabel.text rangeOfString:@"cycle ended"].location != NSNotFound){
+		cell.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.1];
+		
 		if (watch){
-			cell.textLabel.textColor = [UIColor blackColor];
+			//cell.textLabel.textColor = [UIColor blackColor];
 			
 			// notify that the laundry is finsihed if watching
 			UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -179,6 +193,7 @@
 		return @"Dryers";
 	}
 }
+
 
 - (IBAction)watch:(UISwitch *)sender{
 	NSString * machine = ((UITableViewCell *)sender.superview.superview).textLabel.text;
