@@ -69,7 +69,27 @@
 			machineNameString = [machineNameString substringFromIndex:1];
 		}
 		
+		
+		
 		NSString * machineStatusString = [[[stats objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		
+		// Transform cycle ended status
+//		NSString *cycleEndedRegexPattern = @".*(cycle ended).*";
+//		NSRegularExpression * cycleEndedRegex = [NSRegularExpression regularExpressionWithPattern:cycleEndedRegexPattern
+//																						  options:NSRegularExpressionCaseInsensitive
+//																							error:nil];
+//		NSInteger numberOfMatches = [cycleEndedRegex numberOfMatchesInString:machineStatusString
+//																	 options:0
+//																	   range:NSMakeRange(0, [machineStatusString length])];
+//		NSLog(@"%@",machineStatusString);
+//		NSLog(@"number of matches: %ld",(long)numberOfMatches);
+//		if (numberOfMatches > 0) {
+//			machineStatusString = @"Cycle ended!";
+//		}
+		
+		
+		
+		
 		
 		// array for holding a machine at index 0, status at index 1
 		NSArray * machineWithStatus = [NSArray arrayWithObjects:machineNameString, machineStatusString, nil];

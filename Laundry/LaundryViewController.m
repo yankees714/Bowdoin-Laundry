@@ -55,6 +55,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)updateMachinesAndStatus {
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -133,7 +134,7 @@
 	//check for machine available status
 	if ([cell.detailTextLabel.text rangeOfString:@"available"].location != NSNotFound) {
 		//cell.textLabel.textColor = [UIColor greenColor];
-		cell.backgroundColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:.1];
+		cell.backgroundColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.07];
 		
 		if (watch) {
 			// notify that the laundry is finsihed if watching
@@ -154,12 +155,12 @@
 	} else if ([cell.detailTextLabel.text rangeOfString:@"time remaining"].location != NSNotFound ||
 			   [cell.detailTextLabel.text rangeOfString:@"extended"].location != NSNotFound) {
 		//cell.textLabel.textColor = [UIColor redColor];
-		cell.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.1];
+		cell.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.07];
 		
 		
 	// check for cycle ended status
 	} else if ([cell.detailTextLabel.text rangeOfString:@"cycle ended"].location != NSNotFound){
-		cell.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.1];
+		cell.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.07];
 		
 		if (watch){
 			//cell.textLabel.textColor = [UIColor blackColor];

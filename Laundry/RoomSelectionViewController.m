@@ -164,8 +164,13 @@
 		// get the room for the selected row
 		NSString * room = [self.roomSelection roomForIndex:selected];
 	
+		
 		laundryVC.roomName = room;
 		laundryVC.roomID = [self.roomSelection idForRoom:room];
+		
+		
+		// deselect the selected cell before segue
+		[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 	}
 }
 
