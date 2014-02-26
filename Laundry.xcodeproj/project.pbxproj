@@ -15,9 +15,7 @@
 		31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31795957189D7EE3008C09D3 /* libz.dylib */; };
 		319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1EB18B1CCDA00858606 /* HTMLNode.m */; };
 		319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1ED18B1CCDA00858606 /* HTMLParser.m */; };
-		319BD1F118B1CCDA00858606 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 319BD1EE18B1CCDA00858606 /* README.md */; };
 		31C1CBF918BA7DB300D5909D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C1CBF318BA7DB300D5909D /* libTestFlight.a */; };
-		31C1CBFA18BA7DB300D5909D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 31C1CBF418BA7DB300D5909D /* README.md */; };
 		31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 31C1CBF518BA7DB300D5909D /* release_notes.md */; };
 		31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2AE17E288CE00C568D7 /* UIKit.framework */; };
 		31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B017E288CE00C568D7 /* Foundation.framework */; };
@@ -263,10 +261,8 @@
 				3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */,
 				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
 				31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */,
-				31C1CBFA18BA7DB300D5909D /* README.md in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
-				319BD1F118B1CCDA00858606 /* README.md in Resources */,
 				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
 				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
@@ -400,7 +396,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/andrewdaniels/Dropbox/Programming/Laundry/Laundry/TestFlightSDK2.2.1,
 					/Users/andrewdaniels/Dropbox/Programming/Laundry/TestFlightSDK3.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,9 +416,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/andrewdaniels/Dropbox/Programming/Laundry/Laundry/TestFlightSDK2.2.1,
 					/Users/andrewdaniels/Dropbox/Programming/Laundry/TestFlightSDK3.0.0,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
