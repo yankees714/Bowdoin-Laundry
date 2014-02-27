@@ -19,7 +19,7 @@
 - (void)viewDidLoad{
 	[super viewDidLoad];
 	
-	[TestFlight passCheckpoint:self.roomName];
+	[TestFlight passCheckpoint:self.room.name];
 	
 	
 	self.tableView.delegate = self;
@@ -29,7 +29,7 @@
 	
 	
 	//interface setup
-	self.navigationItem.title = self.roomName;
+	self.navigationItem.title = self.room.name;
 	
 	
 	[self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
@@ -38,7 +38,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMachinesAndStatus) name:UIApplicationDidBecomeActiveNotification object:nil];
 	
 	// Grab and fill laundry data
-	self.roomModel = [LaundryDataModel  laundryDataModelWithID:self.roomID];
+	self.roomModel = [LaundryDataModel  laundryDataModelWithID:self.room.ID];
 	
 	//set up updates and begin - not necessary for now
 //	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
@@ -118,7 +118,7 @@
 	//[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
 	
 	// check user defaults to see if user is watching this machine
-	NSString *key = [self keyForSwitchWithRoom:self.roomName andMachine:cell.textLabel.text];
+	NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
 	BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
 	//[switchView setOn:watch animated:NO];
 	
@@ -140,7 +140,7 @@
 			// notify that the laundry is finsihed if watching
 			UILocalNotification *notification = [[UILocalNotification alloc] init];
 			notification.alertAction = @"laundry finished";
-			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.roomName];
+			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
 			notification.fireDate = [NSDate date];
 			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
 			
@@ -168,7 +168,7 @@
 			// notify that the laundry is finsihed if watching
 			UILocalNotification *notification = [[UILocalNotification alloc] init];
 			notification.alertAction = @"laundry finished";
-			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.roomName];
+			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
 			notification.fireDate = [NSDate date];
 			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
 		
@@ -198,7 +198,7 @@
 
 - (IBAction)watch:(UISwitch *)sender{
 	NSString * machine = ((UITableViewCell *)sender.superview.superview).textLabel.text;
-	NSString * key = [self keyForSwitchWithRoom:self.roomName andMachine:machine];
+	NSString * key = [self keyForSwitchWithRoom:self.room.name andMachine:machine];
 	[[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:key];
 
 	
@@ -206,7 +206,7 @@
 	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
 	UILocalNotification *notification = [[UILocalNotification alloc] init];
 	notification.alertAction = @"watching notification";
-	notification.alertBody = [NSString stringWithFormat:@"Watching machine %@ in the %@ laundry room!",machine,self.roomName];
+	notification.alertBody = [NSString stringWithFormat:@"Watching machine %@ in the %@ laundry room!",machine,self.room.name];
 	notification.fireDate = [NSDate date];
 	notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber+1;
 	

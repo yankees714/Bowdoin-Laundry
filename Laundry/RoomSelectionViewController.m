@@ -9,6 +9,7 @@
 #import "RoomSelectionViewController.h"
 #import "LaundryViewController.h"
 #import "RoomSelectionModel.h"
+#import "LaundryRoom.h"
 #import "Reachability.h"
 
 @interface RoomSelectionViewController ()
@@ -51,16 +52,16 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 	
-	if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != ReachableViaWiFi) {
-		UIAlertView * getOnWifi = [[UIAlertView alloc] initWithTitle:@"Please connect to WiFi."
-															 message:@"Laundry is only available on Bowdoin's local Wifi network."
-															delegate:nil
-												   cancelButtonTitle:nil
-												   otherButtonTitles:nil];
-		[getOnWifi show];
-	} else{
+//	if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != ReachableViaWiFi) {
+//		UIAlertView * getOnWifi = [[UIAlertView alloc] initWithTitle:@"Please connect to WiFi."
+//															 message:@"Laundry is only available on Bowdoin's local Wifi network."
+//															delegate:nil
+//												   cancelButtonTitle:nil
+//												   otherButtonTitles:nil];
+//		[getOnWifi show];
+//	} else{
 		self.roomSelection = [RoomSelectionModel roomSelectionModel];
-	}
+//	}
 	
 
     // Uncomment the following line to preserve selection between presentations.
@@ -127,20 +128,29 @@
 		
 		NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
 		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
-			laundryVC.roomName = @"Osher Hall";
-			laundryVC.roomID = @"3050727";
 			
-			self.initialLoad = NO;
+			laundryVC.room = [LaundryRoom roomWithName:@"Osher Hall" andID:@"3050727"];
+			
 		} else {
-			NSString * room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
-			laundryVC.roomName = room;
-			laundryVC.roomID = [self.roomSelection idForRoom:room];
+			NSString * name = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
+			LaundryRoom *room = [LaundryRoom roomWithName:name andID:[self.roomSelection idForRoom:name]];
+			
+			NSLog(@"%@", room.name);
+			NSLog(@"%@", room.ID);
 			
 			
+			laundryVC.room = room;
+			
+			NSLog(@"%@",laundryVC.room.name);
+			NSLog(@"%@",laundryVC.room.ID);
 						
+			
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}
+		
 	}
+	
+	self.initialLoad = NO;
 }
 
 

@@ -10,7 +10,9 @@
 
 @interface LaundryRoom : NSObject
 
-@property (weak,nonatomic) NSString *ID;
-@property (weak, nonatomic) NSString *name;
+@property (nonatomic) NSString *ID;
+@property (nonatomic) NSString *name;
+
++ (LaundryRoom *)roomWithName:(NSString *)name andID:(NSString *) ID;
 
 @end
