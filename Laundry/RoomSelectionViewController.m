@@ -31,8 +31,14 @@
 {
     [super viewDidLoad];
 	
+	self.initialLoad =YES;
 	
-//	[self performSegueWithIdentifier:@"roomSelection" sender:self];
+	
+	// check for a favorite room
+	NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
+	if([userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
+		[self performSegueWithIdentifier:@"roomSelection" sender:self];
+	}
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
@@ -116,14 +122,24 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
+		
 		LaundryViewController *laundryVC = [segue destinationViewController];
-								
 		
-		NSString * room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
-		laundryVC.roomName = room;
-		laundryVC.roomID = [self.roomSelection idForRoom:room];
-		
-		[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+		NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
+		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
+			laundryVC.roomName = @"Osher Hall";
+			laundryVC.roomID = @"3050727";
+			
+			self.initialLoad = NO;
+		} else {
+			NSString * room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
+			laundryVC.roomName = room;
+			laundryVC.roomID = [self.roomSelection idForRoom:room];
+			
+			
+						
+			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+		}
 	}
 }
 
