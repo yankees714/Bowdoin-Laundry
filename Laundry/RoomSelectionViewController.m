@@ -32,7 +32,7 @@
     [super viewDidLoad];
 	
 	
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+//	[self performSegueWithIdentifier:@"roomSelection" sender:self];
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
@@ -115,13 +115,11 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
+	if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
 		LaundryViewController *laundryVC = [segue destinationViewController];
 								
-		// save the index path of the selected room
-		self.selectedRoomIndexPath = [self.tableView indexPathForSelectedRow];
 		
-		NSString * room = [self.roomSelection roomForIndex:[self.selectedRoomIndexPath row]];
+		NSString * room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 		laundryVC.roomName = room;
 		laundryVC.roomID = [self.roomSelection idForRoom:room];
 		

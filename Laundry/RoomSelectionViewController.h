@@ -14,8 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) RoomSelectionModel * roomSelection;
 
-@property (weak, nonatomic) NSIndexPath *selectedRoomIndexPath;
-
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButton;
 
 @end

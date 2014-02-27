@@ -206,7 +206,7 @@
                         <barButtonItem key="rightBarButtonItem" id="FSI-Ds-obD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="xX6-9a-782" kind="push" id="a8e-Qp-ALU"/>
+                                <segue destination="xX6-9a-782" kind="push" identifier="settings" id="a8e-Qp-ALU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
