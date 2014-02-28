@@ -16,4 +16,6 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *settingsBarButton;
 
+@property (nonatomic, assign) BOOL initialLoad;
+
 @end

@@ -11,14 +11,13 @@
 		3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */; };
 		3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */; };
 		3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */; };
+		31774F3C18BFE4C200C2719C /* LaundryRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 31774F3B18BFE4C100C2719C /* LaundryRoom.m */; };
 		3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179594B189D7527008C09D3 /* SettingsViewController.m */; };
-		31795954189D7E7B008C09D3 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3179594E189D7E7B008C09D3 /* libTestFlight.a */; };
-		31795955189D7E7C008C09D3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3179594F189D7E7B008C09D3 /* README.md */; };
-		31795956189D7E7C008C09D3 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 31795950189D7E7B008C09D3 /* release_notes.md */; };
 		31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31795957189D7EE3008C09D3 /* libz.dylib */; };
 		319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1EB18B1CCDA00858606 /* HTMLNode.m */; };
 		319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 319BD1ED18B1CCDA00858606 /* HTMLParser.m */; };
-		319BD1F118B1CCDA00858606 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 319BD1EE18B1CCDA00858606 /* README.md */; };
+		31C1CBF918BA7DB300D5909D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C1CBF318BA7DB300D5909D /* libTestFlight.a */; };
+		31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 31C1CBF518BA7DB300D5909D /* release_notes.md */; };
 		31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2AE17E288CE00C568D7 /* UIKit.framework */; };
 		31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B017E288CE00C568D7 /* Foundation.framework */; };
 		31C5D2B317E288CE00C568D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2B217E288CE00C568D7 /* CoreGraphics.framework */; };
@@ -43,20 +42,22 @@
 		3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_136_cogwheel.png; sourceTree = "<group>"; };
 		3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
 		3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_207_remove_2.png; sourceTree = "<group>"; };
+		31774F3A18BFE4C100C2719C /* LaundryRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryRoom.h; sourceTree = "<group>"; };
+		31774F3B18BFE4C100C2719C /* LaundryRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryRoom.m; sourceTree = "<group>"; };
 		3179594A189D7526008C09D3 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3179594B189D7527008C09D3 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		3179594E189D7E7B008C09D3 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		3179594F189D7E7B008C09D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		31795950189D7E7B008C09D3 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		31795951189D7E7B008C09D3 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		31795952189D7E7B008C09D3 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		31795953189D7E7B008C09D3 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		31795957189D7EE3008C09D3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		319BD1EA18B1CCDA00858606 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
 		319BD1EB18B1CCDA00858606 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
 		319BD1EC18B1CCDA00858606 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
 		319BD1ED18B1CCDA00858606 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		319BD1EE18B1CCDA00858606 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		31C1CBF318BA7DB300D5909D /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		31C1CBF418BA7DB300D5909D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		31C1CBF518BA7DB300D5909D /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		31C1CBF618BA7DB300D5909D /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		31C1CBF718BA7DB300D5909D /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		31C1CBF818BA7DB300D5909D /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		31C5D2AB17E288CE00C568D7 /* Laundry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laundry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C5D2AE17E288CE00C568D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31C5D2B017E288CE00C568D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,7 +93,7 @@
 			files = (
 				31F22EC518B014E400590ED2 /* SystemConfiguration.framework in Frameworks */,
 				31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */,
-				31795954189D7E7B008C09D3 /* libTestFlight.a in Frameworks */,
+				31C1CBF918BA7DB300D5909D /* libTestFlight.a in Frameworks */,
 				31C5D2EB17E29C7900C568D7 /* libxml2.dylib in Frameworks */,
 				31C5D2AF17E288CE00C568D7 /* UIKit.framework in Frameworks */,
 				31C5D2B117E288CE00C568D7 /* Foundation.framework in Frameworks */,
@@ -103,20 +104,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3179594D189D7E7B008C09D3 /* TestFlightSDK2.2.1 */ = {
-			isa = PBXGroup;
-			children = (
-				3179594E189D7E7B008C09D3 /* libTestFlight.a */,
-				3179594F189D7E7B008C09D3 /* README.md */,
-				31795950189D7E7B008C09D3 /* release_notes.md */,
-				31795951189D7E7B008C09D3 /* TestFlight+AsyncLogging.h */,
-				31795952189D7E7B008C09D3 /* TestFlight+ManualSessions.h */,
-				31795953189D7E7B008C09D3 /* TestFlight.h */,
-			);
-			name = TestFlightSDK2.2.1;
-			path = Laundry/TestFlightSDK2.2.1;
-			sourceTree = "<group>";
-		};
 		319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,12 +116,25 @@
 			path = "Objective-C-HMTL-Parser";
 			sourceTree = "<group>";
 		};
+		31C1CBF218BA7DB300D5909D /* TestFlightSDK3.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				31C1CBF318BA7DB300D5909D /* libTestFlight.a */,
+				31C1CBF418BA7DB300D5909D /* README.md */,
+				31C1CBF518BA7DB300D5909D /* release_notes.md */,
+				31C1CBF618BA7DB300D5909D /* TestFlight+AsyncLogging.h */,
+				31C1CBF718BA7DB300D5909D /* TestFlight+ManualSessions.h */,
+				31C1CBF818BA7DB300D5909D /* TestFlight.h */,
+			);
+			path = TestFlightSDK3.0.0;
+			sourceTree = "<group>";
+		};
 		31C5D2A217E288CE00C568D7 = {
 			isa = PBXGroup;
 			children = (
 				319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */,
 				31C5D2EA17E29C7900C568D7 /* libxml2.dylib */,
-				3179594D189D7E7B008C09D3 /* TestFlightSDK2.2.1 */,
+				31C1CBF218BA7DB300D5909D /* TestFlightSDK3.0.0 */,
 				31C5D2B417E288CE00C568D7 /* Laundry */,
 				31C5D2AD17E288CE00C568D7 /* Frameworks */,
 				31C5D2AC17E288CE00C568D7 /* Products */,
@@ -179,6 +179,8 @@
 				31C5D2D217E289E100C568D7 /* LaundryDataModel.m */,
 				31C5D2D117E289E100C568D7 /* LaundryDataModel.h */,
 				31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */,
+				31774F3B18BFE4C100C2719C /* LaundryRoom.m */,
+				31774F3A18BFE4C100C2719C /* LaundryRoom.h */,
 				31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */,
 				31C5D2BD17E288CF00C568D7 /* LaundryAppDelegate.h */,
 				31C5D2B517E288CE00C568D7 /* Supporting Files */,
@@ -260,18 +262,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31795956189D7E7C008C09D3 /* release_notes.md in Resources */,
 				31C5D2B917E288CE00C568D7 /* InfoPlist.strings in Resources */,
 				3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */,
 				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
+				31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
-				319BD1F118B1CCDA00858606 /* README.md in Resources */,
 				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
 				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
 				31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */,
-				31795955189D7E7C008C09D3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C5D2BB17E288CE00C568D7 /* main.m in Sources */,
+				31774F3C18BFE4C200C2719C /* LaundryRoom.m in Sources */,
 				31C5D2BF17E288CF00C568D7 /* LaundryAppDelegate.m in Sources */,
 				31FB5270180B6B6300851792 /* RoomSelectionViewController.m in Sources */,
 				3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */,
@@ -401,7 +402,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/andrewdaniels/Dropbox/Programming/Laundry/Laundry/TestFlightSDK2.2.1,
+					/Users/andrewdaniels/Dropbox/Programming/Laundry/TestFlightSDK3.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -421,8 +422,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/andrewdaniels/Dropbox/Programming/Laundry/Laundry/TestFlightSDK2.2.1,
+					/Users/andrewdaniels/Dropbox/Programming/Laundry/TestFlightSDK3.0.0,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

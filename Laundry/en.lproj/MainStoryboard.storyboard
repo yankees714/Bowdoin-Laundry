@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Lr-TH-vXT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Lr-TH-vXT">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -116,6 +116,16 @@
                                     <segue destination="X5k-Jx-DX3" kind="push" id="hBN-E0-gPD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fk-v5-Xlc">
+                                <rect key="frame" x="104" y="212" width="112" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Remove favorite">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeFavorite:" destination="xX6-9a-782" eventType="touchUpInside" id="EiE-lo-Kfy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -192,7 +202,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="b2S-ba-z7U" kind="push" id="1ZX-hM-th7"/>
+                                    <segue destination="b2S-ba-z7U" kind="push" identifier="roomSelection" id="1ZX-hM-th7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -206,7 +216,7 @@
                         <barButtonItem key="rightBarButtonItem" id="FSI-Ds-obD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="xX6-9a-782" kind="push" id="a8e-Qp-ALU"/>
+                                <segue destination="xX6-9a-782" kind="push" identifier="settings" id="a8e-Qp-ALU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

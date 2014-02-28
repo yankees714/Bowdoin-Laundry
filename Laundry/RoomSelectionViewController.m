@@ -9,6 +9,7 @@
 #import "RoomSelectionViewController.h"
 #import "LaundryViewController.h"
 #import "RoomSelectionModel.h"
+#import "LaundryRoom.h"
 #import "Reachability.h"
 
 @interface RoomSelectionViewController ()
@@ -31,6 +32,15 @@
 {
     [super viewDidLoad];
 	
+	self.initialLoad =YES;
+	
+	
+	// check for a favorite room
+	NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
+	if([userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
+		[self performSegueWithIdentifier:@"roomSelection" sender:self];
+	}
+	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
@@ -42,16 +52,16 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 	
-	if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != ReachableViaWiFi) {
-		UIAlertView * getOnWifi = [[UIAlertView alloc] initWithTitle:@"Please connect to WiFi."
-															 message:@"Laundry is only available on Bowdoin's local Wifi network."
-															delegate:nil
-												   cancelButtonTitle:nil
-												   otherButtonTitles:nil];
-		[getOnWifi show];
-	} else{
+//	if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != ReachableViaWiFi) {
+//		UIAlertView * getOnWifi = [[UIAlertView alloc] initWithTitle:@"Please connect to WiFi."
+//															 message:@"Laundry is only available on Bowdoin's local Wifi network."
+//															delegate:nil
+//												   cancelButtonTitle:nil
+//												   otherButtonTitles:nil];
+//		[getOnWifi show];
+//	} else{
 		self.roomSelection = [RoomSelectionModel roomSelectionModel];
-	}
+//	}
 	
 
     // Uncomment the following line to preserve selection between presentations.
@@ -106,67 +116,35 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
-		// Get the new view controller using [segue destinationViewController].
+	if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
+		
 		LaundryViewController *laundryVC = [segue destinationViewController];
-										
-	
-		// Pass the selected object to the new view controller.
-	
-		// get the index of the selected key
-		NSInteger selected = [[self.tableView indexPathForSelectedRow] row];
-	
-		// get the room for the selected row
-		NSString * room = [self.roomSelection roomForIndex:selected];
-	
-		laundryVC.roomName = room;
-		laundryVC.roomID = [self.roomSelection idForRoom:room];
+		
+		NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
+		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
+			laundryVC.room = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
+		} else {
+			NSString * name = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
+			NSString * ID = [self.roomSelection idForRoom:name];
+			
+			laundryVC.room = [LaundryRoom roomWithName:name andID: ID];
+			
+			if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] == nil){
+				[userDefaults setObject:[laundryVC.room arrayForRoom] forKey:@"favoriteRoom"];
+			}
+
+			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+		}
+		
 	}
+	
+	self.initialLoad = NO;
 }
 
 
