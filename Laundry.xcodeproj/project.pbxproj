@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */; };
-		3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */; };
 		3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */; };
-		3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */; };
 		31774F3C18BFE4C200C2719C /* LaundryRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 31774F3B18BFE4C100C2719C /* LaundryRoom.m */; };
 		3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179594B189D7527008C09D3 /* SettingsViewController.m */; };
 		31795958189D7EE3008C09D3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31795957189D7EE3008C09D3 /* libz.dylib */; };
@@ -38,10 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons_283_t-shirt.png"; sourceTree = "<group>"; };
-		3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_136_cogwheel.png; sourceTree = "<group>"; };
 		3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
-		3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_207_remove_2.png; sourceTree = "<group>"; };
 		31774F3A18BFE4C100C2719C /* LaundryRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryRoom.h; sourceTree = "<group>"; };
 		31774F3B18BFE4C100C2719C /* LaundryRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryRoom.m; sourceTree = "<group>"; };
 		3179594A189D7526008C09D3 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -104,6 +98,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3129A30718C1255D002F9C2D /* models */ = {
+			isa = PBXGroup;
+			children = (
+				31C5D2D117E289E100C568D7 /* LaundryDataModel.h */,
+				31C5D2D217E289E100C568D7 /* LaundryDataModel.m */,
+				31DE9F5E181B192800DB407B /* RoomSelectionModel.h */,
+				31DE9F5F181B192800DB407B /* RoomSelectionModel.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		3129A30918C12592002F9C2D /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31C5D2C917E288CF00C568D7 /* LaundryViewController.h */,
+				31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */,
+				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
+				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
+				3179594A189D7526008C09D3 /* SettingsViewController.h */,
+				3179594B189D7527008C09D3 /* SettingsViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		3129A30A18C12762002F9C2D /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				31C5D2BD17E288CF00C568D7 /* LaundryAppDelegate.h */,
+				31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */,
+				31774F3A18BFE4C100C2719C /* LaundryRoom.h */,
+				31774F3B18BFE4C100C2719C /* LaundryRoom.m */,
+				31F22EC118B0112500590ED2 /* Reachability.h */,
+				31F22EC218B0112500590ED2 /* Reachability.m */,
+			);
+			name = helpers;
+			sourceTree = "<group>";
+		};
+		3129A30B18C127B1002F9C2D /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */,
+			);
+			name = storyboard;
+			sourceTree = "<group>";
+		};
 		319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +171,10 @@
 		31C5D2A217E288CE00C568D7 = {
 			isa = PBXGroup;
 			children = (
+				31C5D2B417E288CE00C568D7 /* Laundry */,
 				319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */,
 				31C5D2EA17E29C7900C568D7 /* libxml2.dylib */,
 				31C1CBF218BA7DB300D5909D /* TestFlightSDK3.0.0 */,
-				31C5D2B417E288CE00C568D7 /* Laundry */,
 				31C5D2AD17E288CE00C568D7 /* Frameworks */,
 				31C5D2AC17E288CE00C568D7 /* Products */,
 			);
@@ -164,25 +203,10 @@
 		31C5D2B417E288CE00C568D7 /* Laundry */ = {
 			isa = PBXGroup;
 			children = (
-				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
-				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
-				31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */,
-				31C5D2C917E288CF00C568D7 /* LaundryViewController.h */,
-				3179594B189D7527008C09D3 /* SettingsViewController.m */,
-				3179594A189D7526008C09D3 /* SettingsViewController.h */,
-				3157A4611892059D00B60B37 /* glyphicons_283_t-shirt.png */,
-				3171BF4F189C513600192D88 /* glyphicons_136_cogwheel.png */,
-				3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */,
-				3171BF53189C5CF100192D88 /* glyphicons_207_remove_2.png */,
-				31DE9F5F181B192800DB407B /* RoomSelectionModel.m */,
-				31DE9F5E181B192800DB407B /* RoomSelectionModel.h */,
-				31C5D2D217E289E100C568D7 /* LaundryDataModel.m */,
-				31C5D2D117E289E100C568D7 /* LaundryDataModel.h */,
-				31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */,
-				31774F3B18BFE4C100C2719C /* LaundryRoom.m */,
-				31774F3A18BFE4C100C2719C /* LaundryRoom.h */,
-				31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */,
-				31C5D2BD17E288CF00C568D7 /* LaundryAppDelegate.h */,
+				3129A30918C12592002F9C2D /* controllers */,
+				3129A30A18C12762002F9C2D /* helpers */,
+				3129A30718C1255D002F9C2D /* models */,
+				3129A30B18C127B1002F9C2D /* storyboard */,
 				31C5D2B517E288CE00C568D7 /* Supporting Files */,
 			);
 			path = Laundry;
@@ -191,8 +215,7 @@
 		31C5D2B517E288CE00C568D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				31F22EC118B0112500590ED2 /* Reachability.h */,
-				31F22EC218B0112500590ED2 /* Reachability.m */,
+				3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */,
 				31C5D2B617E288CE00C568D7 /* Laundry-Info.plist */,
 				31C5D2B717E288CE00C568D7 /* InfoPlist.strings */,
 				31C5D2BA17E288CE00C568D7 /* main.m */,
@@ -263,13 +286,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C5D2B917E288CE00C568D7 /* InfoPlist.strings in Resources */,
-				3157A4621892059D00B60B37 /* glyphicons_283_t-shirt.png in Resources */,
-				3171BF54189C5CF100192D88 /* glyphicons_207_remove_2.png in Resources */,
 				31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
 				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
-				3171BF50189C513600192D88 /* glyphicons_136_cogwheel.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
 				31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */,
 			);
