@@ -95,17 +95,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="noz-ec-2Lj">
-                                <rect key="frame" x="62" y="109" width="197" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Laundry"/>
-                                    <segment title="More Laundry"/>
-                                </segments>
-                                <connections>
-                                    <action selector="levelSelected:" destination="xX6-9a-782" eventType="valueChanged" id="o6p-6d-wNa"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4H-MD-Md4">
                                 <rect key="frame" x="75" y="174" width="170" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,7 +122,6 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="B8O-ID-94N"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="levelChooser" destination="noz-ec-2Lj" id="jow-xs-Aku"/>
                         <outlet property="searchDisplayController" destination="qxC-2c-OZY" id="JKP-0y-z2h"/>
                     </connections>
                 </viewController>
@@ -152,6 +140,7 @@
         <!--View Controller-->
         <scene sceneID="NYJ-nR-ttU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALM-JD-4h7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="X5k-Jx-DX3" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lev-l1-HLQ"/>
@@ -171,7 +160,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="0c2-sM-2Nz"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ALM-JD-4h7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="46" y="-657"/>
         </scene>
