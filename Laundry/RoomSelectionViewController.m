@@ -128,23 +128,17 @@
 		
 		NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
 		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
-			
-			laundryVC.room = [LaundryRoom roomWithName:@"Osher Hall" andID:@"3050727"];
-			
+			laundryVC.room = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
 		} else {
 			NSString * name = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
-			LaundryRoom *room = [LaundryRoom roomWithName:name andID:[self.roomSelection idForRoom:name]];
+			NSString * ID = [self.roomSelection idForRoom:name];
 			
-			NSLog(@"%@", room.name);
-			NSLog(@"%@", room.ID);
+			laundryVC.room = [LaundryRoom roomWithName:name andID: ID];
 			
-			
-			laundryVC.room = room;
-			
-			NSLog(@"%@",laundryVC.room.name);
-			NSLog(@"%@",laundryVC.room.ID);
-						
-			
+			if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] == nil){
+				[userDefaults setObject:[laundryVC.room arrayForRoom] forKey:@"favoriteRoom"];
+			}
+
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}
 		

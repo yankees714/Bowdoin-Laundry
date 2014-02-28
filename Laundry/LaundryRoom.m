@@ -17,4 +17,17 @@
 	return room;
 }
 
++ (LaundryRoom *)roomWithArray:(NSArray *)array{
+	LaundryRoom *room = [[LaundryRoom alloc] init];
+	room.name = array[0];
+	room.ID = array[1];
+	return room;
+}
+
+
+
+- (NSArray *)arrayForRoom{
+	return [NSArray arrayWithObjects:self.name, self.ID, nil];
+}
+
 @end

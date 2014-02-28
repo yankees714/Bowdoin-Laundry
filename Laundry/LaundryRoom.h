@@ -13,6 +13,14 @@
 @property (nonatomic) NSString *ID;
 @property (nonatomic) NSString *name;
 
+
+// Create a room given a name and ID
 + (LaundryRoom *)roomWithName:(NSString *)name andID:(NSString *) ID;
+
+// Create a room given an array of form [name, ID]
++ (LaundryRoom *)roomWithArray:(NSArray *)array;
+
+// Returns an array containing [name, ID]
+- (NSArray *)arrayForRoom;
 
 @end
