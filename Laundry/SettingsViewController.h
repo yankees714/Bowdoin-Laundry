@@ -12,5 +12,4 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *levelChooser;
 - (IBAction)levelSelected:(UISegmentedControl *)sender;
 
-- (IBAction)removeFavorite:(id)sender;
 @end

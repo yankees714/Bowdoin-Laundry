@@ -50,16 +50,4 @@
 	//store watch level
 	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedSegmentIndex] forKey:@"level"];
 }
-
-- (IBAction)removeFavorite:(id)sender {
-	NSUserDefaults *userDefaults =[NSUserDefaults standardUserDefaults];
-	[userDefaults setObject:nil forKey:@"favoriteRoom"];
-	
-	UIAlertView *favoriteRemovedAlert = [[UIAlertView alloc] initWithTitle:nil
-																   message:@"Favorite removed!"
-																  delegate:nil
-														 cancelButtonTitle:@"Okay"
-														 otherButtonTitles:nil, nil];
-	[favoriteRemovedAlert show];	
-}
 @end
