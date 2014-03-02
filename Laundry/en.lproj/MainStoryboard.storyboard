@@ -26,7 +26,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cg2-Zz-8Ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-774" y="144"/>
+            <point key="canvasLocation" x="-1066" y="144"/>
         </scene>
         <!--Laundry View Controller - Bowdoin Laundry-->
         <scene sceneID="aU0-Gw-x7m">
@@ -68,7 +68,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bowdoin Laundry" id="fJ8-BN-8qO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oCn-w1-A2G">
+                        <barButtonItem key="rightBarButtonItem" image="glyphicons_049_star.png" id="oCn-w1-A2G">
                             <connections>
                                 <action selector="setDefaultRoom:" destination="b2S-ba-z7U" id="62z-je-JWf"/>
                             </connections>
@@ -81,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGk-fl-MEm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150" y="150"/>
+            <point key="canvasLocation" x="406" y="144"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="afV-qA-UZd">
@@ -128,7 +128,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-314" y="-624"/>
+            <point key="canvasLocation" x="406" y="-588"/>
         </scene>
         <!--Room Selection View Controller - Bowdoin Laundry-->
         <scene sceneID="iu7-Tk-EVb">
@@ -186,6 +186,9 @@
             <point key="canvasLocation" x="-314" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="glyphicons_049_star.png" width="25" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

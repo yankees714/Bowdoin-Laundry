@@ -25,8 +25,10 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
-	self.tableView.separatorColor = [UIColor blackColor];
-	
+	// set image for settings button on nav bar
+	UIImage * starImage = [UIImage imageNamed:@"glyphicons_049_star.png"];
+	UIImage * scaledStarImage = [UIImage imageWithCGImage:[starImage CGImage] scale:1.2*starImage.scale orientation:starImage.imageOrientation];
+	self.navigationItem.rightBarButtonItem.image = scaledStarImage;
 	
 	//interface setup
 	self.navigationItem.title = self.room.name;
