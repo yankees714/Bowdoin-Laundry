@@ -10,6 +10,7 @@
 #import "LaundryDataModel.h"
 #import "LaundryRoom.h"
 
+
 @interface LaundryViewController : UITableViewController
 
 @property (nonatomic) LaundryDataModel * roomModel;

@@ -10,9 +10,11 @@
 #import "LaundryDataModel.h"
 #import "TestFlight.h"
 
-@interface LaundryViewController ()
 
+
+@interface LaundryViewController ()
 @end
+
 
 @implementation LaundryViewController
 
@@ -24,6 +26,15 @@
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+	
+	
+	if ([self.room isDefaultRoom]) {
+		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
+																		   green:196/255.0
+																			blue:15/255.0
+																		   alpha:1.0];
+	}
+	
 	
 	// set image for settings button on nav bar
 	UIImage * starImage = [UIImage imageNamed:@"glyphicons_049_star.png"];
@@ -235,9 +246,18 @@
 	if(favoriteRoom != nil && favoriteRoom.ID == self.room.ID){
 		[userDefaults setObject:nil forKey:@"favoriteRoom"];
 		defaultChangedMessage.message = @"This room is no longer set as your laundry room";
+		
+		self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 	} else{
 		[userDefaults setObject:[self.room arrayForRoom] forKey:@"favoriteRoom"];
 		defaultChangedMessage.message = @"Set this room as your laundry room!";
+		
+
+		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
+																		   green:196/255.0
+																			blue:15/255.0
+																		   alpha:1.0];
+		[self.view setNeedsDisplay];
 	}
 	
 	[defaultChangedMessage show];

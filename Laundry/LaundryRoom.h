@@ -23,4 +23,7 @@
 // Returns an array containing [name, ID]
 - (NSArray *)arrayForRoom;
 
+// Checks if a given room is the default room
+- (BOOL)isDefaultRoom;
+
 @end
