@@ -177,7 +177,6 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="settingsBarButton" destination="FSI-Ds-obD" id="KXG-aN-MsJ"/>
                         <outlet property="tableView" destination="m61-j0-pid" id="ZG9-JZ-Drj"/>
                     </connections>
                 </tableViewController>
