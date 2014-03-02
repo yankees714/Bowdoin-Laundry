@@ -19,8 +19,23 @@
 
 + (LaundryRoom *)roomWithArray:(NSArray *)array{
 	LaundryRoom *room = [[LaundryRoom alloc] init];
-	room.name = array[0];
-	room.ID = array[1];
+	
+	if(array == nil){
+		room.name = nil;
+		room.ID = nil;
+	} else{
+		if(array.count > 0){
+			room.name = array[0];
+		} else{
+			room.Name = nil;
+		}
+		
+		if(array.count > 1) {
+			room.ID = array[1];
+		} else{
+			room.ID = nil;
+		}
+	}
 	return room;
 }
 
