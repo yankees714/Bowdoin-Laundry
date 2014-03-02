@@ -19,5 +19,6 @@
 @property (strong, nonatomic) LaundryRoom *room;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)setDefaultRoom:(UIBarButtonItem *)sender;
 
 @end

@@ -134,10 +134,6 @@
 			NSString * ID = [self.roomSelection idForRoom:name];
 			
 			laundryVC.room = [LaundryRoom roomWithName:name andID: ID];
-			
-			if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] == nil){
-				[userDefaults setObject:[laundryVC.room arrayForRoom] forKey:@"favoriteRoom"];
-			}
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}

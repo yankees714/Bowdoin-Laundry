@@ -67,7 +67,13 @@
                             <outlet property="delegate" destination="b2S-ba-z7U" id="eb7-qE-1oK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bowdoin Laundry" id="fJ8-BN-8qO"/>
+                    <navigationItem key="navigationItem" title="Bowdoin Laundry" id="fJ8-BN-8qO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oCn-w1-A2G">
+                            <connections>
+                                <action selector="setDefaultRoom:" destination="b2S-ba-z7U" id="62z-je-JWf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="tmX-YU-aBn">
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle"/>

@@ -220,4 +220,24 @@
 
 
 
+- (IBAction)setDefaultRoom:(UIBarButtonItem *)sender {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	LaundryRoom *favoriteRoom = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
+	
+	UIAlertView *defaultChangedMessage = [[UIAlertView alloc] initWithTitle:@"Default Laundry Room"
+																	message:@""
+																   delegate:nil
+														  cancelButtonTitle:@"Okay"
+														  otherButtonTitles: nil];
+	
+	if(favoriteRoom != nil && favoriteRoom.ID == self.room.ID){
+		[userDefaults setObject:nil forKey:@"favoriteRoom"];
+		defaultChangedMessage.message = @"This room is no longer set as your laundry room";
+	} else{
+		[userDefaults setObject:[self.room arrayForRoom] forKey:@"favoriteRoom"];
+		defaultChangedMessage.message = @"Set this room as your laundry room!";
+	}
+	
+	[defaultChangedMessage show];
+}
 @end
