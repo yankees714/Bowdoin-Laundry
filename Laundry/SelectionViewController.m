@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Andrew Daniels. All rights reserved.
 //
 
-#import "RoomSelectionViewController.h"
+#import "SelectionViewController.h"
 #import "RoomViewController.h"
 #import "RoomSelectionModel.h"
 #import "LaundryRoom.h"
 #import "Reachability.h"
 
-@interface RoomSelectionViewController ()
+@interface SelectionViewController ()
 
 @end
 
-@implementation RoomSelectionViewController
+@implementation SelectionViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

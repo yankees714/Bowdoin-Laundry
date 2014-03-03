@@ -32,7 +32,7 @@
 		31F200F018C2E08A00DEA677 /* glyphicons_049_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 31F200EF18C2E08A00DEA677 /* glyphicons_049_star.png */; };
 		31F22EC318B0112500590ED2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F22EC218B0112500590ED2 /* Reachability.m */; };
 		31F22EC518B014E400590ED2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F22EC418B014E400590ED2 /* SystemConfiguration.framework */; };
-		31FB5270180B6B6300851792 /* RoomSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB526F180B6B6300851792 /* RoomSelectionViewController.m */; };
+		31FB5270180B6B6300851792 /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31FB526F180B6B6300851792 /* SelectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,8 +78,8 @@
 		31F22EC118B0112500590ED2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		31F22EC218B0112500590ED2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		31F22EC418B014E400590ED2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		31FB526E180B6B6300851792 /* RoomSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSelectionViewController.h; sourceTree = "<group>"; };
-		31FB526F180B6B6300851792 /* RoomSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSelectionViewController.m; sourceTree = "<group>"; };
+		31FB526E180B6B6300851792 /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionViewController.h; sourceTree = "<group>"; };
+		31FB526F180B6B6300851792 /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +116,8 @@
 			children = (
 				31C5D2C917E288CF00C568D7 /* RoomViewController.h */,
 				31C5D2CA17E288CF00C568D7 /* RoomViewController.m */,
-				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
-				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
+				31FB526E180B6B6300851792 /* SelectionViewController.h */,
+				31FB526F180B6B6300851792 /* SelectionViewController.m */,
 				3179594A189D7526008C09D3 /* SettingsViewController.h */,
 				3179594B189D7527008C09D3 /* SettingsViewController.m */,
 			);
@@ -325,7 +325,7 @@
 				31C5D2BB17E288CE00C568D7 /* main.m in Sources */,
 				31774F3C18BFE4C200C2719C /* LaundryRoom.m in Sources */,
 				31C5D2BF17E288CF00C568D7 /* LaundryAppDelegate.m in Sources */,
-				31FB5270180B6B6300851792 /* RoomSelectionViewController.m in Sources */,
+				31FB5270180B6B6300851792 /* SelectionViewController.m in Sources */,
 				3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */,
 				31F22EC318B0112500590ED2 /* Reachability.m in Sources */,
 				319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */,
