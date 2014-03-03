@@ -29,6 +29,7 @@
 	
 	
 	if ([self.room isDefaultRoom]) {
+		NSLog(@"this is the default room");
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
 																		   green:196/255.0
 																			blue:15/255.0
@@ -243,7 +244,7 @@
 														  cancelButtonTitle:@"Okay"
 														  otherButtonTitles: nil];
 	
-	if(favoriteRoom != nil && favoriteRoom.ID == self.room.ID){
+	if(favoriteRoom != nil && [favoriteRoom.ID isEqualToString:self.room.ID]){
 		[userDefaults setObject:nil forKey:@"favoriteRoom"];
 		defaultChangedMessage.message = @"This room is no longer set as your laundry room";
 		

@@ -41,7 +41,9 @@
 
 - (BOOL)isDefaultRoom{
 	LaundryRoom *defaultRoom = [LaundryRoom roomWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"favoriteRoom"]];
-	return (self.ID == defaultRoom.ID);
+	NSLog(@"Default ID: %@", defaultRoom.ID);
+	NSLog(@"Current ID: %@", self.ID);
+	return [self.ID isEqualToString:defaultRoom.ID];
 }
 
 
