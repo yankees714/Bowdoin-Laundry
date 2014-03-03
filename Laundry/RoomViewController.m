@@ -27,7 +27,7 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
-	
+		
 	if ([self.room isDefaultRoom]) {
 		NSLog(@"this is the default room");
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0

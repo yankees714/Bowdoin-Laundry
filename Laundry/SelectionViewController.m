@@ -138,6 +138,11 @@
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}
 		
+		// remove text title "back" on the view being pushed
+		self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+																				 style:UIBarButtonItemStylePlain
+																				target:nil
+																				action:nil];
 	}
 	
 	self.initialLoad = NO;
