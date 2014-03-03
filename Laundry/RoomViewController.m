@@ -1,22 +1,22 @@
 //
-//  LaundryViewController.m
+//  RoomViewController.m
 //  Laundry
 //
 //  Created by Andrew Daniels on 9/12/13.
 //  Copyright (c) 2013 Andrew Daniels. All rights reserved.
 //
 
-#import "LaundryViewController.h"
+#import "RoomViewController.h"
 #import "LaundryDataModel.h"
 #import "TestFlight.h"
 
 
 
-@interface LaundryViewController ()
+@interface RoomViewController ()
 @end
 
 
-@implementation LaundryViewController
+@implementation RoomViewController
 
 - (void)viewDidLoad{
 	[super viewDidLoad];

@@ -25,7 +25,7 @@
 		31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C217E288CF00C568D7 /* Default@2x.png */; };
 		31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C417E288CF00C568D7 /* Default-568h@2x.png */; };
 		31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */; };
-		31C5D2CB17E288CF00C568D7 /* LaundryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */; };
+		31C5D2CB17E288CF00C568D7 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2CA17E288CF00C568D7 /* RoomViewController.m */; };
 		31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2D217E289E100C568D7 /* LaundryDataModel.m */; };
 		31C5D2EB17E29C7900C568D7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2EA17E29C7900C568D7 /* libxml2.dylib */; };
 		31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DE9F5F181B192800DB407B /* RoomSelectionModel.m */; };
@@ -67,8 +67,8 @@
 		31C5D2C217E288CF00C568D7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		31C5D2C417E288CF00C568D7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		31C5D2C717E288CF00C568D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		31C5D2C917E288CF00C568D7 /* LaundryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaundryViewController.h; sourceTree = "<group>"; };
-		31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaundryViewController.m; sourceTree = "<group>"; };
+		31C5D2C917E288CF00C568D7 /* RoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
+		31C5D2CA17E288CF00C568D7 /* RoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
 		31C5D2D117E289E100C568D7 /* LaundryDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryDataModel.h; sourceTree = "<group>"; };
 		31C5D2D217E289E100C568D7 /* LaundryDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryDataModel.m; sourceTree = "<group>"; };
 		31C5D2EA17E29C7900C568D7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -114,8 +114,8 @@
 		3129A30918C12592002F9C2D /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				31C5D2C917E288CF00C568D7 /* LaundryViewController.h */,
-				31C5D2CA17E288CF00C568D7 /* LaundryViewController.m */,
+				31C5D2C917E288CF00C568D7 /* RoomViewController.h */,
+				31C5D2CA17E288CF00C568D7 /* RoomViewController.m */,
 				31FB526E180B6B6300851792 /* RoomSelectionViewController.h */,
 				31FB526F180B6B6300851792 /* RoomSelectionViewController.m */,
 				3179594A189D7526008C09D3 /* SettingsViewController.h */,
@@ -330,7 +330,7 @@
 				31F22EC318B0112500590ED2 /* Reachability.m in Sources */,
 				319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */,
 				31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */,
-				31C5D2CB17E288CF00C568D7 /* LaundryViewController.m in Sources */,
+				31C5D2CB17E288CF00C568D7 /* RoomViewController.m in Sources */,
 				31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */,
 				319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */,
 			);

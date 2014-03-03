@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-1066" y="144"/>
         </scene>
-        <!--Laundry View Controller - Bowdoin Laundry-->
+        <!--Room View Controller - Bowdoin Laundry-->
         <scene sceneID="aU0-Gw-x7m">
             <objects>
-                <tableViewController id="b2S-ba-z7U" customClass="LaundryViewController" sceneMemberID="viewController">
+                <tableViewController id="b2S-ba-z7U" customClass="RoomViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="fxX-sJ-W75">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

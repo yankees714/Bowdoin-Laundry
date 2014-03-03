@@ -7,7 +7,7 @@
 //
 
 #import "RoomSelectionViewController.h"
-#import "LaundryViewController.h"
+#import "RoomViewController.h"
 #import "RoomSelectionModel.h"
 #import "LaundryRoom.h"
 #import "Reachability.h"
@@ -122,18 +122,18 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if([[segue.destinationViewController className] isEqualToString:@"LaundryViewController"]){
+	if([segue.identifier isEqualToString:@"roomSelection"]){
 		
-		LaundryViewController *laundryVC = [segue destinationViewController];
+		RoomViewController *roomVC = [segue destinationViewController];
 		
 		NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
 		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
-			laundryVC.room = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
+			roomVC.room = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
 		} else {
 			NSString * name = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 			NSString * ID = [self.roomSelection idForRoom:name];
 			
-			laundryVC.room = [LaundryRoom roomWithName:name andID: ID];
+			roomVC.room = [LaundryRoom roomWithName:name andID: ID];
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}

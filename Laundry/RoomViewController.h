@@ -1,5 +1,5 @@
 //
-//  LaundryViewController.h
+//  RoomViewController.h
 //  Laundry
 //
 //  Created by Andrew Daniels on 9/12/13.
@@ -11,7 +11,7 @@
 #import "LaundryRoom.h"
 
 
-@interface LaundryViewController : UITableViewController
+@interface RoomViewController : UITableViewController
 
 @property (nonatomic) LaundryDataModel * roomModel;
 @property (weak, nonatomic) NSString *status;
