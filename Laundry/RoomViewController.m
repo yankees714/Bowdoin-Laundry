@@ -238,29 +238,21 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	LaundryRoom *favoriteRoom = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
 	
-	UIAlertView *defaultChangedMessage = [[UIAlertView alloc] initWithTitle:@"Default Laundry Room"
-																	message:@""
-																   delegate:nil
-														  cancelButtonTitle:@"Okay"
-														  otherButtonTitles: nil];
-	
 	if(favoriteRoom != nil && [favoriteRoom.ID isEqualToString:self.room.ID]){
 		[userDefaults setObject:nil forKey:@"favoriteRoom"];
-		defaultChangedMessage.message = @"This room is no longer set as your laundry room";
-		
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 	} else{
 		[userDefaults setObject:[self.room arrayForRoom] forKey:@"favoriteRoom"];
-		defaultChangedMessage.message = @"Set this room as your laundry room!";
-		
-
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
 																		   green:196/255.0
 																			blue:15/255.0
 																		   alpha:1.0];
-		[self.view setNeedsDisplay];
+		UIAlertView *defaultChangedMessage = [[UIAlertView alloc] initWithTitle:self.room.name
+																		message:@"Set as your laundry room."
+																	   delegate:nil
+															  cancelButtonTitle:@"Cancel"
+															  otherButtonTitles: @"Okay", nil];
+		[defaultChangedMessage show];
 	}
-	
-	[defaultChangedMessage show];
 }
 @end
