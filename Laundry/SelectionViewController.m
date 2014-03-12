@@ -33,44 +33,53 @@
     [super viewDidLoad];
 	
 	self.initialLoad =YES;
-	
-	
-	// Internet connection
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-	
-	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
-	[self.reachability startNotifier];
-	
-	// check for a favorite room
+
+	// Check for a default room
 	NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
 	if([userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
 		[self performSegueWithIdentifier:@"roomSelection" sender:self];
 	}
 	
-	self.tableView.delegate = self;
-	self.tableView.dataSource = self;
 	
-	
-	// set image for settings button on nav bar
+	// Set image for settings button
 	UIImage * gearsImage = [UIImage imageNamed:@"glyphicons_137_cogwheels.png"];
 	UIImage * scaledGearsImage = [UIImage imageWithCGImage:[gearsImage CGImage] scale:1.25*gearsImage.scale orientation:gearsImage.imageOrientation];
 	self.navigationItem.rightBarButtonItem.image = scaledGearsImage;
+		
 	
+	self.tableView.delegate = self;
+	self.tableView.dataSource = self;
 
-	self.roomSelection = [RoomSelectionModel roomSelectionModel];
-	self.numberOfRooms = [self.roomSelection numberOfRooms];
 	
+	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
+	
+	if(self.reachability.currentReachabilityStatus != NotReachable){
+		NSLog(@"Connected to LaundryView!");
+		self.roomSelection = [RoomSelectionModel roomSelectionModel];
+		self.numberOfRooms = [self.roomSelection numberOfRooms];
+	}
+	
+	
+	// Monitor internet connection
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+	[self.reachability startNotifier];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-/*!
- * Called by Reachability whenever status changes. - this isn't working
- */
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+
+// Called by reachability when connection status changes
 - (void) reachabilityChanged:(NSNotification *)note
 {
 	
@@ -79,28 +88,27 @@
 	
 	if (status == NotReachable) {
 		UIAlertView *connectAlert = [[UIAlertView alloc] initWithTitle:nil
-														message:@"No Internet Connection"
-													   delegate:self
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
+															   message:@"No Internet Connection"
+															  delegate:self
+													 cancelButtonTitle:@"OK"
+													 otherButtonTitles:nil];
 		[connectAlert show];
 		self.roomSelection = nil;
 		self.numberOfRooms = 0;
+		[self.tableView reloadData];
 	} else{
-		self.roomSelection = [RoomSelectionModel roomSelectionModel];
-		self.numberOfRooms = [self.roomSelection numberOfRooms];
+		if (!self.roomSelection) {
+			self.roomSelection = [RoomSelectionModel roomSelectionModel];
+			self.numberOfRooms = [self.roomSelection numberOfRooms];
+			[self.tableView reloadData];
+		}
 	}
-	
-	[self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-#pragma mark - Table view data source
+
+
+// ===== Tableview setup =====
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     // Return the number of sections.
@@ -132,7 +140,7 @@
 }
 
 
-#pragma mark - Navigation
+
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -162,7 +170,4 @@
 	
 	self.initialLoad = NO;
 }
-
-
-
 @end

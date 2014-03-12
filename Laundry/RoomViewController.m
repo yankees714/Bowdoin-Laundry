@@ -29,7 +29,6 @@
 	
 		
 	if ([self.room isDefaultRoom]) {
-		NSLog(@"this is the default room");
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
 																		   green:196/255.0
 																			blue:15/255.0
