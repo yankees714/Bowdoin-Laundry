@@ -35,6 +35,12 @@
 	self.initialLoad =YES;
 	
 	
+	// Internet connection
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+	
+	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
+	[self.reachability startNotifier];
+	
 	// check for a favorite room
 	NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
 	if([userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
@@ -50,18 +56,9 @@
 	UIImage * scaledGearsImage = [UIImage imageWithCGImage:[gearsImage CGImage] scale:1.25*gearsImage.scale orientation:gearsImage.imageOrientation];
 	self.navigationItem.rightBarButtonItem.image = scaledGearsImage;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-	
-//	if ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != ReachableViaWiFi) {
-//		UIAlertView * getOnWifi = [[UIAlertView alloc] initWithTitle:@"Please connect to WiFi."
-//															 message:@"Laundry is only available on Bowdoin's local Wifi network."
-//															delegate:nil
-//												   cancelButtonTitle:nil
-//												   otherButtonTitles:nil];
-//		[getOnWifi show];
-//	} else{
-		self.roomSelection = [RoomSelectionModel roomSelectionModel];
-//	}
+
+	self.roomSelection = [RoomSelectionModel roomSelectionModel];
+	self.numberOfRooms = [self.roomSelection numberOfRooms];
 	
 
     // Uncomment the following line to preserve selection between presentations.
@@ -76,7 +73,25 @@
  */
 - (void) reachabilityChanged:(NSNotification *)note
 {
-	NSLog(@"Reachability changed");
+	
+	Reachability *reachability = [note object];
+	NetworkStatus status = reachability.currentReachabilityStatus;
+	
+	if (status == NotReachable) {
+		UIAlertView *connectAlert = [[UIAlertView alloc] initWithTitle:nil
+														message:@"No Internet Connection"
+													   delegate:self
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[connectAlert show];
+		self.roomSelection = nil;
+		self.numberOfRooms = 0;
+	} else{
+		self.roomSelection = [RoomSelectionModel roomSelectionModel];
+		self.numberOfRooms = [self.roomSelection numberOfRooms];
+	}
+	
+	[self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,7 +110,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.roomSelection numberOfRooms];
+    return self.numberOfRooms;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

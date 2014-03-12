@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "RoomSelectionModel.h"
+#import "Reachability.h"
 
 @interface SelectionViewController : UITableViewController
 
+@property (nonatomic, retain) Reachability *reachability;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) RoomSelectionModel * roomSelection;
+
+@property (nonatomic) NSInteger numberOfRooms;
 
 @property (nonatomic, assign) BOOL initialLoad;
 

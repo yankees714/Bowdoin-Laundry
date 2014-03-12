@@ -27,7 +27,19 @@
 	NSError *error = nil;
 	HTMLParser *roomListParser = [[HTMLParser alloc] initWithContentsOfURL:self.url error:&error];
 	
+	
 	HTMLNode *roomListBody = [roomListParser body];
+	
+	// School name
+	HTMLNode *schoolInfo = [[roomListBody findChildrenWithAttribute:@"id" matchingName:@"right_col_hp_cont" allowPartial:NO] objectAtIndex:0];
+	NSString *schoolName = [[schoolInfo findChildOfClass:@"h4"] allContents];
+	schoolName = [[schoolName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
+	
+	NSLog(@"%@", schoolName);
+	
+	
+	
+	// Room list
 	NSArray *roomList = [roomListBody findChildrenWithAttribute:@"class" matchingName:@"a-room" allowPartial:NO];
 	
 	NSMutableArray *rooms = [NSMutableArray arrayWithCapacity:roomList.count];
