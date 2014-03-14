@@ -134,7 +134,7 @@
     // Configure the cell...
 	
 	// get the room for this index
-	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row];
+	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row].name;
     
     return cell;
 }
@@ -153,10 +153,9 @@
 		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
 			roomVC.room = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
 		} else {
-			NSString * name = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
-			NSString * ID = [self.roomSelection idForRoom:name];
+			//NSString * name = [self.roomSelection roomNameForIndex:[[self.tableView indexPathForSelectedRow] row]];
 			
-			roomVC.room = [LaundryRoom roomWithName:name andID: ID];
+			roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}

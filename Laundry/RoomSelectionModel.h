@@ -7,17 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LaundryRoom.h"
 
 @interface RoomSelectionModel : NSObject
+
 @property (nonatomic) NSURL *url;
-@property (nonatomic) NSDictionary *idsForRooms;
+
+@property (nonatomic) NSArray * roomNames;
+@property (nonatomic) NSDictionary *roomsForNames;
 @property (nonatomic) NSMutableDictionary *watching;
-@property (nonatomic) NSArray *rooms;
 
 + (RoomSelectionModel *)roomSelectionModel;
+
 - (void)refreshRooms;
-- (NSString *)idForRoom:(NSString *)roomName;
-- (NSString *)roomForIndex:(NSUInteger)index;
+
+- (LaundryRoom *)roomForIndex:(NSUInteger)index;
 - (NSUInteger)numberOfRooms;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "RoomSelectionModel.h"
 #import "HTMLParser.h"
+#import "LaundryRoom.h"
 
 
 @implementation RoomSelectionModel
@@ -42,12 +43,14 @@
 	// Room list
 	NSArray *roomList = [roomListBody findChildrenWithAttribute:@"class" matchingName:@"a-room" allowPartial:NO];
 	
+	NSMutableArray *roomNames = [NSMutableArray arrayWithCapacity:roomList.count];
 	NSMutableArray *rooms = [NSMutableArray arrayWithCapacity:roomList.count];
-	NSMutableArray *roomIDs = [NSMutableArray arrayWithCapacity:roomList.count];
 	
 	for (int i = 0; i < roomList.count; i++) {
+		NSString *roomName, *roomID = @"";
+		
 		// get room name and strip
-		NSString * roomName = [[[roomList objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		roomName = [[[roomList objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
 		// fix capitalization
 		
@@ -75,36 +78,34 @@
 			roomName = [roomName capitalizedString];
 		}
 		
-		
-		
-		[rooms insertObject:roomName atIndex:i];
-		
-		
-		
 		// get room id
 		NSString *roomLink = [[[roomList objectAtIndex:i] getAttributeNamed:@"href"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		NSArray *roomLinkComponents = [roomLink componentsSeparatedByString:@"lr="];
-		NSString *roomID = [roomLinkComponents objectAtIndex:1];
-		[roomIDs insertObject:roomID atIndex:i];
+		roomID = [roomLinkComponents objectAtIndex:1];
+		//[roomIDs insertObject:roomID atIndex:i];
+		
+		
+		[roomNames insertObject:roomName atIndex:i];
+		[rooms insertObject:[LaundryRoom roomWithName:roomName andID:roomID] atIndex:i];
 	}
 	
-	// dictionary to retrieve the id for a given room
-	self.idsForRooms = [NSDictionary dictionaryWithObjects:roomIDs forKeys:rooms];
-	// sort list of rooms
-	self.rooms = [[self.idsForRooms allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	// dictionary to retrieve a room given its name
+	self.roomsForNames = [NSDictionary dictionaryWithObjects:rooms forKeys:roomNames];
+	
+	// list of room names, sorted
+	self.roomNames = [roomNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	
+	
+				  
 }
 
-- (NSString *)idForRoom:(NSString *)roomName{
-	return [self.idsForRooms valueForKey:roomName];
-}
 
-- (NSString *)roomForIndex:(NSUInteger)index{
-	return [self.rooms objectAtIndex:index];
+
+- (LaundryRoom *)roomForIndex:(NSUInteger)index{
+	return [self.roomsForNames valueForKey:[self.roomNames objectAtIndex:index]];
 }
 
 - (NSUInteger)numberOfRooms{
-	return self.rooms.count;
+	return self.roomNames.count;
 }
-
-
 @end
