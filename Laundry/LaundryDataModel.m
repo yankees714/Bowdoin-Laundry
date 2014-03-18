@@ -59,6 +59,7 @@
 	NSArray * stats = [roomBody findChildrenWithAttribute:@"class" matchingName:@"stat" allowPartial:NO];
 	
 	NSMutableArray * machinesWithStatuses = [[NSMutableArray alloc] initWithCapacity:stats.count];
+	NSMutableArray * timeRemainingForMachines = [[NSMutableArray alloc] initWithCapacity:stats.count];
 	
 	
 	for (int i = 0; i < machines.count; i++) {
@@ -74,20 +75,37 @@
 		NSString * machineStatusString = [[[stats objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
 		// Transform cycle ended status
-//		NSString *cycleEndedRegexPattern = @".*(cycle ended).*";
-//		NSRegularExpression * cycleEndedRegex = [NSRegularExpression regularExpressionWithPattern:cycleEndedRegexPattern
-//																						  options:NSRegularExpressionCaseInsensitive
-//																							error:nil];
-//		NSInteger numberOfMatches = [cycleEndedRegex numberOfMatchesInString:machineStatusString
-//																	 options:0
-//																	   range:NSMakeRange(0, [machineStatusString length])];
-//		NSLog(@"%@",machineStatusString);
-//		NSLog(@"number of matches: %ld",(long)numberOfMatches);
-//		if (numberOfMatches > 0) {
-//			machineStatusString = @"Cycle ended!";
-//		}
 		
+		NSRegularExpression * numberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+"
+																						  options:NSRegularExpressionCaseInsensitive
+																							error:nil];
+
+		NSNumberFormatter *numberFormatter  = [[NSNumberFormatter alloc] init];
 		
+		NSNumber * timeRemaining;
+
+		if ([machineStatusString rangeOfString:@"remaining"].length > 0) {
+			NSRange timeRange = [numberRegex firstMatchInString:machineStatusString
+									options:NSMatchingWithTransparentBounds
+									  range:[machineStatusString rangeOfString:machineStatusString]].range;
+			if(timeRange.length > 0){
+				timeRemaining = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
+			}
+		} else if ([machineStatusString rangeOfString:@"ended"].length > 0){
+			NSRange timeRange = [numberRegex firstMatchInString:machineStatusString
+														options:NSMatchingWithTransparentBounds
+														  range:[machineStatusString rangeOfString:machineStatusString]].range;
+			if(timeRange.length > 0){
+				timeRemaining = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
+				timeRemaining = [NSNumber numberWithInt:timeRemaining.intValue*-1];
+			}
+		} else if ([machineStatusString rangeOfString:@"available"].length > 0){
+			timeRemaining = [NSNumber numberWithInt:-1000];
+		} else if ([machineStatusString rangeOfString:@"unknown"].length > 0){
+			timeRemaining = [NSNumber numberWithInt:-2000];
+		}
+		
+		timeRemainingForMachines[i] = timeRemaining;
 		
 		
 		
@@ -98,6 +116,9 @@
 	}
 	
 	self.machinesWithStatuses = machinesWithStatuses;
+	self.timeRemainingForMachines = timeRemainingForMachines;
+	
+	NSLog(@"%@", timeRemainingForMachines);
 }
 
 // return the machine associated with a given index
@@ -107,6 +128,24 @@
 
 // return the status of the machine for a given index
 - (NSString *)statusForIndex:(NSUInteger)index{
-	return [[self.machinesWithStatuses objectAtIndex:index] objectAtIndex:1];
+	//return [[self.machinesWithStatuses objectAtIndex:index] objectAtIndex:1];
+	
+	NSNumber * timeRemaining = self.timeRemainingForMachines[index];
+	
+	if(timeRemaining){
+		if ([timeRemaining isEqualToNumber:[NSNumber numberWithInt:-1000]]) {
+			return @"Available";
+		} else if ([timeRemaining isEqualToNumber:[NSNumber numberWithInt:-2000]]){
+			return @"Unknown";
+		} else if (timeRemaining.intValue > 0){
+			return [NSString stringWithFormat:@"Running (%d minutes left)", timeRemaining.intValue];
+		} else if (timeRemaining.intValue <= 0) {
+			return [NSString stringWithFormat:@"Ended (%d minutes ago)", timeRemaining.intValue*-1];
+		} else {
+			return @"Could not retrieve machine status";
+		}
+	} else {
+		return @"Could not retrieve machine status";
+	}
 }
 @end

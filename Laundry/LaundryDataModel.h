@@ -16,6 +16,9 @@
 @property (nonatomic) NSInteger numberOfDryers;
 @property (nonatomic) NSArray *machinesWithStatuses;
 
+@property (nonatomic) NSArray * timeRemainingForMachines
+;
+
 + (LaundryDataModel*)laundryDataModelWithID:(NSString*)roomID;
 - (void)refreshLaundryData;
 - (NSString *)machineForIndex:(NSUInteger)index;
