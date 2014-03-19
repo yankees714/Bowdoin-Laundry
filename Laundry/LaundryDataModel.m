@@ -7,23 +7,24 @@
 //
 
 #import "LaundryDataModel.h"
+#import "LaundryMachine.h"
 #import "HTMLParser.h"
 #import "HTMLNode.h"
 
-@implementation LaundryDataModel
 
-+ (LaundryDataModel*)laundryDataModelWithID:(NSString*)roomID{
-	LaundryDataModel * model = [[LaundryDataModel alloc] init];
-	
+@implementation LaundryDataModel
+- (LaundryDataModel*)initWithID:(NSString*)roomID{
+	self = [super init];
+
 	//construct URL
 	NSString * urlString = @"http://classic.laundryview.com/laundry_room.php?lr=";
 	NSString * urlWithIDString = [urlString stringByAppendingString:roomID];
-	model.url = [NSURL URLWithString:urlWithIDString];
+	self.url = [NSURL URLWithString:urlWithIDString];
 	
 	
-	[model refreshLaundryData];
+	[self refreshLaundryData];
 	
-	return model;
+	return self;
 }
 
 - (void)refreshLaundryData{
@@ -32,7 +33,13 @@
 	
 	HTMLParser *roomParser = [[HTMLParser alloc] initWithContentsOfURL:self.url error:&error];
 	HTMLNode *roomBody = [roomParser body];
+	
+	NSRegularExpression * numberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+"
+																				  options:NSRegularExpressionCaseInsensitive
+																					error:nil];
+	NSNumberFormatter *numberFormatter  = [[NSNumberFormatter alloc] init];
 
+	
 	
 	// each section is within an element of this class
 	NSString *sectionCSSClass = @"bgwhite";
@@ -44,103 +51,86 @@
 	NSArray *sections = [roomBody findChildrenOfClass:sectionCSSClass];
 	
 	// gets lists of the elements containing each machine
-	NSArray *washers = [[sections objectAtIndex:0] findChildrenOfClass:machineCSSClass]; // washers are in the first section
-	NSArray *dryers = [[sections objectAtIndex:1] findChildrenOfClass:machineCSSClass]; //dryers are in the second
-	
-	// number of machines == number of elements containing them
-	self.numberOfWashers = washers.count;
-	self.numberOfDryers = dryers.count;
+	NSArray *washersHTML = [[sections objectAtIndex:0] findChildrenOfClass:machineCSSClass]; // washers are in the first section
+	NSArray *dryersHTML = [[sections objectAtIndex:1] findChildrenOfClass:machineCSSClass]; //dryers are in the second
 	
 	//get machines
-	NSArray * machines = [roomBody findChildrenWithAttribute:@"class" matchingName:@"bgdesc" allowPartial:NO];
-	
+	NSArray * machinesHTML = [roomBody findChildrenWithAttribute:@"class" matchingName:@"bgdesc" allowPartial:NO];
 	
 	//get statuses
-	NSArray * stats = [roomBody findChildrenWithAttribute:@"class" matchingName:@"stat" allowPartial:NO];
-	
-	NSMutableArray * machinesWithStatuses = [[NSMutableArray alloc] initWithCapacity:stats.count];
-	NSMutableArray * timeRemainingForMachines = [[NSMutableArray alloc] initWithCapacity:stats.count];
+	NSArray * statusesHTML = [roomBody findChildrenWithAttribute:@"class" matchingName:@"stat" allowPartial:NO];
 	
 	
-	for (int i = 0; i < machines.count; i++) {
-		NSString * machineNameString = [[[machines objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	
+	// number of machines == number of elements containing them
+	self.numberOfWashers = washersHTML.count;
+	self.numberOfDryers = dryersHTML.count;
+	
+	NSMutableArray * machines = [[NSMutableArray alloc] initWithCapacity:machinesHTML.count];
+	
+	
+	
+	for (int i = 0; i < machinesHTML.count; i++) {
+		// name of machine
+		NSString * machineName = [[[machinesHTML objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
-		// remove a leading zero if present
-		if ([machineNameString characterAtIndex:0] == '0') {
-			machineNameString = [machineNameString substringFromIndex:1];
+		if ([machineName characterAtIndex:0] == '0') {
+			machineName = [machineName substringFromIndex:1];
 		}
 		
+		// status of machine
+		NSString * machineStatusString = [[[statusesHTML objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
 		
-		NSString * machineStatusString = [[[stats objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		
-		// Transform cycle ended status
 		
-		NSRegularExpression * numberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+"
-																						  options:NSRegularExpressionCaseInsensitive
-																							error:nil];
-
-		NSNumberFormatter *numberFormatter  = [[NSNumberFormatter alloc] init];
-		
-		NSNumber * timeRemaining;
+		NSNumber * time;
 
 		if ([machineStatusString rangeOfString:@"remaining"].length > 0) {
 			NSRange timeRange = [numberRegex firstMatchInString:machineStatusString
 									options:NSMatchingWithTransparentBounds
 									  range:[machineStatusString rangeOfString:machineStatusString]].range;
 			if(timeRange.length > 0){
-				timeRemaining = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
+				time = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
+				
+				machines[i] = [[LaundryMachine alloc] initRunningWithName:machineName time:time];
 			}
 		} else if ([machineStatusString rangeOfString:@"ended"].length > 0){
 			NSRange timeRange = [numberRegex firstMatchInString:machineStatusString
 														options:NSMatchingWithTransparentBounds
 														  range:[machineStatusString rangeOfString:machineStatusString]].range;
 			if(timeRange.length > 0){
-				timeRemaining = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
-				timeRemaining = [NSNumber numberWithInt:timeRemaining.intValue*-1];
+				time= [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
+				machines[i] = [[LaundryMachine alloc] initEndedWithName:machineName time:time];
 			}
 		} else if ([machineStatusString rangeOfString:@"available"].length > 0){
-			timeRemaining = [NSNumber numberWithInt:-1000];
+			machines[i] = [[LaundryMachine alloc] initAvailableWithName:machineName];
 		} else if ([machineStatusString rangeOfString:@"unknown"].length > 0){
-			timeRemaining = [NSNumber numberWithInt:-2000];
+			machines[i] = [[LaundryMachine alloc] initWithName:machineName];
 		}
-		
-		timeRemainingForMachines[i] = timeRemaining;
-		
-		
-		
-		// array for holding a machine at index 0, status at index 1
-		NSArray * machineWithStatus = [NSArray arrayWithObjects:machineNameString, machineStatusString, nil];
-		
-		[machinesWithStatuses addObject:machineWithStatus];
 	}
 	
-	self.machinesWithStatuses = machinesWithStatuses;
-	self.timeRemainingForMachines = timeRemainingForMachines;
-	
-	NSLog(@"%@", timeRemainingForMachines);
+	self.machines = machines;
 }
 
 // return the machine associated with a given index
-- (NSString *)machineForIndex:(NSUInteger)index{
-	return [[self.machinesWithStatuses objectAtIndex:index] objectAtIndex:0];
+- (NSString *)machineNameForIndex:(NSUInteger)index{
+	return ((LaundryMachine *)[self.machines objectAtIndex:index]).name;
 }
 
 // return the status of the machine for a given index
-- (NSString *)statusForIndex:(NSUInteger)index{
+- (NSString *)machineStatusForIndex:(NSUInteger)index{
 	//return [[self.machinesWithStatuses objectAtIndex:index] objectAtIndex:1];
 	
-	NSNumber * timeRemaining = self.timeRemainingForMachines[index];
+	LaundryMachine * machine = [self.machines objectAtIndex:index];
 	
-	if(timeRemaining){
-		if ([timeRemaining isEqualToNumber:[NSNumber numberWithInt:-1000]]) {
+	if(machine){
+		if (machine.available) {
 			return @"Available";
-		} else if ([timeRemaining isEqualToNumber:[NSNumber numberWithInt:-2000]]){
-			return @"Unknown";
-		} else if (timeRemaining.intValue > 0){
-			return [NSString stringWithFormat:@"Running (%d minutes left)", timeRemaining.intValue];
-		} else if (timeRemaining.intValue <= 0) {
-			return [NSString stringWithFormat:@"Ended (%d minutes ago)", timeRemaining.intValue*-1];
+		} else if (machine.running){
+			return [NSString stringWithFormat:@"Running (%@ minutes left)", machine.time];
+		} else if (machine.ended) {
+			return [NSString stringWithFormat:@"Ended (%@ minutes ago)", machine.time];
 		} else {
 			return @"Could not retrieve machine status";
 		}
@@ -148,4 +138,24 @@
 		return @"Could not retrieve machine status";
 	}
 }
+
+- (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index{
+	
+	UIColor * availableColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.07];
+	UIColor * runningColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.07];
+	UIColor * endedColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.07];
+	
+	LaundryMachine * machine = [self.machines objectAtIndex:index];
+	
+	if(machine.available){
+		return availableColor;
+	} else if (machine.running || machine.extended){
+		return runningColor;
+	} else if (machine.ended){
+		return endedColor;
+	} else {
+		return nil;
+	}
+}
+
 @end

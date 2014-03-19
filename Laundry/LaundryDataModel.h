@@ -10,19 +10,19 @@
 #import "HTMLNode.h"
 
 @interface LaundryDataModel : NSObject
-
 @property (nonatomic) NSURL *url;
 @property (nonatomic) NSInteger numberOfWashers;
 @property (nonatomic) NSInteger numberOfDryers;
-@property (nonatomic) NSArray *machinesWithStatuses;
 
-@property (nonatomic) NSArray * timeRemainingForMachines
-;
 
-+ (LaundryDataModel*)laundryDataModelWithID:(NSString*)roomID;
+@property (nonatomic) NSArray * machines;
+
+- (LaundryDataModel*)initWithID:(NSString*)roomID;
+
 - (void)refreshLaundryData;
-- (NSString *)machineForIndex:(NSUInteger)index;
-- (NSString *)statusForIndex:(NSUInteger)index;
 
+- (NSString *)machineNameForIndex:(NSUInteger)index;
+- (NSString *)machineStatusForIndex:(NSUInteger)index;
+- (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index;
 
 @end

@@ -51,7 +51,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMachinesAndStatus) name:UIApplicationDidBecomeActiveNotification object:nil];
 	
 	// Grab and fill laundry data
-	self.roomModel = [LaundryDataModel  laundryDataModelWithID:self.room.ID];
+	self.roomModel = [[LaundryDataModel  alloc] initWithID:self.room.ID];
 	
 	//set up updates and begin - not necessary for now
 //	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
@@ -114,8 +114,9 @@
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
 	
-	cell.textLabel.text = [self.roomModel machineForIndex:index];
-	cell.detailTextLabel.text = [self.roomModel statusForIndex:index];
+	cell.textLabel.text = [self.roomModel machineNameForIndex:index];
+	cell.detailTextLabel.text = [self.roomModel machineStatusForIndex:index];
+	cell.backgroundColor = [self.roomModel tintColorForMachineWithIndex:index];
 	
 	// adding switch <- *change this to a button*
 	//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -131,8 +132,8 @@
 	//[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
 	
 	// check user defaults to see if user is watching this machine
-	NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
-	BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+	//NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
+	//BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
 	//[switchView setOn:watch animated:NO];
 	
 	
@@ -145,56 +146,53 @@
 	// doing string contains check instead of equality just to be safe
 	
 	//check for machine available status
-	if ([cell.detailTextLabel.text rangeOfString:@"Available"].location != NSNotFound) {
-		//cell.textLabel.textColor = [UIColor greenColor];
-		cell.backgroundColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.07];
-		
-		if (watch) {
-			// notify that the laundry is finsihed if watching
-			UILocalNotification *notification = [[UILocalNotification alloc] init];
-			notification.alertAction = @"laundry finished";
-			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
-			notification.fireDate = [NSDate date];
-			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
-			
-			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-			
-			// turn the switch off
-			//[switchView setOn:NO animated:YES];
-			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
-		}
-		
-	//check for cycle in progress status
-	} else if ([cell.detailTextLabel.text rangeOfString:@"Running"].location != NSNotFound ||
-			   [cell.detailTextLabel.text rangeOfString:@"extended"].location != NSNotFound) {
-		//cell.textLabel.textColor = [UIColor redColor];
-		cell.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.07];
-		
-		
-	// check for cycle ended status
-	} else if ([cell.detailTextLabel.text rangeOfString:@"Ended"].location != NSNotFound){
-		cell.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.07];
-		
-		if (watch){
-			//cell.textLabel.textColor = [UIColor blackColor];
-			
-			// notify that the laundry is finsihed if watching
-			UILocalNotification *notification = [[UILocalNotification alloc] init];
-			notification.alertAction = @"laundry finished";
-			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
-			notification.fireDate = [NSDate date];
-			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
-		
-			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-			
-			// turn the switch off
-			//[switchView setOn:NO animated:YES];
-			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
-			
-		}
-		
-		
-	}
+//	if ([self.roomModel machineAvailableWithIndex:index]) {
+//		//cell.textLabel.textColor = [UIColor greenColor];
+//		cell.backgroundColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.07];
+//		
+//		if (watch) {
+//			// notify that the laundry is finsihed if watching
+//			UILocalNotification *notification = [[UILocalNotification alloc] init];
+//			notification.alertAction = @"laundry finished";
+//			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
+//			notification.fireDate = [NSDate date];
+//			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
+//			
+//			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+//			
+//			// turn the switch off
+//			//[switchView setOn:NO animated:YES];
+//			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
+//		}
+//		
+//	//check for cycle in progress status
+//	} else if ([self.roomModel machineRunningWithIndex:index] ||
+//			   [cell.detailTextLabel.text rangeOfString:@"extended"].location != NSNotFound) {
+//		
+//		
+//	// check for cycle ended status
+//	} else if ([cell.detailTextLabel.text rangeOfString:@"Ended"].location != NSNotFound){
+//		
+//		if (watch){
+//			//cell.textLabel.textColor = [UIColor blackColor];
+//			
+//			// notify that the laundry is finsihed if watching
+//			UILocalNotification *notification = [[UILocalNotification alloc] init];
+//			notification.alertAction = @"laundry finished";
+//			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
+//			notification.fireDate = [NSDate date];
+//			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
+//		
+//			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+//			
+//			// turn the switch off
+//			//[switchView setOn:NO animated:YES];
+//			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
+//			
+//		}
+//		
+//		
+//	}
 	
     return cell;
 }
