@@ -179,7 +179,7 @@
 //		if (watch){
 //			//cell.textLabel.textColor = [UIColor blackColor];
 //			
-//			// notify that the laundry is finsihed if watching
+			// notify that the laundry is finsihed if watching
 //			UILocalNotification *notification = [[UILocalNotification alloc] init];
 //			notification.alertAction = @"laundry finished";
 //			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
@@ -187,7 +187,7 @@
 //			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
 //		
 //			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-//			
+//
 //			// turn the switch off
 //			//[switchView setOn:NO animated:YES];
 //			//[[NSUserDefaults standardUserDefaults] setBool:switchView.on forKey:key];
