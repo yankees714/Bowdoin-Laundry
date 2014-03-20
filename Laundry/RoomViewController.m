@@ -8,6 +8,7 @@
 
 #import "RoomViewController.h"
 #import "LaundryDataModel.h"
+#import "LaundryMachine.h"
 #import "TestFlight.h"
 
 
@@ -110,13 +111,22 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 	
-	// adjust index for section
+	// calculate index from index path
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
 	
+	
+	// Set up the cell
 	cell.textLabel.text = [self.roomModel machineNameForIndex:index];
 	cell.detailTextLabel.text = [self.roomModel machineStatusForIndex:index];
+	
+	//get rid of the background color of text labels
+	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
+	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
+	
 	cell.backgroundColor = [self.roomModel tintColorForMachineWithIndex:index];
+	
+	
 	
 	// adding switch <- *change this to a button*
 	//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -131,24 +141,18 @@
 	// handle the switch being toggled
 	//[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
 	
-	// check user defaults to see if user is watching this machine
-	//NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
-	//BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
-	//[switchView setOn:watch animated:NO];
-	
-	
-	
-	//get rid of the background color of text labels
-	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
-	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
-	
-	// adjust detail color based on status
-	// doing string contains check instead of equality just to be safe
-	
-	//check for machine available status
-//	if ([self.roomModel machineAvailableWithIndex:index]) {
-//		//cell.textLabel.textColor = [UIColor greenColor];
-//		cell.backgroundColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.07];
+//	// check user defaults to see if user is watching this machine
+//	NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
+//	BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+//	//[switchView setOn:watch animated:NO];
+//	
+//	
+//	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
+//	
+//	
+//	
+//	//check for machine available status
+//	if (machine.available) {
 //		
 //		if (watch) {
 //			// notify that the laundry is finsihed if watching
@@ -166,12 +170,11 @@
 //		}
 //		
 //	//check for cycle in progress status
-//	} else if ([self.roomModel machineRunningWithIndex:index] ||
-//			   [cell.detailTextLabel.text rangeOfString:@"extended"].location != NSNotFound) {
+//	} else if (machine.running || machine.extended) {
 //		
 //		
 //	// check for cycle ended status
-//	} else if ([cell.detailTextLabel.text rangeOfString:@"Ended"].location != NSNotFound){
+//	} else if (machine.ended){
 //		
 //		if (watch){
 //			//cell.textLabel.textColor = [UIColor blackColor];
