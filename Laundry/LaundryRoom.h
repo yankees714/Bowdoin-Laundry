@@ -26,4 +26,7 @@
 // Checks if a given room is the default room
 - (BOOL)isDefaultRoom;
 
+// Returns the default room, nil if there is none
++ (LaundryRoom *)defaultRoom;
+
 @end

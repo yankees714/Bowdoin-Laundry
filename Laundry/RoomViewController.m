@@ -9,6 +9,7 @@
 #import "RoomViewController.h"
 #import "LaundryDataModel.h"
 #import "LaundryMachine.h"
+#import "LaundryRoom.h"
 #import "TestFlight.h"
 
 
@@ -236,9 +237,9 @@
 
 - (IBAction)setDefaultRoom:(UIBarButtonItem *)sender {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	LaundryRoom *favoriteRoom = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
+	LaundryRoom *defaultRoom = [LaundryRoom defaultRoom];
 	
-	if(favoriteRoom != nil && [favoriteRoom.ID isEqualToString:self.room.ID]){
+	if(defaultRoom != nil && [defaultRoom.ID isEqualToString:self.room.ID]){
 		[userDefaults setObject:nil forKey:@"favoriteRoom"];
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 	} else{
