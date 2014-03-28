@@ -10,9 +10,10 @@
 
 @implementation LaundryRoom
 
-+ (LaundryRoom *)roomWithName:(NSString *)name andID:(NSString *) ID{
++ (LaundryRoom *)roomWithName:(NSString *)name campus:(NSString *)campus ID:(NSString *) ID{
 	LaundryRoom *room = [[LaundryRoom alloc] init];
 	room.name = name;
+	room.campus = campus;
 	room.ID = ID;
 	return room;
 }

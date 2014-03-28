@@ -86,7 +86,7 @@
 		
 		
 		[roomNames insertObject:roomName atIndex:i];
-		[rooms insertObject:[LaundryRoom roomWithName:roomName andID:roomID] atIndex:i];
+		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:@"BOWDOIN COLLEGE"ID:roomID] atIndex:i];
 	}
 	
 	// dictionary to retrieve a room given its name

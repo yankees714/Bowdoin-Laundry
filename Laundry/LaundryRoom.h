@@ -10,12 +10,14 @@
 
 @interface LaundryRoom : NSObject
 
-@property (nonatomic) NSString *ID;
 @property (nonatomic) NSString *name;
+@property (nonatomic) NSString *campus;
+@property (nonatomic) NSString *ID;
+
 
 
 // Create a room given a name and ID
-+ (LaundryRoom *)roomWithName:(NSString *)name andID:(NSString *) ID;
++ (LaundryRoom *)roomWithName:(NSString *)name campus:(NSString *)campus ID:(NSString *) ID;
 
 // Create a room given an array of form [name, ID]
 + (LaundryRoom *)roomWithArray:(NSArray *)array;
