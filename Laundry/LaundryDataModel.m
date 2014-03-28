@@ -141,9 +141,9 @@
 
 - (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index{
 	
-	UIColor * availableColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.07];
-	UIColor * runningColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.07];
-	UIColor * endedColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.07];
+	UIColor * availableColor = [UIColor colorWithRed:46.0/255.0 green:204.0/255.0 blue:113.0/255.0 alpha:0.1];
+	UIColor * runningColor = [UIColor colorWithRed:231.0/255.0 green:76.0/255.0 blue:60.0/255.0 alpha:0.1];
+	UIColor * endedColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.1];
 	
 	LaundryMachine * machine = [self.machines objectAtIndex:index];
 	
