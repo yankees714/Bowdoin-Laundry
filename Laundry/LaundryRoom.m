@@ -50,7 +50,13 @@
 - (BOOL)isDefaultRoom{
 	LaundryRoom *defaultRoom = [LaundryRoom defaultRoom];
 	if(defaultRoom){
-		return [self.ID isEqualToString:defaultRoom.ID];
+		NSLog(@"%@", self.ID);
+		NSLog(@"%@", defaultRoom.ID);
+		
+		NSLog(@"%@", self.campus);
+		NSLog(@"%@", defaultRoom.campus);
+		
+		return ([self.ID isEqualToString:defaultRoom.ID] && [self.campus isEqualToString:defaultRoom.campus]);
 	} else {
 		return false;
 	}

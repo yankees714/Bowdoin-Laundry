@@ -33,10 +33,12 @@
 	
 	// Campus name
 	HTMLNode *campusInfo = [[roomListBody findChildrenWithAttribute:@"id" matchingName:@"right_col_hp_cont" allowPartial:NO] objectAtIndex:0];
-	NSString *campusName = [[campusInfo findChildOfClass:@"h4"] allContents];
-	campusName = [[campusName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+	NSString *campus = [[campusInfo findChildOfClass:@"h4"] allContents];
+	campus = [[campus stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 	
-	NSLog(@"%@", campusName);
+	self.campus = campus;
+	
+	NSLog(@"%@", campus);
 	
 	
 	
@@ -86,7 +88,7 @@
 		
 		
 		[roomNames insertObject:roomName atIndex:i];
-		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:campusName ID:roomID] atIndex:i];
+		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:self.campus ID:roomID] atIndex:i];
 	}
 	
 	// dictionary to retrieve a room given its name
