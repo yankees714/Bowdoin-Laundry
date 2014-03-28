@@ -31,12 +31,12 @@
 	
 	HTMLNode *roomListBody = [roomListParser body];
 	
-	// School name
-	HTMLNode *schoolInfo = [[roomListBody findChildrenWithAttribute:@"id" matchingName:@"right_col_hp_cont" allowPartial:NO] objectAtIndex:0];
-	NSString *schoolName = [[schoolInfo findChildOfClass:@"h4"] allContents];
-	schoolName = [[schoolName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
+	// Campus name
+	HTMLNode *campusInfo = [[roomListBody findChildrenWithAttribute:@"id" matchingName:@"right_col_hp_cont" allowPartial:NO] objectAtIndex:0];
+	NSString *campusName = [[campusInfo findChildOfClass:@"h4"] allContents];
+	campusName = [[campusName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 	
-	NSLog(@"%@", schoolName);
+	NSLog(@"%@", campusName);
 	
 	
 	
@@ -86,7 +86,7 @@
 		
 		
 		[roomNames insertObject:roomName atIndex:i];
-		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:@"BOWDOIN COLLEGE"ID:roomID] atIndex:i];
+		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:campusName ID:roomID] atIndex:i];
 	}
 	
 	// dictionary to retrieve a room given its name
