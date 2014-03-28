@@ -31,4 +31,7 @@
 // Returns the default room, nil if there is none
 + (LaundryRoom *)defaultRoom;
 
+// Sets the default room
++ (void)setDefaultRoom:(LaundryRoom *)room;
+
 @end

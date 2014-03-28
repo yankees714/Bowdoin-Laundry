@@ -238,14 +238,11 @@
 
 
 - (IBAction)setDefaultRoom:(UIBarButtonItem *)sender {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	LaundryRoom *defaultRoom = [LaundryRoom defaultRoom];
-	
-	if(defaultRoom != nil && [defaultRoom.ID isEqualToString:self.room.ID]){
-		[userDefaults setObject:nil forKey:@"favoriteRoom"];
+	if([self.room isDefaultRoom]){
+		[LaundryRoom setDefaultRoom:nil];
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 	} else{
-		[userDefaults setObject:[self.room arrayForRoom] forKey:@"favoriteRoom"];
+		[LaundryRoom setDefaultRoom:self.room];
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
 																		   green:196/255.0
 																			blue:15/255.0

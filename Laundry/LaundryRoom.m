@@ -23,6 +23,7 @@
 	
 	if(array == nil){
 		room.name = nil;
+		room.campus= nil;
 		room.ID = nil;
 	} else{
 		if(array.count > 0){
@@ -32,7 +33,13 @@
 		}
 		
 		if(array.count > 1) {
-			room.ID = array[1];
+			room.campus = array[1];
+		} else{
+			room.campus = nil;
+		}
+		
+		if(array.count > 2) {
+			room.ID = array[2];
 		} else{
 			room.ID = nil;
 		}
@@ -41,8 +48,12 @@
 }
 
 - (BOOL)isDefaultRoom{
-	LaundryRoom *defaultRoom = [LaundryRoom roomWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"favoriteRoom"]];
-	return [self.ID isEqualToString:defaultRoom.ID];
+	LaundryRoom *defaultRoom = [LaundryRoom defaultRoom];
+	if(defaultRoom){
+		return [self.ID isEqualToString:defaultRoom.ID];
+	} else {
+		return false;
+	}
 }
 
 + (LaundryRoom *)defaultRoom{
@@ -56,10 +67,16 @@
 	}	
 }
 
++ (void)setDefaultRoom:(LaundryRoom *)room{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:[room arrayForRoom] forKey:@"favoriteRoom"];
+	
+}
+
 
 
 - (NSArray *)arrayForRoom{
-	return [NSArray arrayWithObjects:self.name, self.ID, nil];
+	return [NSArray arrayWithObjects:self.name, self.campus, self.ID, nil];
 }
 
 @end
