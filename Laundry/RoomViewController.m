@@ -55,6 +55,12 @@
 	// Grab and fill laundry data
 	self.roomModel = [[LaundryDataModel  alloc] initWithID:self.room.ID];
 	
+	
+	
+	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(0), nil];
+	[userDefaults setObject:watchData forKey:@"watch"];
+	
 	//set up updates and begin - not necessary for now
 //	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
 //	[self updateMachinesAndStatus];

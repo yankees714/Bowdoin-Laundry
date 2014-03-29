@@ -7,6 +7,9 @@
 //
 
 #import "LaundryAppDelegate.h"
+#import "LaundryDataModel.h"
+#import "LaundryRoom.h"
+#import "LaundryMachine.h"
 #import "TestFlight.h"
 
 @implementation LaundryAppDelegate
@@ -55,8 +58,36 @@
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+	NSArray * watchData = [[NSUserDefaults standardUserDefaults] objectForKey:@"watch"];
+	if(watchData){
+		NSString * roomID = [watchData objectAtIndex:0];
+		NSString * roomName = [watchData objectAtIndex:1];
+		NSNumber * machineIndex = [watchData objectAtIndex:2];
+		
+		LaundryDataModel * model = [[LaundryDataModel alloc] initWithID:roomID];
+		LaundryMachine * machine = [model.machines objectAtIndex:machineIndex.integerValue];
+		
+		if (machine.ended || machine.available) {
+			// Clear watched machine
+			[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"watch"];
+			
+			UILocalNotification *notification = [[UILocalNotification alloc] init];
+			notification.alertAction = @"laundry finished";
+			notification.alertBody = [NSString stringWithFormat:@"Laundry finished! (Machine %@ in %@)", machine.name, roomName];
+			notification.fireDate = [NSDate date];
+			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
+			
+			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+			
+		}
+		
+		completionHandler(UIBackgroundFetchResultNewData);
+	} else {
+		completionHandler(UIBackgroundFetchResultNoData);
+	}
+	
 	NSLog(@"Laundry fetched in background");
-	completionHandler(UIBackgroundFetchResultNewData);
+
 }
 
 @end
