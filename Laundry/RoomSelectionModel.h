@@ -12,6 +12,7 @@
 @interface RoomSelectionModel : NSObject
 
 @property (nonatomic) NSURL *url;
+@property (nonatomic) NSString * campus;
 
 @property (nonatomic) NSArray * roomNames;
 @property (nonatomic) NSDictionary *roomsForNames;

@@ -9,6 +9,7 @@
 #import "RoomViewController.h"
 #import "LaundryDataModel.h"
 #import "LaundryMachine.h"
+#import "LaundryRoom.h"
 #import "TestFlight.h"
 
 
@@ -23,6 +24,8 @@
 	[super viewDidLoad];
 	
 	[TestFlight passCheckpoint:self.room.name];
+	
+	NSLog(@"%@",self.room.campus);
 	
 	
 	self.tableView.delegate = self;
@@ -235,14 +238,11 @@
 
 
 - (IBAction)setDefaultRoom:(UIBarButtonItem *)sender {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	LaundryRoom *favoriteRoom = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
-	
-	if(favoriteRoom != nil && [favoriteRoom.ID isEqualToString:self.room.ID]){
-		[userDefaults setObject:nil forKey:@"favoriteRoom"];
+	if([self.room isDefaultRoom]){
+		[LaundryRoom setDefaultRoom:nil];
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 	} else{
-		[userDefaults setObject:[self.room arrayForRoom] forKey:@"favoriteRoom"];
+		[LaundryRoom setDefaultRoom:self.room];
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
 																		   green:196/255.0
 																			blue:15/255.0

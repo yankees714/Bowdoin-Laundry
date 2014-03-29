@@ -34,11 +34,7 @@
 	
 	self.initialLoad =YES;
 
-	// Check for a default room
-	NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
-	if([userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
-		[self performSegueWithIdentifier:@"roomSelection" sender:self];
-	}
+	
 	
 	
 	// Set image for settings button
@@ -59,6 +55,13 @@
 		self.numberOfRooms = [self.roomSelection numberOfRooms];
 	}
 	
+	// Check for a default room
+	LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
+	NSLog(@"campus of default room: %@\ncurrent campus: %@",defaultRoom.campus,self.roomSelection.campus);
+	if(defaultRoom && [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
+		[self performSegueWithIdentifier:@"roomSelection" sender:self];
+	}
+
 	
 	// Monitor internet connection
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
@@ -148,10 +151,13 @@
 	if([segue.identifier isEqualToString:@"roomSelection"]){
 		
 		RoomViewController *roomVC = [segue destinationViewController];
+		LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
+
+		if(self.initialLoad && defaultRoom
+			&& [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
+			
+			roomVC.room = defaultRoom;
 		
-		NSUserDefaults *userDefaults  = [NSUserDefaults standardUserDefaults];
-		if(self.initialLoad && [userDefaults stringArrayForKey:@"favoriteRoom"] != nil){
-			roomVC.room = [LaundryRoom roomWithArray:[userDefaults stringArrayForKey:@"favoriteRoom"]];
 		} else {
 			//NSString * name = [self.roomSelection roomNameForIndex:[[self.tableView indexPathForSelectedRow] row]];
 			
