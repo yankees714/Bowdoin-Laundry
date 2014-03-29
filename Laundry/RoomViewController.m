@@ -25,8 +25,6 @@
 	
 	[TestFlight passCheckpoint:self.room.name];
 	
-	NSLog(@"%@",self.room.campus);
-	
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;

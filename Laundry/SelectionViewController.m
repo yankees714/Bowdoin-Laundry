@@ -57,7 +57,6 @@
 	
 	// Check for a default room
 	LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
-	NSLog(@"campus of default room: %@\ncurrent campus: %@",defaultRoom.campus,self.roomSelection.campus);
 	if(defaultRoom && [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
 		[self performSegueWithIdentifier:@"roomSelection" sender:self];
 	}

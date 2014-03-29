@@ -27,18 +27,18 @@
 - (void)refreshRooms{
 	NSError *error = nil;
 	HTMLParser *roomListParser = [[HTMLParser alloc] initWithContentsOfURL:self.url error:&error];
-	
-	
 	HTMLNode *roomListBody = [roomListParser body];
+
+	// "Click here to report a problem with a washer or dryer and/or a laundry room at BRANDEIS UNIVERSITY"
+	NSString *campus = [[[roomListBody findChildrenOfClass:@"bg-yellow1"] objectAtIndex:1] allContents];
+	campus = [campus stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	campus = [campus stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]];
 	
-	// Campus name
-	HTMLNode *campusInfo = [[roomListBody findChildrenWithAttribute:@"id" matchingName:@"right_col_hp_cont" allowPartial:NO] objectAtIndex:0];
-	NSString *campus = [[campusInfo findChildOfClass:@"h4"] allContents];
-	campus = [[campus stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+	// Grab last 2 words
+	NSArray * components = [campus componentsSeparatedByString:@" "];
+	campus = [[components objectAtIndex:components.count-2] stringByAppendingString:[components objectAtIndex:components.count-1]];
 	
 	self.campus = campus;
-	
-	NSLog(@"%@", campus);
 	
 	
 	
