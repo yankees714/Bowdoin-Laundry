@@ -21,6 +21,8 @@
 	// zero out the badge on launch
 	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 	
+	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+	
     return YES;
 }
 							
@@ -50,6 +52,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+	NSLog(@"Laundry fetched in background");
+	completionHandler(UIBackgroundFetchResultNewData);
 }
 
 @end
