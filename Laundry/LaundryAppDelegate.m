@@ -74,6 +74,7 @@
 			UILocalNotification *notification = [[UILocalNotification alloc] init];
 			notification.alertAction = @"laundry finished";
 			notification.alertBody = [NSString stringWithFormat:@"Laundry finished! (Machine %@ in %@)", machine.name, roomName];
+			notification.soundName = UILocalNotificationDefaultSoundName;
 			notification.fireDate = [NSDate date];
 			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
 			

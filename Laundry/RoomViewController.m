@@ -58,7 +58,7 @@
 	
 	
 	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(0), nil];
+	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(3), nil];
 	[userDefaults setObject:watchData forKey:@"watch"];
 	
 	//set up updates and begin - not necessary for now
