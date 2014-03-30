@@ -55,12 +55,6 @@
 	// Grab and fill laundry data
 	self.roomModel = [[LaundryDataModel  alloc] initWithID:self.room.ID];
 	
-	
-	
-	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(3), nil];
-	[userDefaults setObject:watchData forKey:@"watch"];
-	
 	//set up updates and begin - not necessary for now
 //	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
 //	[self updateMachinesAndStatus];
@@ -137,26 +131,26 @@
 	
 	// adding switch <- *change this to a button*
 	//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-//	UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
-//	
-//	UIImage *shirt = [UIImage imageNamed:@"glyphicons_283_t-shirt.png"];
-//	
-//	[button setImage:shirt forState:UIControlStateNormal];
-//	
-//	cell.accessoryView = button;
+	UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
+	button.tag = index;
+	
+	UIImage *star = [UIImage imageNamed:@"glyphicons_049_star.png"];
+	
+	[button setImage:star forState:UIControlStateNormal];
+	
+	cell.accessoryView = button;
 	
 	// handle the switch being toggled
-	//[switchView addTarget:self action:@selector(watch:) forControlEvents:UIControlEventValueChanged];
+	[button addTarget:self action:@selector(watch:) forControlEvents:UIControlEventTouchUpInside];
 	
-//	// check user defaults to see if user is watching this machine
-//	NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
-//	BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
-//	//[switchView setOn:watch animated:NO];
-//	
-//	
+	
+	// check user defaults to see if user is watching this machine
+	//NSString *key = [self keyForSwitchWithRoom:self.room.name andMachine:cell.textLabel.text];
+	//BOOL watch = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+	//[switchView setOn:watch animated:NO];
+	
+	
 //	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
-//	
-//	
 //	
 //	//check for machine available status
 //	if (machine.available) {
@@ -186,7 +180,7 @@
 //		if (watch){
 //			//cell.textLabel.textColor = [UIColor blackColor];
 //			
-			// notify that the laundry is finsihed if watching
+//			// notify that the laundry is finsihed if watching
 //			UILocalNotification *notification = [[UILocalNotification alloc] init];
 //			notification.alertAction = @"laundry finished";
 //			notification.alertBody = [NSString stringWithFormat:@"Your laundry is ready in machine %@ in the %@ laundry room!",cell.textLabel.text,self.room.name];
@@ -217,21 +211,22 @@
 }
 
 
-- (IBAction)watch:(UISwitch *)sender{
-	NSString * machine = ((UITableViewCell *)sender.superview.superview).textLabel.text;
-	NSString * key = [self keyForSwitchWithRoom:self.room.name andMachine:machine];
-	[[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:key];
-
+- (IBAction)watch:(UIButton *)button{
+	// Watch the selected machine
+	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(button.tag), nil];
+	[userDefaults setObject:watchData forKey:@"watch"];
 	
-	// test local notification - alerts whenever a room is selected
-	//reference: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW1
-	UILocalNotification *notification = [[UILocalNotification alloc] init];
-	notification.alertAction = @"watching notification";
-	notification.alertBody = [NSString stringWithFormat:@"Watching machine %@ in the %@ laundry room!",machine,self.room.name];
-	notification.fireDate = [NSDate date];
-	notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber+1;
+	// Alert that the machine is being watched
+	NSString * machineName = [self.roomModel machineNameForIndex:button.tag];
+	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, machineName];
 	
-	[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+	UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+														  message:@"You'll get a notification when the cycle ends."
+														 delegate:self
+												cancelButtonTitle:@"Okay"
+												otherButtonTitles: nil];
+	[watchAlert show];
 }
 
 // returns a unique key to associate with a switch for each machine
