@@ -212,6 +212,9 @@
 
 
 - (IBAction)watch:(UIButton *)button{
+	// Begin background fetching
+	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+	
 	// Watch the selected machine
 	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
 	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(button.tag), nil];

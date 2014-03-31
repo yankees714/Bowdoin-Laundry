@@ -24,7 +24,7 @@
 	// zero out the badge on launch
 	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 	
-	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 	
     return YES;
 }
@@ -79,6 +79,7 @@
 			notification.applicationIconBadgeNumber = notification.applicationIconBadgeNumber-1;
 			
 			[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 			
 		}
 		
