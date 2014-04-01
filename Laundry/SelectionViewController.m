@@ -35,12 +35,10 @@
 	self.initialLoad =YES;
 
 	
-	
-	
-	// Set image for settings button
-	UIImage * gearsImage = [UIImage imageNamed:@"glyphicons_137_cogwheels.png"];
-	UIImage * scaledGearsImage = [UIImage imageWithCGImage:[gearsImage CGImage] scale:1.25*gearsImage.scale orientation:gearsImage.imageOrientation];
-	self.navigationItem.rightBarButtonItem.image = scaledGearsImage;
+	// Setup the settings/info bar button
+	UIButton * infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+	[infoButton addTarget:self action:@selector(performSegueToSettings:) forControlEvents:UIControlEventTouchUpInside];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
 		
 	
 	self.tableView.delegate = self;
@@ -141,7 +139,9 @@
     return cell;
 }
 
-
+- (void)performSegueToSettings:(UIButton *)button{
+	[self performSegueWithIdentifier:@"settings" sender:self];
+}
 
 
 // In a story board-based application, you will often want to do a little preparation before navigation
