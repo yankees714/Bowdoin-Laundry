@@ -105,7 +105,7 @@
 			}
 		} else if ([machineStatusString rangeOfString:@"available"].length > 0){
 			machines[i] = [[LaundryMachine alloc] initAvailableWithName:machineName];
-		} else if ([machineStatusString rangeOfString:@"unknown"].length > 0){
+		} else {
 			machines[i] = [[LaundryMachine alloc] initWithName:machineName];
 		}
 	}
