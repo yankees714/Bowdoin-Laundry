@@ -127,21 +127,25 @@
 	
 	cell.backgroundColor = [self.roomModel tintColorForMachineWithIndex:index];
 	
+	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
 	
 	
-	// adding switch <- *change this to a button*
-	//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-	UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
-	button.tag = index;
+	if (machine.running) {
+		// adding switch <- *change this to a button*
+		//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+		UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
+		button.tag = index;
+		
+		UIImage *star = [UIImage imageNamed:@"glyphicons_049_star.png"];
+		
+		[button setImage:star forState:UIControlStateNormal];
+		
+		cell.accessoryView = button;
+		
+		// handle the switch being toggled
+		[button addTarget:self action:@selector(watch:) forControlEvents:UIControlEventTouchUpInside];
+	}
 	
-	UIImage *star = [UIImage imageNamed:@"glyphicons_049_star.png"];
-	
-	[button setImage:star forState:UIControlStateNormal];
-	
-	cell.accessoryView = button;
-	
-	// handle the switch being toggled
-	[button addTarget:self action:@selector(watch:) forControlEvents:UIControlEventTouchUpInside];
 	
 	
 	// check user defaults to see if user is watching this machine
@@ -216,24 +220,23 @@
 	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 	
 	NSInteger index = button.tag;
-	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
 	
 	
-	if (!machine.available && !machine.ended) {
-		// Watch the selected machine
-		NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-		NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(index), nil];
-		[userDefaults setObject:watchData forKey:@"watch"];
-		
-		// Alert that the machine is being watched
-		NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, machine.name];
-		UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
-															  message:@"You'll get a notification when the cycle ends."
-															 delegate:self
-													cancelButtonTitle:@"Okay"
-													otherButtonTitles: nil];
-		[watchAlert show];
-	}
+	
+	// Watch the selected machine
+	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(index), nil];
+	[userDefaults setObject:watchData forKey:@"watch"];
+	
+	// Alert that the machine is being watched
+	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, [self.roomModel machineNameForIndex:index]];
+	UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+														  message:@"You'll get a notification when the cycle ends."
+														 delegate:self
+												cancelButtonTitle:@"Okay"
+												otherButtonTitles: nil];
+	[watchAlert show];
+
 }
 
 // returns a unique key to associate with a switch for each machine
