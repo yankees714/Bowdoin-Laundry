@@ -215,21 +215,25 @@
 	// Begin background fetching
 	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 	
-	// Watch the selected machine
-	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(button.tag), nil];
-	[userDefaults setObject:watchData forKey:@"watch"];
+	NSInteger index = button.tag;
+	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
 	
-	// Alert that the machine is being watched
-	NSString * machineName = [self.roomModel machineNameForIndex:button.tag];
-	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, machineName];
 	
-	UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
-														  message:@"You'll get a notification when the cycle ends."
-														 delegate:self
-												cancelButtonTitle:@"Okay"
-												otherButtonTitles: nil];
-	[watchAlert show];
+	if (!machine.available && !machine.ended) {
+		// Watch the selected machine
+		NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+		NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(index), nil];
+		[userDefaults setObject:watchData forKey:@"watch"];
+		
+		// Alert that the machine is being watched
+		NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, machine.name];
+		UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+															  message:@"You'll get a notification when the cycle ends."
+															 delegate:self
+													cancelButtonTitle:@"Okay"
+													otherButtonTitles: nil];
+		[watchAlert show];
+	}
 }
 
 // returns a unique key to associate with a switch for each machine
