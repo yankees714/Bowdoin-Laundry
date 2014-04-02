@@ -136,7 +136,11 @@
 		if (machine.available) {
 			return @"Available";
 		} else if (machine.running){
-			return [NSString stringWithFormat:@"Running (%@ minutes left)", machine.time];
+			if(machine.time){
+				return [NSString stringWithFormat:@"Running (%@ minutes left)", machine.time];
+			} else {
+				return @"Running";
+			}
 		} else if (machine.extended){
 			if (machine.time) {
 				return [NSString stringWithFormat:@"Extended cycle (%@ minutes ago)", machine.time];
@@ -145,7 +149,11 @@
 			}
 			
 		} else if (machine.ended) {
-			return [NSString stringWithFormat:@"Ended (%@ minutes ago)", machine.time];
+			if (machine.time) {
+				return [NSString stringWithFormat:@"Ended (%@ minutes ago)", machine.time];
+			} else {
+				return @"Ended";
+			}
 		} else {
 			return @"Could not retrieve machine status";
 		}
