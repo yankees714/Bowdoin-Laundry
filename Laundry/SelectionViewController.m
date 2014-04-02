@@ -39,7 +39,9 @@
 	UIButton * infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[infoButton addTarget:self action:@selector(performSegueToSettings:) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
-		
+	
+	
+	
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;

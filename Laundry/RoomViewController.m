@@ -112,6 +112,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 	
+//	UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCell)];
+//	[cell addGestureRecognizer:longPress];
+	
 	// calculate index from index path
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
@@ -134,16 +137,16 @@
 		// adding switch <- *change this to a button*
 		//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
 		UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
-		button.tag = index;
-		
 		UIImage *star = [UIImage imageNamed:@"glyphicons_049_star.png"];
-		
 		[button setImage:star forState:UIControlStateNormal];
+		button.tag = index;
 		
 		cell.accessoryView = button;
 		
 		// handle the switch being toggled
 		[button addTarget:self action:@selector(watch:) forControlEvents:UIControlEventTouchUpInside];
+	} else {
+		cell.accessoryView = nil;
 	}
 	
 	
@@ -237,6 +240,11 @@
 												otherButtonTitles: nil];
 	[watchAlert show];
 
+}
+
+- (void)longPressCell{
+	UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Machine" message:@"Watch this machine" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+	[alert show];
 }
 
 // returns a unique key to associate with a switch for each machine
