@@ -92,9 +92,17 @@
 									  range:[machineStatusString rangeOfString:machineStatusString]].range;
 			if(timeRange.length > 0){
 				time = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
-				
 				machines[i] = [[LaundryMachine alloc] initRunningWithName:machineName time:time];
 			}
+		} else if ([machineStatusString rangeOfString:@"extended"].length > 0){
+			NSRange timeRange = [numberRegex firstMatchInString:machineStatusString
+														options:NSMatchingWithTransparentBounds
+														  range:[machineStatusString rangeOfString:machineStatusString]].range;
+			if (timeRange.length > 0) {
+				time = [numberFormatter numberFromString:[machineStatusString substringWithRange:timeRange]];
+				machines[i] = [[LaundryMachine alloc] initExtendedCycleWithName:machineName time:time];
+			}
+
 		} else if ([machineStatusString rangeOfString:@"ended"].length > 0){
 			NSRange timeRange = [numberRegex firstMatchInString:machineStatusString
 														options:NSMatchingWithTransparentBounds
@@ -129,6 +137,13 @@
 			return @"Available";
 		} else if (machine.running){
 			return [NSString stringWithFormat:@"Running (%@ minutes left)", machine.time];
+		} else if (machine.extended){
+			if (machine.time) {
+				return [NSString stringWithFormat:@"Extended cycle (%@ minutes ago)", machine.time];
+			} else {
+				return @"Extended cycle";
+			}
+			
 		} else if (machine.ended) {
 			return [NSString stringWithFormat:@"Ended (%@ minutes ago)", machine.time];
 		} else {
