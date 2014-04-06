@@ -29,6 +29,7 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
+	
 		
 	if ([self.room isDefaultRoom]) {
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
@@ -123,6 +124,11 @@
 	// Set up the cell
 	cell.textLabel.text = [self.roomModel machineNameForIndex:index];
 	cell.detailTextLabel.text = [self.roomModel machineStatusForIndex:index];
+	
+	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
+	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
+	
+	
 	
 	//get rid of the background color of text labels
 	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];

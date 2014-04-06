@@ -137,6 +137,7 @@
 	
 	// get the room for this index
 	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row].name;
+	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
     
     return cell;
 }
@@ -176,4 +177,5 @@
 	
 	self.initialLoad = NO;
 }
+
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3157BAA718F1CFAB00F51FEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3157BAA618F1CFAB00F51FEC /* Images.xcassets */; };
+		3157BAAB18F1D2DC00F51FEC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3157BAAA18F1D2DC00F51FEC /* Default@2x.png */; };
 		3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */; };
 		31774F3C18BFE4C200C2719C /* LaundryRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 31774F3B18BFE4C100C2719C /* LaundryRoom.m */; };
 		3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179594B189D7527008C09D3 /* SettingsViewController.m */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3157BAA618F1CFAB00F51FEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3157BAAA18F1D2DC00F51FEC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
 		31774F3A18BFE4C100C2719C /* LaundryRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryRoom.h; sourceTree = "<group>"; };
 		31774F3B18BFE4C100C2719C /* LaundryRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryRoom.m; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 		31C5D2A217E288CE00C568D7 = {
 			isa = PBXGroup;
 			children = (
+				3157BAAA18F1D2DC00F51FEC /* Default@2x.png */,
 				31C5D2B417E288CE00C568D7 /* Laundry */,
 				319BD1E918B1CCDA00858606 /* Objective-C-HMTL-Parser */,
 				31C5D2EA17E29C7900C568D7 /* libxml2.dylib */,
@@ -214,6 +219,7 @@
 				3129A30A18C12762002F9C2D /* helpers */,
 				3129A30718C1255D002F9C2D /* models */,
 				3129A30B18C127B1002F9C2D /* storyboard */,
+				3157BAA618F1CFAB00F51FEC /* Images.xcassets */,
 				31C5D2B517E288CE00C568D7 /* Supporting Files */,
 			);
 			path = Laundry;
@@ -299,6 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				31C5D2B917E288CE00C568D7 /* InfoPlist.strings in Resources */,
+				3157BAA718F1CFAB00F51FEC /* Images.xcassets in Resources */,
+				3157BAAB18F1D2DC00F51FEC /* Default@2x.png in Resources */,
 				31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
@@ -428,6 +436,8 @@
 		31C5D2CF17E288CF00C568D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -448,6 +458,8 @@
 		31C5D2D017E288CF00C568D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
