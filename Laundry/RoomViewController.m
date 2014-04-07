@@ -139,7 +139,7 @@
 	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
 	
 	
-	if (machine.running) {
+	if (machine.running || machine.extended) {
 		// adding switch <- *change this to a button*
 		//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
 		UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
