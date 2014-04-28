@@ -19,6 +19,8 @@
 //@property (weak, nonatomic) NSString *roomName;
 @property (strong, nonatomic) LaundryRoom *room;
 
+@property (strong, nonatomic) UIAlertView *watchAlert;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)setDefaultRoom:(UIBarButtonItem *)sender;
 

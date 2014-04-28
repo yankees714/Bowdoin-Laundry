@@ -56,6 +56,17 @@
 	// Grab and fill laundry data
 	self.roomModel = [[LaundryDataModel  alloc] initWithID:self.room.ID];
 	
+	
+	// Set up alert views
+	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine ",self.room.name];
+	self.watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
+														  message:@"You'll get a notification when the cycle ends."
+														 delegate:self
+												cancelButtonTitle:@"Okay"
+												otherButtonTitles: nil];
+	
+	
+	
 	//set up updates and begin - not necessary for now
 //	[NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(updateMachinesAndStatus) userInfo:nil repeats:YES];
 //	[self updateMachinesAndStatus];
@@ -106,18 +117,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * cellIdentifier = @"machineStatus";
+    
+	// Get cell
+	static NSString * cellIdentifier = @"machineStatus";
     
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 	
-//	UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressCell)];
-//	[cell addGestureRecognizer:longPress];
-	
-	// calculate index from index path
+	// Calculate index from index path
 	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
+	
+	// Tag cell with index for access by long press recognizer
+	cell.tag = index;
+	
 	
 	
 	
@@ -128,31 +142,23 @@
 	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
 	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
 	
-	
-	
-	//get rid of the background color of text labels
 	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
 	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
 	
 	cell.backgroundColor = [self.roomModel tintColorForMachineWithIndex:index];
 	
+	
+	
+	
+	
 	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
 	
-	
 	if (machine.running || machine.extended) {
-		// adding switch <- *change this to a button*
-		//UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-		UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 8, 20, 20)];
-		UIImage *star = [UIImage imageNamed:@"glyphicons_049_star.png"];
-		[button setImage:star forState:UIControlStateNormal];
-		button.tag = index;
-		
-		cell.accessoryView = button;
-		
-		// handle the switch being toggled
-		[button addTarget:self action:@selector(watch:) forControlEvents:UIControlEventTouchUpInside];
+		UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+		longPress.minimumPressDuration = 0.7;
+		[cell addGestureRecognizer:longPress];
 	} else {
-		cell.accessoryView = nil;
+		cell.gestureRecognizers = nil;
 	}
 	
 	
@@ -248,9 +254,34 @@
 
 }
 
-- (void)longPressCell{
-	UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Machine" message:@"Watch this machine" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-	[alert show];
+- (void)handleLongPressGesture:(UIGestureRecognizer *)gestureRecognizer{
+	UITableViewCell * cell = (UITableViewCell *)gestureRecognizer.view;
+	
+	// Indicate that the machine is being watched
+	UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(300,100, 100, 100)];
+	label.text = @"Watching!";
+	cell.accessoryView  = label;
+	[self.view setNeedsDisplay];
+	
+	
+	
+	NSInteger index = gestureRecognizer.view.tag;
+	
+	
+	
+	// ** Should be moved to model **
+	// Watch the selected machine
+	NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+	NSArray * watchData = [NSArray arrayWithObjects:self.room.ID, self.room.name, @(index), nil];
+	[userDefaults setObject:watchData forKey:@"watch"];
+	
+	
+	
+	// Alert that the machine is being watched
+	NSString * alertTitle = [NSString stringWithFormat:@"%@ - Machine %@",self.room.name, [self.roomModel machineNameForIndex:index]];
+	self.watchAlert.title  = alertTitle;
+	
+	[self.watchAlert show];
 }
 
 // returns a unique key to associate with a switch for each machine
