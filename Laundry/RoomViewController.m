@@ -54,7 +54,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMachinesAndStatus) name:UIApplicationDidBecomeActiveNotification object:nil];
 	
 	// Grab and fill laundry data
-	self.roomModel = [[LaundryDataModel  alloc] initWithID:self.room.ID];
+	self.room = [[LaundryRoom  alloc] initWithID:self.room.ID];
 	
 	
 	// Set up alert views
@@ -86,7 +86,7 @@
 - (void)updateMachinesAndStatus {
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-	[self.roomModel refreshLaundryData];
+	[self.room refresh];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
 	// update tableview
@@ -110,9 +110,9 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     //return [self.machinesAndStatuses count];
 	if (section == 0) {
-		return self.roomModel.numberOfWashers;
+		return self.room.numberOfWashers;
 	} else {
-		return self.roomModel.numberOfDryers;
+		return self.room.numberOfDryers;
 	}
 }
 
@@ -127,7 +127,7 @@
     }
 	
 	// Calculate index from index path
-	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
+	NSInteger index = (self.room.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
 	// Tag cell with index for access by long press recognizer
 	cell.tag = index;
@@ -136,8 +136,8 @@
 	
 	
 	// Set up the cell
-	cell.textLabel.text = [self.roomModel machineNameForIndex:index];
-	cell.detailTextLabel.text = [self.roomModel machineStatusForIndex:index];
+	cell.textLabel.text = [self.room machineNameForIndex:index];
+	cell.detailTextLabel.text = [self.room machineStatusForIndex:index];
 	
 	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
 	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
@@ -145,13 +145,13 @@
 	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
 	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
 	
-	cell.backgroundColor = [self.roomModel tintColorForMachineWithIndex:index];
+	cell.backgroundColor = [self.room tintColorForMachineWithIndex:index];
 	
 	
 	
 	
 	
-	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
+	LaundryMachine * machine = [self.room.machines objectAtIndex:index];
 	
 	if (machine.running || machine.extended) {
 		UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
@@ -244,7 +244,7 @@
 	[userDefaults setObject:watchData forKey:@"watch"];
 	
 	// Alert that the machine is being watched
-	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, [self.roomModel machineNameForIndex:index]];
+	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, [self.room machineNameForIndex:index]];
 	UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
 														  message:@"You'll get a notification when the cycle ends."
 														 delegate:self
@@ -278,7 +278,7 @@
 	
 	
 	// Alert that the machine is being watched
-	NSString * alertTitle = [NSString stringWithFormat:@"%@ - Machine %@",self.room.name, [self.roomModel machineNameForIndex:index]];
+	NSString * alertTitle = [NSString stringWithFormat:@"%@ - Machine %@",self.room.name, [self.room machineNameForIndex:index]];
 	self.watchAlert.title  = alertTitle;
 	
 	[self.watchAlert show];

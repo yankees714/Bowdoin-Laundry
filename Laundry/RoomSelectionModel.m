@@ -44,41 +44,11 @@
 	
 	// Room list
 	NSArray *roomList = [roomListBody findChildrenWithAttribute:@"class" matchingName:@"a-room" allowPartial:NO];
-	
-	NSMutableArray *roomNames = [NSMutableArray arrayWithCapacity:roomList.count];
+
 	NSMutableArray *rooms = [NSMutableArray arrayWithCapacity:roomList.count];
 	
 	for (int i = 0; i < roomList.count; i++) {
-		NSString *roomName, *roomID = @"";
-		
-		// get room name and strip
-		roomName = [[[roomList objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-		
-		// fix capitalization
-		
-		// string with numbers need special treament
-		if ([roomName rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound) {
-			roomName = [roomName capitalizedString];
-			NSArray *roomNameTokens = [roomName componentsSeparatedByString:@" "];
-			NSString *capitalizedWithNumbers = @"";
-			
-			for (int i = 0; i < roomNameTokens.count; i++) {
-				NSString *token = [roomNameTokens objectAtIndex:i];
-				// tokens with numbers are all lowercase, others have first letter capitalized
-				if ([token rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound) {
-					capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:[token lowercaseString]];
-				} else{
-					capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:[token capitalizedString]];
-				}
-				
-				// insert a space between tokens
-				capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:@" "];
-			}
-			
-			roomName = capitalizedWithNumbers;
-		} else{
-			roomName = [roomName capitalizedString];
-		}
+		NSString *roomID = @"";
 		
 		// get room id
 		NSString *roomLink = [[[roomList objectAtIndex:i] getAttributeNamed:@"href"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -87,27 +57,21 @@
 		//[roomIDs insertObject:roomID atIndex:i];
 		
 		
-		[roomNames insertObject:roomName atIndex:i];
-		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:self.campus ID:roomID] atIndex:i];
+		//[roomNames insertObject:roomName atIndex:i];
+		[rooms insertObject:[[LaundryRoom alloc] initWithID:roomID] atIndex:i];
 	}
 	
-	// dictionary to retrieve a room given its name
-	self.roomsForNames = [NSDictionary dictionaryWithObjects:rooms forKeys:roomNames];
-	
-	// list of room names, sorted
-	self.roomNames = [roomNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-	
-	
-				  
+	self.rooms = rooms;
+
 }
 
 
 
 - (LaundryRoom *)roomForIndex:(NSUInteger)index{
-	return [self.roomsForNames valueForKey:[self.roomNames objectAtIndex:index]];
+	return [self.rooms objectAtIndex:index];
 }
 
 - (NSUInteger)numberOfRooms{
-	return self.roomNames.count;
+	return self.rooms.count;
 }
 @end

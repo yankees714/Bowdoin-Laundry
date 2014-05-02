@@ -13,11 +13,11 @@
 
 @interface RoomViewController : UITableViewController
 
-@property (nonatomic) LaundryDataModel * roomModel;
-@property (weak, nonatomic) NSString *status;
-//@property (weak,nonatomic) NSString *roomID;
-//@property (weak, nonatomic) NSString *roomName;
+
 @property (strong, nonatomic) LaundryRoom *room;
+@property (weak, nonatomic) NSString *status;
+
+
 
 @property (strong, nonatomic) UIAlertView *watchAlert;
 

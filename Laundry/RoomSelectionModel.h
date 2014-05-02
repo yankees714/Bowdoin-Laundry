@@ -14,9 +14,7 @@
 @property (nonatomic) NSURL *url;
 @property (nonatomic) NSString * campus;
 
-@property (nonatomic) NSArray * roomNames;
-@property (nonatomic) NSDictionary *roomsForNames;
-@property (nonatomic) NSMutableDictionary *watching;
+@property (nonatomic) NSArray * rooms;
 
 + (RoomSelectionModel *)roomSelectionModel;
 

@@ -56,8 +56,7 @@
 	}
 	
 	// Check for a default room
-	LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
-	if(defaultRoom && [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
+	if([LaundryRoom defaultRoomSetForCampus:self.roomSelection.campus]){
 		[self performSegueWithIdentifier:@"roomSelection" sender:self];
 	}
 
@@ -120,7 +119,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.numberOfRooms;
+	return self.numberOfRooms;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,12 +152,10 @@
 	if([segue.identifier isEqualToString:@"roomSelection"]){
 		
 		RoomViewController *roomVC = [segue destinationViewController];
-		LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
 
-		if(self.initialLoad && defaultRoom
-			&& [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
+		if(self.initialLoad && [LaundryRoom defaultRoomSetForCampus:self.roomSelection.campus]){
 			
-			roomVC.room = defaultRoom;
+			roomVC.room = [LaundryRoom defaultRoom];
 		
 		} else {
 			//NSString * name = [self.roomSelection roomNameForIndex:[[self.tableView indexPathForSelectedRow] row]];

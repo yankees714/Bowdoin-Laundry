@@ -16,22 +16,36 @@
 
 
 
-// Create a room given a name and ID
-+ (LaundryRoom *)roomWithName:(NSString *)name campus:(NSString *)campus ID:(NSString *) ID;
-
-// Create a room given an array of form [name, ID]
-+ (LaundryRoom *)roomWithArray:(NSArray *)array;
-
 // Returns an array containing [name, ID]
-- (NSArray *)arrayForRoom;
+- (NSArray *)infoArrayForRoom;
 
 // Checks if a given room is the default room
 - (BOOL)isDefaultRoom;
 
-// Returns the default room, nil if there is none
-+ (LaundryRoom *)defaultRoom;
 
 // Sets the default room
 + (void)setDefaultRoom:(LaundryRoom *)room;
+
++ (BOOL)defaultRoomSetForCampus:(NSString *)campus;
+
++ (LaundryRoom *)defaultRoom;
+
+
+
+
+@property (nonatomic) NSURL *url;
+@property (nonatomic) NSInteger numberOfWashers;
+@property (nonatomic) NSInteger numberOfDryers;
+
+
+@property (nonatomic) NSArray * machines;
+
+- (LaundryRoom*)initWithID:(NSString*)roomID;
+
+- (void)refresh;
+
+- (NSString *)machineNameForIndex:(NSUInteger)index;
+- (NSString *)machineStatusForIndex:(NSUInteger)index;
+- (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index;
 
 @end
