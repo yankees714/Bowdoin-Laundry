@@ -158,8 +158,6 @@
 			roomVC.room = [LaundryRoom defaultRoom];
 		
 		} else {
-			//NSString * name = [self.roomSelection roomNameForIndex:[[self.tableView indexPathForSelectedRow] row]];
-			
 			roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
