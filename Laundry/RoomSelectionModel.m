@@ -20,6 +20,12 @@
 	// need a first refresh to fill the list
 	[model refreshRooms];
 
+	if (model.roomIDs) {
+		model.numberOfRooms = model.roomIDs.count;
+	} else {
+		model.numberOfRooms = 0;
+	}
+
 	return model;
 }
 
@@ -45,7 +51,7 @@
 	// Room list
 	NSArray *roomList = [roomListBody findChildrenWithAttribute:@"class" matchingName:@"a-room" allowPartial:NO];
 
-	NSMutableArray *rooms = [NSMutableArray arrayWithCapacity:roomList.count];
+	NSMutableArray *roomIDs = [NSMutableArray arrayWithCapacity:roomList.count];
 	
 	for (int i = 0; i < roomList.count; i++) {
 		NSString *roomID = @"";
@@ -54,24 +60,15 @@
 		NSString *roomLink = [[[roomList objectAtIndex:i] getAttributeNamed:@"href"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		NSArray *roomLinkComponents = [roomLink componentsSeparatedByString:@"lr="];
 		roomID = [roomLinkComponents objectAtIndex:1];
-		//[roomIDs insertObject:roomID atIndex:i];
-		
-		
-		//[roomNames insertObject:roomName atIndex:i];
-		[rooms insertObject:[[LaundryRoom alloc] initWithID:roomID] atIndex:i];
-	}
-	
-	self.rooms = rooms;
 
+		[roomIDs insertObject:roomID atIndex:i];
+	}
+	self.roomIDs = roomIDs;
 }
 
 
 
 - (LaundryRoom *)roomForIndex:(NSUInteger)index{
-	return [self.rooms objectAtIndex:index];
-}
-
-- (NSUInteger)numberOfRooms{
-	return self.rooms.count;
+	return [[LaundryRoom alloc] initWithID:[self.roomIDs objectAtIndex:index]];
 }
 @end

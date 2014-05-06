@@ -50,14 +50,13 @@
 	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
 	
 	if(self.reachability.currentReachabilityStatus != NotReachable){
-		NSLog(@"Connected to LaundryView!");
 		self.roomSelection = [RoomSelectionModel roomSelectionModel];
 		self.numberOfRooms = [self.roomSelection numberOfRooms];
-	}
-	
-	// Check for a default room
-	if([LaundryRoom defaultRoomSetForCampus:self.roomSelection.campus]){
-		[self performSegueWithIdentifier:@"roomSelection" sender:self];
+
+		// Check for a default room
+		if([LaundryRoom defaultRoomSetForCampus:self.roomSelection.campus]){
+			[self performSegueWithIdentifier:@"roomSelection" sender:self];
+		}
 	}
 
 	
@@ -100,7 +99,7 @@
 	} else{
 		if (!self.roomSelection) {
 			self.roomSelection = [RoomSelectionModel roomSelectionModel];
-			self.numberOfRooms = [self.roomSelection numberOfRooms];
+			self.numberOfRooms = self.roomSelection.numberOfRooms;
 			[self.tableView reloadData];
 		}
 	}
@@ -158,7 +157,7 @@
 			roomVC.room = [LaundryRoom defaultRoom];
 		
 		} else {
-			roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
+			//roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}

@@ -14,7 +14,8 @@
 @property (nonatomic) NSURL *url;
 @property (nonatomic) NSString * campus;
 
-@property (nonatomic) NSArray * rooms;
+@property (nonatomic) NSArray * roomIDs;
+@property (nonatomic) NSUInteger numberOfRooms;
 
 + (RoomSelectionModel *)roomSelectionModel;
 

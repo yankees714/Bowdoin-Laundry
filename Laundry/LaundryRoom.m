@@ -47,6 +47,7 @@
 		
 		if (infoComponentsHTML.count > 1) {
 			self.campus = [[infoComponentsHTML objectAtIndex:1] allContents];
+			self.campus = [[self.campus stringByReplacingOccurrencesOfString:@" " withString:@""] uppercaseString];
 			
 			self.name = [[infoComponentsHTML objectAtIndex:3] allContents];
 			self.name = [self.name stringByReplacingOccurrencesOfString:@"LAUNDRY ROOM" withString:@""];
