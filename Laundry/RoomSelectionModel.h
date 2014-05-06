@@ -14,6 +14,7 @@
 @property (nonatomic) NSURL *url;
 @property (nonatomic) NSString * campus;
 
+@property (nonatomic) NSArray * roomNames;
 @property (nonatomic) NSArray * roomIDs;
 @property (nonatomic) NSUInteger numberOfRooms;
 
@@ -22,6 +23,7 @@
 - (void)refreshRooms;
 
 - (LaundryRoom *)roomForIndex:(NSUInteger)index;
+- (NSString *)roomNameForIndex:(NSUInteger)index;
 - (NSUInteger)numberOfRooms;
 
 @end

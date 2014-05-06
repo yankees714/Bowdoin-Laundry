@@ -51,10 +51,43 @@
 	// Room list
 	NSArray *roomList = [roomListBody findChildrenWithAttribute:@"class" matchingName:@"a-room" allowPartial:NO];
 
+	NSMutableArray *roomNames = [NSMutableArray arrayWithCapacity:roomList.count];
 	NSMutableArray *roomIDs = [NSMutableArray arrayWithCapacity:roomList.count];
 	
 	for (int i = 0; i < roomList.count; i++) {
+		NSString *roomName = @"";
 		NSString *roomID = @"";
+		
+		// get room name and strip
+		roomName = [[[roomList objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		
+		// fix capitalization
+		
+		// string with numbers need special treament
+		if ([roomName rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound) {
+			roomName = [roomName capitalizedString];
+			NSArray *roomNameTokens = [roomName componentsSeparatedByString:@" "];
+			NSString *capitalizedWithNumbers = @"";
+			
+			for (int i = 0; i < roomNameTokens.count; i++) {
+				NSString *token = [roomNameTokens objectAtIndex:i];
+				// tokens with numbers are all lowercase, others have first letter capitalized
+				if ([token rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound) {
+					capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:[token lowercaseString]];
+				} else{
+					capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:[token capitalizedString]];
+				}
+				
+				// insert a space between tokens
+				capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:@" "];
+			}
+			
+			roomName = capitalizedWithNumbers;
+		} else{
+			roomName = [roomName capitalizedString];
+		}
+		
+		[roomNames insertObject:roomName atIndex:i];
 		
 		// get room id
 		NSString *roomLink = [[[roomList objectAtIndex:i] getAttributeNamed:@"href"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -63,6 +96,8 @@
 
 		[roomIDs insertObject:roomID atIndex:i];
 	}
+	
+	self.roomNames = roomNames;
 	self.roomIDs = roomIDs;
 }
 
@@ -70,5 +105,9 @@
 
 - (LaundryRoom *)roomForIndex:(NSUInteger)index{
 	return [[LaundryRoom alloc] initWithID:[self.roomIDs objectAtIndex:index]];
+}
+
+- (NSString *)roomNameForIndex:(NSUInteger)index{
+	return [self.roomNames objectAtIndex:index];
 }
 @end

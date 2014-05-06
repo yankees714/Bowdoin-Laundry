@@ -134,7 +134,7 @@
     // Configure the cell...
 	
 	// get the room for this index
-	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row].name;
+	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
 	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
     
     return cell;
@@ -157,7 +157,7 @@
 			roomVC.room = [LaundryRoom defaultRoom];
 		
 		} else {
-			//roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
+			roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 		}

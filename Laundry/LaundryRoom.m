@@ -49,11 +49,38 @@
 			self.campus = [[infoComponentsHTML objectAtIndex:1] allContents];
 			self.campus = [[self.campus stringByReplacingOccurrencesOfString:@" " withString:@""] uppercaseString];
 			
-			self.name = [[infoComponentsHTML objectAtIndex:3] allContents];
-			self.name = [self.name stringByReplacingOccurrencesOfString:@"LAUNDRY ROOM" withString:@""];
-			self.name = [self.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			self.name = [self.name capitalizedString];
+			NSString * name = [[infoComponentsHTML objectAtIndex:3] allContents];
 			
+			name = [name stringByReplacingOccurrencesOfString:@"LAUNDRY ROOM" withString:@""];
+			name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			
+			// fix capitalization
+			
+			// string with numbers need special treament
+			if ([name rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound) {
+				name = [name capitalizedString];
+				NSArray *nameTokens = [name componentsSeparatedByString:@" "];
+				NSString *capitalizedWithNumbers = @"";
+				
+				for (int i = 0; i < nameTokens.count; i++) {
+					NSString *token = [nameTokens objectAtIndex:i];
+					// tokens with numbers are all lowercase, others have first letter capitalized
+					if ([token rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location != NSNotFound) {
+						capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:[token lowercaseString]];
+					} else{
+						capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:[token capitalizedString]];
+					}
+					
+					// insert a space between tokens
+					capitalizedWithNumbers = [capitalizedWithNumbers stringByAppendingString:@" "];
+				}
+				
+				name = capitalizedWithNumbers;
+			} else{
+				name = [name capitalizedString];
+			}
+			
+			self.name = name;
 		}
 	}
 }
