@@ -128,10 +128,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-
     }
 	    
     // Configure the cell...
+	
+	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+	
+	UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[cell setAccessoryView:indicator];
 	
 	// get the room for this index
 	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
@@ -143,6 +147,15 @@
 - (void)performSegueToSettings:(UIButton *)button{
 	[self performSegueWithIdentifier:@"settings" sender:self];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+	[(UIActivityIndicatorView *)cell.accessoryView startAnimating];
+	[self.tableView setNeedsDisplay];
+	
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 
 
 // In a story board-based application, you will often want to do a little preparation before navigation
