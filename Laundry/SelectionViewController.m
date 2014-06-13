@@ -33,6 +33,10 @@
     [super viewDidLoad];
 	
 	self.initialLoad =YES;
+	
+	self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+	self.navigationController.navigationBar.translucent = YES;
+	self.navigationController.navigationBar.alpha = 0.7;
 
 	
 	// Setup the settings/info bar button
@@ -133,9 +137,6 @@
     // Configure the cell...
 	
 	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
-	
-	UIActivityIndicatorView * indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[cell setAccessoryView:indicator];
 	
 	// get the room for this index
 	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
