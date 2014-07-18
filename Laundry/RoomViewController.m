@@ -29,7 +29,8 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
-	
+	[self.tableView setRowHeight:100];
+	[self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
 		
 	if ([self.room isDefaultRoom]) {
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
@@ -139,17 +140,19 @@
 	cell.textLabel.text = [self.room machineNameForIndex:index];
 	cell.detailTextLabel.text = [self.room machineStatusForIndex:index];
 	
-	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
-	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
+//	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
+//	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
+	
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+	//cell.textLabel.textColor = [UIColor whiteColor];
 	
 	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
 	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
 	
-	cell.backgroundColor = [self.room tintColorForMachineWithIndex:index];
-	
-	
-	
-	
+	//cell.backgroundColor = [self.room tintColorForMachineWithIndex:index];
+	cell.imageView.image = [RoomViewController imageWithColor:[self.room tintColorForMachineWithIndex:index] size:CGSizeMake(50, 50)];
+	cell.imageView.layer.cornerRadius = 25.0;
+	cell.imageView.layer.masksToBounds = YES;
 	
 	LaundryMachine * machine = [self.room.machines objectAtIndex:index];
 	
@@ -258,10 +261,14 @@
 	UITableViewCell * cell = (UITableViewCell *)gestureRecognizer.view;
 	
 	// Indicate that the machine is being watched
-	UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(300,100, 100, 100)];
-	label.text = @"Watching!";
-	cell.accessoryView  = label;
-	[self.view setNeedsDisplay];
+//	UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(300,100, 100, 100)];
+//	label.text = @"Watching!";
+//	cell.accessoryView  = label;
+	
+	// this is great, but need to handle saving the watched state, and resetting each cell's circle
+	cell.imageView.layer.borderColor = [UIColor redColor].CGColor;
+	cell.imageView.layer.borderWidth = 3.0;
+	[cell.imageView setNeedsDisplay];
 	
 	
 	
@@ -281,7 +288,7 @@
 	NSString * alertTitle = [NSString stringWithFormat:@"%@ - Machine %@",self.room.name, [self.room machineNameForIndex:index]];
 	self.watchAlert.title  = alertTitle;
 	
-	[self.watchAlert show];
+	//[self.watchAlert show];
 }
 
 // returns a unique key to associate with a switch for each machine
@@ -308,5 +315,18 @@
 															  otherButtonTitles: @"Okay", nil];
 		[defaultChangedMessage show];
 	}
+}
+
+
+// source: http://codely.wordpress.com/2013/02/04/how-to-make-a-solid-color-uiimage/
++ (UIImage*) imageWithColor:(UIColor*)color size:(CGSize)size
+{
+	UIGraphicsBeginImageContext(size);
+	UIBezierPath* rPath = [UIBezierPath bezierPathWithRect:CGRectMake(0., 0., size.width, size.height)];
+	[color setFill];
+	[rPath fill];
+	UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return image;
 }
 @end
