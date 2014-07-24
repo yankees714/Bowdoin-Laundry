@@ -34,6 +34,7 @@
 - (NSString *)machineNameForIndex:(NSUInteger)index;
 - (NSString *)machineStatusForIndex:(NSUInteger)index;
 - (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index;
+- (NSString *)machineTimeStatusForIndex:(NSUInteger)index;
 
 
 

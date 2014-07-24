@@ -137,21 +137,22 @@
 	
 	
 	// Set up the cell
-	cell.textLabel.text = [self.room machineNameForIndex:index];
-	cell.detailTextLabel.text = [self.room machineStatusForIndex:index];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@ – %@", [self.room machineNameForIndex:index], [self.room machineStatusForIndex:index]];
+	cell.detailTextLabel.text = [self.room machineTimeStatusForIndex:index];
 	
-//	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
-//	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
-	
-	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
+	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
+
 	//cell.textLabel.textColor = [UIColor whiteColor];
 	
 	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
 	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
 	
 	//cell.backgroundColor = [self.room tintColorForMachineWithIndex:index];
-	cell.imageView.image = [RoomViewController imageWithColor:[self.room tintColorForMachineWithIndex:index] size:CGSizeMake(50, 50)];
-	cell.imageView.layer.cornerRadius = 25.0;
+	
+	int radius = 15;
+	cell.imageView.image = [RoomViewController imageWithColor:[self.room tintColorForMachineWithIndex:index] size:CGSizeMake(radius, radius)];
+	cell.imageView.layer.cornerRadius = radius/2;
 	cell.imageView.layer.masksToBounds = YES;
 	
 	LaundryMachine * machine = [self.room.machines objectAtIndex:index];
@@ -232,6 +233,12 @@
 	}
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	return 40;
+}
+
+
+
 
 - (IBAction)watch:(UIButton *)button{
 	// Begin background fetching
@@ -266,7 +273,7 @@
 //	cell.accessoryView  = label;
 	
 	// this is great, but need to handle saving the watched state, and resetting each cell's circle
-	cell.imageView.layer.borderColor = [UIColor redColor].CGColor;
+	cell.imageView.layer.borderColor = [UIColor yellowColor].CGColor;
 	cell.imageView.layer.borderWidth = 3.0;
 	[cell.imageView setNeedsDisplay];
 	

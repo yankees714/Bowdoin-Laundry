@@ -194,38 +194,65 @@
 		if (machine.available) {
 			return @"Available";
 		} else if (machine.running){
+			return @"Running";
+		} else if (machine.extended){
+				return @"Extended cycle";
+		} else if (machine.ended) {
+			return @"Ended";
+		} else {
+			return @"Status unavailable";
+		}
+	} else{
+		return @"Status unavailable";
+	}
+}
+
+// Formatted time status string for a given machine index
+- (NSString *)machineTimeStatusForIndex:(NSUInteger)index{
+	//return [[self.machinesWithStatuses objectAtIndex:index] objectAtIndex:1];
+	
+	LaundryMachine * machine = [self.machines objectAtIndex:index];
+	
+	if(machine){
+		if (machine.available) {
+			return @"";
+		} else if (machine.running){
 			if(machine.time){
-				return [NSString stringWithFormat:@"Running (%@ minutes left)", machine.time];
+				return [NSString stringWithFormat:@"%@ minutes left", machine.time];
 			} else {
-				return @"Running";
+				return @"";
 			}
 		} else if (machine.extended){
 			if (machine.time) {
-				return [NSString stringWithFormat:@"Extended cycle (%@ minutes ago)", machine.time];
+				return [NSString stringWithFormat:@"%@ minutes ago", machine.time];
 			} else {
-				return @"Extended cycle";
+				return @"";
 			}
 			
 		} else if (machine.ended) {
 			if (machine.time) {
-				return [NSString stringWithFormat:@"Ended (%@ minutes ago)", machine.time];
+				return [NSString stringWithFormat:@"%@ minutes ago", machine.time];
 			} else {
-				return @"Ended";
+				return @"";
 			}
 		} else {
-			return @"Could not retrieve machine status";
+			return @"";
 		}
 	} else {
-		return @"Could not retrieve machine status";
+		return @"";
 	}
 }
 
 // Status color for a given machine index
 - (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index{
 	
-	UIColor * availableColor = [UIColor colorWithRed:0.87 green:1.00 blue:0.87 alpha:1.00];
-	UIColor * runningColor = [UIColor colorWithRed:1.00 green:0.87 blue:0.87 alpha:1.00];
-	UIColor * endedColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.1];
+	//UIColor * availableColor = [UIColor colorWithRed:0.87 green:1.00 blue:0.87 alpha:1.00];
+	UIColor * availableColor = [UIColor colorWithRed:0.18 green:0.8 blue:0.44 alpha:1];
+	//UIColor * runningColor = [UIColor colorWithRed:1.00 green:0.87 blue:0.87 alpha:1.00];
+	UIColor * runningColor = [UIColor colorWithRed:0.91 green:0.3 blue:0.24 alpha:1];
+	//UIColor * endedColor = [UIColor colorWithRed:52.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:0.1];
+	//UIColor * endedColor = [UIColor colorWithRed:0.2 green:0.6 blue:0.86 alpha:1];
+	UIColor * endedColor = [UIColor colorWithRed:0.42 green:0.73 blue:0.94 alpha:1];
 	
 	LaundryMachine * machine = [self.machines objectAtIndex:index];
 	

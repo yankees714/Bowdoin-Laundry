@@ -36,7 +36,7 @@
 	
 	self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
 	self.navigationController.navigationBar.translucent = YES;
-	self.navigationController.navigationBar.alpha = 0.7;
+	//self.navigationController.navigationBar.alpha = 0.7;
 
 	
 	// Setup the settings/info bar button
@@ -49,6 +49,7 @@
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+	[self.tableView setRowHeight:75];
 
 	
 	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
@@ -135,12 +136,11 @@
     }
 	    
     // Configure the cell...
-	
 	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
 	
 	// get the room for this index
 	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
-	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
     
     return cell;
 }
