@@ -33,6 +33,10 @@
     [super viewDidLoad];
 	
 	self.initialLoad =YES;
+	
+	self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+	self.navigationController.navigationBar.translucent = YES;
+	//self.navigationController.navigationBar.alpha = 0.7;
 
 	
 	// Setup the settings/info bar button
@@ -45,20 +49,19 @@
 	
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
+	[self.tableView setRowHeight:75];
 
 	
 	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
 	
 	if(self.reachability.currentReachabilityStatus != NotReachable){
-		NSLog(@"Connected to LaundryView!");
 		self.roomSelection = [RoomSelectionModel roomSelectionModel];
 		self.numberOfRooms = [self.roomSelection numberOfRooms];
-	}
-	
-	// Check for a default room
-	LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
-	if(defaultRoom && [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
-		[self performSegueWithIdentifier:@"roomSelection" sender:self];
+
+		// Check for a default room
+		if([LaundryRoom defaultRoomSetForCampus:self.roomSelection.campus]){
+			[self performSegueWithIdentifier:@"roomSelection" sender:self];
+		}
 	}
 
 	
@@ -101,7 +104,7 @@
 	} else{
 		if (!self.roomSelection) {
 			self.roomSelection = [RoomSelectionModel roomSelectionModel];
-			self.numberOfRooms = [self.roomSelection numberOfRooms];
+			self.numberOfRooms = self.roomSelection.numberOfRooms;
 			[self.tableView reloadData];
 		}
 	}
@@ -120,7 +123,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.numberOfRooms;
+	return self.numberOfRooms;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,14 +133,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-
     }
 	    
     // Configure the cell...
+	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
 	
 	// get the room for this index
-	cell.textLabel.text = [self.roomSelection roomForIndex:indexPath.row].name;
-	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
+	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
     
     return cell;
 }
@@ -146,6 +149,15 @@
 	[self performSegueWithIdentifier:@"settings" sender:self];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+	[(UIActivityIndicatorView *)cell.accessoryView startAnimating];
+	[self.tableView setNeedsDisplay];
+	
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -153,16 +165,12 @@
 	if([segue.identifier isEqualToString:@"roomSelection"]){
 		
 		RoomViewController *roomVC = [segue destinationViewController];
-		LaundryRoom * defaultRoom = [LaundryRoom defaultRoom];
 
-		if(self.initialLoad && defaultRoom
-			&& [defaultRoom.campus isEqualToString:self.roomSelection.campus]){
+		if(self.initialLoad && [LaundryRoom defaultRoomSetForCampus:self.roomSelection.campus]){
 			
-			roomVC.room = defaultRoom;
+			roomVC.room = [LaundryRoom defaultRoom];
 		
 		} else {
-			//NSString * name = [self.roomSelection roomNameForIndex:[[self.tableView indexPathForSelectedRow] row]];
-			
 			roomVC.room = [self.roomSelection roomForIndex:[[self.tableView indexPathForSelectedRow] row]];
 
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];

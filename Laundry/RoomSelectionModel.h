@@ -15,14 +15,15 @@
 @property (nonatomic) NSString * campus;
 
 @property (nonatomic) NSArray * roomNames;
-@property (nonatomic) NSDictionary *roomsForNames;
-@property (nonatomic) NSMutableDictionary *watching;
+@property (nonatomic) NSArray * roomIDs;
+@property (nonatomic) NSUInteger numberOfRooms;
 
 + (RoomSelectionModel *)roomSelectionModel;
 
 - (void)refreshRooms;
 
 - (LaundryRoom *)roomForIndex:(NSUInteger)index;
+- (NSString *)roomNameForIndex:(NSUInteger)index;
 - (NSUInteger)numberOfRooms;
 
 @end

@@ -20,6 +20,12 @@
 	// need a first refresh to fill the list
 	[model refreshRooms];
 
+	if (model.roomIDs) {
+		model.numberOfRooms = model.roomIDs.count;
+	} else {
+		model.numberOfRooms = 0;
+	}
+
 	return model;
 }
 
@@ -44,12 +50,13 @@
 	
 	// Room list
 	NSArray *roomList = [roomListBody findChildrenWithAttribute:@"class" matchingName:@"a-room" allowPartial:NO];
-	
+
 	NSMutableArray *roomNames = [NSMutableArray arrayWithCapacity:roomList.count];
-	NSMutableArray *rooms = [NSMutableArray arrayWithCapacity:roomList.count];
+	NSMutableArray *roomIDs = [NSMutableArray arrayWithCapacity:roomList.count];
 	
 	for (int i = 0; i < roomList.count; i++) {
-		NSString *roomName, *roomID = @"";
+		NSString *roomName = @"";
+		NSString *roomID = @"";
 		
 		// get room name and strip
 		roomName = [[[roomList objectAtIndex:i] allContents] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -80,34 +87,27 @@
 			roomName = [roomName capitalizedString];
 		}
 		
+		[roomNames insertObject:roomName atIndex:i];
+		
 		// get room id
 		NSString *roomLink = [[[roomList objectAtIndex:i] getAttributeNamed:@"href"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		NSArray *roomLinkComponents = [roomLink componentsSeparatedByString:@"lr="];
 		roomID = [roomLinkComponents objectAtIndex:1];
-		//[roomIDs insertObject:roomID atIndex:i];
-		
-		
-		[roomNames insertObject:roomName atIndex:i];
-		[rooms insertObject:[LaundryRoom roomWithName:roomName campus:self.campus ID:roomID] atIndex:i];
+
+		[roomIDs insertObject:roomID atIndex:i];
 	}
 	
-	// dictionary to retrieve a room given its name
-	self.roomsForNames = [NSDictionary dictionaryWithObjects:rooms forKeys:roomNames];
-	
-	// list of room names, sorted
-	self.roomNames = [roomNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-	
-	
-				  
+	self.roomNames = roomNames;
+	self.roomIDs = roomIDs;
 }
 
 
 
 - (LaundryRoom *)roomForIndex:(NSUInteger)index{
-	return [self.roomsForNames valueForKey:[self.roomNames objectAtIndex:index]];
+	return [[LaundryRoom alloc] initWithID:[self.roomIDs objectAtIndex:index]];
 }
 
-- (NSUInteger)numberOfRooms{
-	return self.roomNames.count;
+- (NSString *)roomNameForIndex:(NSUInteger)index{
+	return [self.roomNames objectAtIndex:index];
 }
 @end

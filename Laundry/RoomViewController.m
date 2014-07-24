@@ -29,7 +29,8 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	
-	
+	[self.tableView setRowHeight:100];
+	[self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
 		
 	if ([self.room isDefaultRoom]) {
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0
@@ -54,7 +55,7 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMachinesAndStatus) name:UIApplicationDidBecomeActiveNotification object:nil];
 	
 	// Grab and fill laundry data
-	self.roomModel = [[LaundryDataModel  alloc] initWithID:self.room.ID];
+	self.room = [[LaundryRoom  alloc] initWithID:self.room.ID];
 	
 	
 	// Set up alert views
@@ -86,7 +87,7 @@
 - (void)updateMachinesAndStatus {
 	
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-	[self.roomModel refreshLaundryData];
+	[self.room refresh];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 	
 	// update tableview
@@ -110,9 +111,9 @@
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     //return [self.machinesAndStatuses count];
 	if (section == 0) {
-		return self.roomModel.numberOfWashers;
+		return self.room.numberOfWashers;
 	} else {
-		return self.roomModel.numberOfDryers;
+		return self.room.numberOfDryers;
 	}
 }
 
@@ -127,7 +128,7 @@
     }
 	
 	// Calculate index from index path
-	NSInteger index = (self.roomModel.numberOfWashers * (indexPath.section)) + indexPath.row;
+	NSInteger index = (self.room.numberOfWashers * (indexPath.section)) + indexPath.row;
 	
 	// Tag cell with index for access by long press recognizer
 	cell.tag = index;
@@ -136,22 +137,25 @@
 	
 	
 	// Set up the cell
-	cell.textLabel.text = [self.roomModel machineNameForIndex:index];
-	cell.detailTextLabel.text = [self.roomModel machineStatusForIndex:index];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@ – %@", [self.room machineNameForIndex:index], [self.room machineStatusForIndex:index]];
+	cell.detailTextLabel.text = [self.room machineTimeStatusForIndex:index];
 	
-	cell.textLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:18.0];
-	cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir-Roman" size:12.0];
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
+	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
+
+	//cell.textLabel.textColor = [UIColor whiteColor];
 	
 	[[cell textLabel] setBackgroundColor:[UIColor clearColor]];
 	[[cell detailTextLabel] setBackgroundColor:[UIColor clearColor]];
 	
-	cell.backgroundColor = [self.roomModel tintColorForMachineWithIndex:index];
+	//cell.backgroundColor = [self.room tintColorForMachineWithIndex:index];
 	
+	int radius = 15;
+	cell.imageView.image = [RoomViewController imageWithColor:[self.room tintColorForMachineWithIndex:index] size:CGSizeMake(radius, radius)];
+	cell.imageView.layer.cornerRadius = radius/2;
+	cell.imageView.layer.masksToBounds = YES;
 	
-	
-	
-	
-	LaundryMachine * machine = [self.roomModel.machines objectAtIndex:index];
+	LaundryMachine * machine = [self.room.machines objectAtIndex:index];
 	
 	if (machine.running || machine.extended) {
 		UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
@@ -229,6 +233,12 @@
 	}
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	return 40;
+}
+
+
+
 
 - (IBAction)watch:(UIButton *)button{
 	// Begin background fetching
@@ -244,7 +254,7 @@
 	[userDefaults setObject:watchData forKey:@"watch"];
 	
 	// Alert that the machine is being watched
-	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, [self.roomModel machineNameForIndex:index]];
+	NSString * alertTitle = [NSString stringWithFormat:@"%@- Machine %@",self.room.name, [self.room machineNameForIndex:index]];
 	UIAlertView * watchAlert = [[UIAlertView alloc] initWithTitle:alertTitle
 														  message:@"You'll get a notification when the cycle ends."
 														 delegate:self
@@ -258,10 +268,14 @@
 	UITableViewCell * cell = (UITableViewCell *)gestureRecognizer.view;
 	
 	// Indicate that the machine is being watched
-	UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(300,100, 100, 100)];
-	label.text = @"Watching!";
-	cell.accessoryView  = label;
-	[self.view setNeedsDisplay];
+//	UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(300,100, 100, 100)];
+//	label.text = @"Watching!";
+//	cell.accessoryView  = label;
+	
+	// this is great, but need to handle saving the watched state, and resetting each cell's circle
+	cell.imageView.layer.borderColor = [UIColor yellowColor].CGColor;
+	cell.imageView.layer.borderWidth = 3.0;
+	[cell.imageView setNeedsDisplay];
 	
 	
 	
@@ -278,10 +292,10 @@
 	
 	
 	// Alert that the machine is being watched
-	NSString * alertTitle = [NSString stringWithFormat:@"%@ - Machine %@",self.room.name, [self.roomModel machineNameForIndex:index]];
+	NSString * alertTitle = [NSString stringWithFormat:@"%@ - Machine %@",self.room.name, [self.room machineNameForIndex:index]];
 	self.watchAlert.title  = alertTitle;
 	
-	[self.watchAlert show];
+	//[self.watchAlert show];
 }
 
 // returns a unique key to associate with a switch for each machine
@@ -308,5 +322,18 @@
 															  otherButtonTitles: @"Okay", nil];
 		[defaultChangedMessage show];
 	}
+}
+
+
+// source: http://codely.wordpress.com/2013/02/04/how-to-make-a-solid-color-uiimage/
++ (UIImage*) imageWithColor:(UIColor*)color size:(CGSize)size
+{
+	UIGraphicsBeginImageContext(size);
+	UIBezierPath* rPath = [UIBezierPath bezierPathWithRect:CGRectMake(0., 0., size.width, size.height)];
+	[color setFill];
+	[rPath fill];
+	UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return image;
 }
 @end

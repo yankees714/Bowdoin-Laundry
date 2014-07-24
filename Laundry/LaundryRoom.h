@@ -10,28 +10,48 @@
 
 @interface LaundryRoom : NSObject
 
+@property (nonatomic) NSURL *url;
+
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *campus;
 @property (nonatomic) NSString *ID;
 
+@property (nonatomic) NSArray * machines;
+@property (nonatomic) NSInteger numberOfWashers;
+@property (nonatomic) NSInteger numberOfDryers;
 
 
-// Create a room given a name and ID
-+ (LaundryRoom *)roomWithName:(NSString *)name campus:(NSString *)campus ID:(NSString *) ID;
 
-// Create a room given an array of form [name, ID]
-+ (LaundryRoom *)roomWithArray:(NSArray *)array;
+// *** Core methods ***
 
-// Returns an array containing [name, ID]
-- (NSArray *)arrayForRoom;
+- (LaundryRoom*)initWithID:(NSString*)roomID;
+- (void)refresh;
 
-// Checks if a given room is the default room
-- (BOOL)isDefaultRoom;
 
-// Returns the default room, nil if there is none
+
+// *** UI **
+
+- (NSString *)machineNameForIndex:(NSUInteger)index;
+- (NSString *)machineStatusForIndex:(NSUInteger)index;
+- (UIColor *)tintColorForMachineWithIndex:(NSUInteger)index;
+- (NSString *)machineTimeStatusForIndex:(NSUInteger)index;
+
+
+
+// *** Default room ***
+
+// Gets the default room
 + (LaundryRoom *)defaultRoom;
 
 // Sets the default room
 + (void)setDefaultRoom:(LaundryRoom *)room;
 
+// Returns true if there is a default room and it belongs to the current campus
++ (BOOL)defaultRoomSetForCampus:(NSString *)campus;
+
+// Checks if a given room is the default room
+- (BOOL)isDefaultRoom;
+
+// Returns an array containing [name, ID]
+- (NSArray *)infoArrayForRoom;
 @end
