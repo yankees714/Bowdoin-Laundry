@@ -25,12 +25,12 @@
 	
 	[TestFlight passCheckpoint:self.room.name];
 	
-	
+	// Tableivew setup
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
-	
 	[self.tableView setRowHeight:100];
 	[self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 10, 0, 10)];
+	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 		
 	if ([self.room isDefaultRoom]) {
 		self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:241/255.0

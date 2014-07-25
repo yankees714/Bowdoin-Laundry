@@ -34,22 +34,22 @@
 	
 	self.initialLoad =YES;
 	
-	self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-	self.navigationController.navigationBar.translucent = YES;
-	//self.navigationController.navigationBar.alpha = 0.7;
+	// Navigation bar setup
+	//self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.42 green:0.73 blue:0.94 alpha:1];
+	self.navigationController.navigationBar.translucent = NO;
+	self.navigationController.navigationBar.alpha = 0.7;
 
-	
-	// Setup the settings/info bar button
 	UIButton * infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[infoButton addTarget:self action:@selector(performSegueToSettings:) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
 	
 	
-	
-	
+	// Tableview setup
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	[self.tableView setRowHeight:75];
+	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
 	
 	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
@@ -140,7 +140,7 @@
 	
 	// get the room for this index
 	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
-	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
     
     return cell;
 }
