@@ -7,7 +7,6 @@
 //
 
 #import "RoomViewController.h"
-#import "LaundryDataModel.h"
 #import "LaundryMachine.h"
 #import "LaundryRoom.h"
 #import "TestFlight.h"

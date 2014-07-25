@@ -24,11 +24,9 @@
 		31C5D2BB17E288CE00C568D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2BA17E288CE00C568D7 /* main.m */; };
 		31C5D2BF17E288CF00C568D7 /* LaundryAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */; };
 		31C5D2C117E288CF00C568D7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C017E288CF00C568D7 /* Default.png */; };
-		31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C217E288CF00C568D7 /* Default@2x.png */; };
 		31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C417E288CF00C568D7 /* Default-568h@2x.png */; };
 		31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31C5D2C617E288CF00C568D7 /* MainStoryboard.storyboard */; };
 		31C5D2CB17E288CF00C568D7 /* RoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2CA17E288CF00C568D7 /* RoomViewController.m */; };
-		31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C5D2D217E289E100C568D7 /* LaundryDataModel.m */; };
 		31C5D2EB17E29C7900C568D7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31C5D2EA17E29C7900C568D7 /* libxml2.dylib */; };
 		31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31DE9F5F181B192800DB407B /* RoomSelectionModel.m */; };
 		31EA8BBE18D93AA400FED9A9 /* LaundryMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EA8BBD18D93AA400FED9A9 /* LaundryMachine.m */; };
@@ -74,8 +72,6 @@
 		31C5D2C717E288CF00C568D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		31C5D2C917E288CF00C568D7 /* RoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomViewController.h; sourceTree = "<group>"; };
 		31C5D2CA17E288CF00C568D7 /* RoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomViewController.m; sourceTree = "<group>"; };
-		31C5D2D117E289E100C568D7 /* LaundryDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryDataModel.h; sourceTree = "<group>"; };
-		31C5D2D217E289E100C568D7 /* LaundryDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryDataModel.m; sourceTree = "<group>"; };
 		31C5D2EA17E29C7900C568D7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		31DE9F5E181B192800DB407B /* RoomSelectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSelectionModel.h; sourceTree = "<group>"; };
 		31DE9F5F181B192800DB407B /* RoomSelectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSelectionModel.m; sourceTree = "<group>"; };
@@ -110,8 +106,6 @@
 		3129A30718C1255D002F9C2D /* models */ = {
 			isa = PBXGroup;
 			children = (
-				31C5D2D117E289E100C568D7 /* LaundryDataModel.h */,
-				31C5D2D217E289E100C568D7 /* LaundryDataModel.m */,
 				31EA8BBC18D93AA400FED9A9 /* LaundryMachine.h */,
 				31EA8BBD18D93AA400FED9A9 /* LaundryMachine.m */,
 				31DE9F5E181B192800DB407B /* RoomSelectionModel.h */,
@@ -215,6 +209,9 @@
 		31C5D2B417E288CE00C568D7 /* Laundry */ = {
 			isa = PBXGroup;
 			children = (
+				31C5D2C017E288CF00C568D7 /* Default.png */,
+				31C5D2C217E288CF00C568D7 /* Default@2x.png */,
+				31C5D2C417E288CF00C568D7 /* Default-568h@2x.png */,
 				3129A30918C12592002F9C2D /* controllers */,
 				3129A30A18C12762002F9C2D /* helpers */,
 				3129A30718C1255D002F9C2D /* models */,
@@ -234,9 +231,6 @@
 				31C5D2B717E288CE00C568D7 /* InfoPlist.strings */,
 				31C5D2BA17E288CE00C568D7 /* main.m */,
 				31C5D2BC17E288CF00C568D7 /* Laundry-Prefix.pch */,
-				31C5D2C017E288CF00C568D7 /* Default.png */,
-				31C5D2C217E288CF00C568D7 /* Default@2x.png */,
-				31C5D2C417E288CF00C568D7 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -310,7 +304,6 @@
 				31C1CBFB18BA7DB300D5909D /* release_notes.md in Resources */,
 				31C5D2C117E288CF00C568D7 /* Default.png in Resources */,
 				3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */,
-				31C5D2C317E288CF00C568D7 /* Default@2x.png in Resources */,
 				31C5D2C517E288CF00C568D7 /* Default-568h@2x.png in Resources */,
 				31C5D2C817E288CF00C568D7 /* MainStoryboard.storyboard in Resources */,
 				31F200F018C2E08A00DEA677 /* glyphicons_049_star.png in Resources */,
@@ -350,7 +343,6 @@
 				319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */,
 				31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */,
 				31C5D2CB17E288CF00C568D7 /* RoomViewController.m in Sources */,
-				31C5D2D317E289E100C568D7 /* LaundryDataModel.m in Sources */,
 				319BD1F018B1CCDA00858606 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,7 +429,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -459,7 +450,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

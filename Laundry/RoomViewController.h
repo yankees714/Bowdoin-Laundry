@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LaundryDataModel.h"
 #import "LaundryRoom.h"
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "LaundryAppDelegate.h"
-#import "LaundryDataModel.h"
 #import "LaundryRoom.h"
 #import "LaundryMachine.h"
 #import "TestFlight.h"
@@ -64,8 +63,9 @@
 		NSString * roomName = [watchData objectAtIndex:1];
 		NSNumber * machineIndex = [watchData objectAtIndex:2];
 		
-		LaundryDataModel * model = [[LaundryDataModel alloc] initWithID:roomID];
-		LaundryMachine * machine = [model.machines objectAtIndex:machineIndex.integerValue];
+		
+		LaundryRoom * room = [[LaundryRoom alloc] initWithID:roomID];
+		LaundryMachine * machine = [room.machines objectAtIndex:machineIndex.integerValue];
 		
 		if (machine.ended || machine.available) {
 			// Clear watched machine
