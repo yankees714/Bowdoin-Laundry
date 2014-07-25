@@ -36,6 +36,7 @@
 	
 	// Navigation bar setup
 	//self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+	self.navigationItem.title = @"Laundry";
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.42 green:0.73 blue:0.94 alpha:1];
 	self.navigationController.navigationBar.translucent = NO;
 	self.navigationController.navigationBar.alpha = 0.7;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A283o" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Lr-TH-vXT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Lr-TH-vXT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-1066" y="144"/>
         </scene>
-        <!--Room View Controller - Bowdoin Laundry-->
+        <!--Room View Controller - Laundry-->
         <scene sceneID="aU0-Gw-x7m">
             <objects>
                 <tableViewController id="b2S-ba-z7U" customClass="RoomViewController" sceneMemberID="viewController">
@@ -66,7 +66,7 @@
                             <outlet property="delegate" destination="b2S-ba-z7U" id="eb7-qE-1oK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bowdoin Laundry" id="fJ8-BN-8qO">
+                    <navigationItem key="navigationItem" title="Laundry" id="fJ8-BN-8qO">
                         <barButtonItem key="rightBarButtonItem" image="glyphicons_049_star.png" id="oCn-w1-A2G">
                             <connections>
                                 <action selector="setDefaultRoom:" destination="b2S-ba-z7U" id="62z-je-JWf"/>
@@ -127,7 +127,7 @@
             </objects>
             <point key="canvasLocation" x="406" y="-588"/>
         </scene>
-        <!--Selection View Controller - Bowdoin Laundry-->
+        <!--Selection View Controller - Laundry-->
         <scene sceneID="iu7-Tk-EVb">
             <objects>
                 <tableViewController id="nkO-ss-8ag" customClass="SelectionViewController" sceneMemberID="viewController">
@@ -164,7 +164,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Bowdoin Laundry" id="s8A-dx-Fob">
+                    <navigationItem key="navigationItem" title="Laundry" id="s8A-dx-Fob">
                         <barButtonItem key="rightBarButtonItem" id="FSI-Ds-obD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
