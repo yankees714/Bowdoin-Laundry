@@ -6,11 +6,13 @@
 //  Copyright (c) 2013 Andrew Daniels. All rights reserved.
 //
 
-#import "SelectionViewController.h"
-#import "RoomViewController.h"
-#import "RoomSelectionModel.h"
-#import "LaundryRoom.h"
 #import "Reachability.h"
+
+#import "LaundryColor.h"
+#import "LaundryRoom.h"
+#import "RoomSelectionModel.h"
+#import "RoomViewController.h"
+#import "SelectionViewController.h"
 
 @interface SelectionViewController ()
 
@@ -34,12 +36,9 @@
 	
 	self.initialLoad =YES;
 	
-//	self.laundryBlue = [UIColor colorWithRed:0.42 green:0.73 blue:0.94 alpha:1];
-	self.laundryBlue = [UIColor colorWithRed:0.16 green:0.5 blue:0.73 alpha:1];
-	
 	// Navigation bar setup
 	self.navigationItem.title = @"Laundry";
-	self.navigationController.navigationBar.barTintColor = self.laundryBlue;
+	self.navigationController.navigationBar.barTintColor = [LaundryColor blueColor];
 	self.navigationController.navigationBar.translucent = NO;
 	self.navigationController.navigationBar.alpha = 1;
 	

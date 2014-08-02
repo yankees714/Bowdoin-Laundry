@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3157BAA718F1CFAB00F51FEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3157BAA618F1CFAB00F51FEC /* Images.xcassets */; };
 		3157BAAB18F1D2DC00F51FEC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3157BAAA18F1D2DC00F51FEC /* Default@2x.png */; };
+		315926FC198C9D0E0084EE97 /* LaundryColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 315926FB198C9D0E0084EE97 /* LaundryColor.m */; };
 		3171BF52189C527D00192D88 /* glyphicons_137_cogwheels.png in Resources */ = {isa = PBXBuildFile; fileRef = 3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */; };
 		31774F3C18BFE4C200C2719C /* LaundryRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 31774F3B18BFE4C100C2719C /* LaundryRoom.m */; };
 		3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3179594B189D7527008C09D3 /* SettingsViewController.m */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		3157BAA618F1CFAB00F51FEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3157BAAA18F1D2DC00F51FEC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		315926FA198C9D0D0084EE97 /* LaundryColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryColor.h; sourceTree = "<group>"; };
+		315926FB198C9D0E0084EE97 /* LaundryColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryColor.m; sourceTree = "<group>"; };
 		3171BF51189C527D00192D88 /* glyphicons_137_cogwheels.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_137_cogwheels.png; sourceTree = "<group>"; };
 		31774F3A18BFE4C100C2719C /* LaundryRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaundryRoom.h; sourceTree = "<group>"; };
 		31774F3B18BFE4C100C2719C /* LaundryRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaundryRoom.m; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 		3129A30A18C12762002F9C2D /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				315926FA198C9D0D0084EE97 /* LaundryColor.h */,
+				315926FB198C9D0E0084EE97 /* LaundryColor.m */,
 				31C5D2BD17E288CF00C568D7 /* LaundryAppDelegate.h */,
 				31C5D2BE17E288CF00C568D7 /* LaundryAppDelegate.m */,
 				31774F3A18BFE4C100C2719C /* LaundryRoom.h */,
@@ -340,6 +345,7 @@
 				31FB5270180B6B6300851792 /* SelectionViewController.m in Sources */,
 				3179594C189D7527008C09D3 /* SettingsViewController.m in Sources */,
 				31F22EC318B0112500590ED2 /* Reachability.m in Sources */,
+				315926FC198C9D0E0084EE97 /* LaundryColor.m in Sources */,
 				319BD1EF18B1CCDA00858606 /* HTMLNode.m in Sources */,
 				31DE9F60181B192800DB407B /* RoomSelectionModel.m in Sources */,
 				31C5D2CB17E288CF00C568D7 /* RoomViewController.m in Sources */,
