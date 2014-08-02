@@ -24,7 +24,9 @@
 	
 	[TestFlight passCheckpoint:self.room.name];
 	
-	// Tableivew setup
+	self.view.backgroundColor = [UIColor whiteColor];
+	
+	// Tableview setup
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	[self.tableView setRowHeight:100];
@@ -46,7 +48,6 @@
 	
 	//interface setup
 	self.navigationItem.title = self.room.name;
-	
 	
 	[self.refreshControl addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
 	
@@ -103,8 +104,16 @@
 	[sender endRefreshing];
 }
 
+
+//  Tableview functions
+//  ===================
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	return 70;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
@@ -115,6 +124,7 @@
 		return self.room.numberOfDryers;
 	}
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -223,6 +233,7 @@
     return cell;
 }
 
+
 //title the washer and dryer sections in the table
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
@@ -231,12 +242,6 @@
 		return @"Dryers";
 	}
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return 40;
-}
-
-
 
 
 - (IBAction)watch:(UIButton *)button{

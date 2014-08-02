@@ -12,6 +12,8 @@
 
 @interface SelectionViewController : UITableViewController
 
+@property (nonatomic) UIColor * laundryBlue;
+
 @property (nonatomic, retain) Reachability *reachability;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

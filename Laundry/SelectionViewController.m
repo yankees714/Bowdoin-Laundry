@@ -34,13 +34,18 @@
 	
 	self.initialLoad =YES;
 	
+//	self.laundryBlue = [UIColor colorWithRed:0.42 green:0.73 blue:0.94 alpha:1];
+	self.laundryBlue = [UIColor colorWithRed:0.16 green:0.5 blue:0.73 alpha:1];
+	
 	// Navigation bar setup
-	//self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
 	self.navigationItem.title = @"Laundry";
-	self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.42 green:0.73 blue:0.94 alpha:1];
+	self.navigationController.navigationBar.barTintColor = self.laundryBlue;
 	self.navigationController.navigationBar.translucent = NO;
-	self.navigationController.navigationBar.alpha = 0.7;
-
+	self.navigationController.navigationBar.alpha = 1;
+	
+	[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+	[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+	
 	UIButton * infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[infoButton addTarget:self action:@selector(performSegueToSettings:) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
@@ -50,7 +55,11 @@
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	[self.tableView setRowHeight:75];
+	[self.tableView setBackgroundColor:self.laundryBlue];
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+	
+	self.tableView.separatorColor = [UIColor whiteColor];
+	self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 10);
 
 	
 	self.reachability = [Reachability reachabilityWithHostName:@"www.laundryview.com"];
@@ -138,11 +147,14 @@
 	    
     // Configure the cell...
 	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+	[cell setBackgroundColor:[UIColor clearColor]];
+	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
+	cell.textLabel.textColor = [UIColor whiteColor];
 	
-	// get the room for this index
+	// Get the room for this index
 	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];
-	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
-    
+
+	
     return cell;
 }
 
