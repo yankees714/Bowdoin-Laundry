@@ -37,27 +37,33 @@
 	self.initialLoad =YES;
 	
 	// Navigation bar setup
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	
 	self.navigationItem.title = @"Laundry";
 	self.navigationController.navigationBar.barTintColor = [LaundryColor blueColor];
+//	self.tableView.separatorColor = [UIColor whiteColor];
+
+	self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 	self.navigationController.navigationBar.translucent = NO;
 	self.navigationController.navigationBar.alpha = 1;
 	
-	[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-	[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//	// Remove line below bar
+//	[self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+//	[self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
 	
 	UIButton * infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
 	[infoButton addTarget:self action:@selector(performSegueToSettings:) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
-	
+
 	
 	// Tableview setup
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
 	[self.tableView setRowHeight:75];
-	[self.tableView setBackgroundColor:self.laundryBlue];
+	[self.tableView setBackgroundColor:[LaundryColor blueColor]];
+	[self.tableView setBackgroundColor:[UIColor whiteColor]];
 	self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 	
-	self.tableView.separatorColor = [UIColor whiteColor];
 	self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 10);
 
 	
@@ -148,7 +154,7 @@
 	[cell setSelectionStyle:UITableViewCellSelectionStyleGray];
 	[cell setBackgroundColor:[UIColor clearColor]];
 	cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
-	cell.textLabel.textColor = [UIColor whiteColor];
+//	cell.textLabel.textColor = [UIColor whiteColor];
 	
 	// Get the room for this index
 	cell.textLabel.text = [self.roomSelection roomNameForIndex:indexPath.row];

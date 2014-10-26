@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Lr-TH-vXT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="6Lr-TH-vXT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -9,10 +10,10 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="6Lr-TH-vXT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FW4-BG-OK7"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="Sdv-UH-yRq">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sdv-UH-yRq">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -25,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-1066" y="144"/>
         </scene>
-        <!--Room View Controller - Laundry-->
+        <!--Laundry-->
         <scene sceneID="aU0-Gw-x7m">
             <objects>
                 <tableViewController id="b2S-ba-z7U" customClass="RoomViewController" sceneMemberID="viewController">
@@ -36,7 +37,7 @@
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="machineStatus" textLabel="1nN-KZ-KV8" detailTextLabel="9zt-DF-9hQ" rowHeight="108" style="IBUITableViewCellStyleSubtitle" id="6uV-4u-Htd">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="machineStatus" textLabel="1nN-KZ-KV8" detailTextLabel="9zt-DF-9hQ" rowHeight="108" style="IBUITableViewCellStyleSubtitle" id="6uV-4u-Htd">
                                 <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6uV-4u-Htd" id="Pgj-Am-WTV">
@@ -82,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="406" y="144"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="afV-qA-UZd">
             <objects>
                 <viewController id="xX6-9a-782" customClass="SettingsViewController" sceneMemberID="viewController">
@@ -127,7 +128,7 @@
             </objects>
             <point key="canvasLocation" x="406" y="-588"/>
         </scene>
-        <!--Selection View Controller - Laundry-->
+        <!--Laundry-->
         <scene sceneID="iu7-Tk-EVb">
             <objects>
                 <tableViewController id="nkO-ss-8ag" customClass="SelectionViewController" sceneMemberID="viewController">
@@ -136,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="laundryRoom" textLabel="Cmo-g9-VRw" style="IBUITableViewCellStyleDefault" id="W7Q-bM-UlU">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="laundryRoom" textLabel="Cmo-g9-VRw" style="IBUITableViewCellStyleDefault" id="W7Q-bM-UlU">
                                 <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W7Q-bM-UlU" id="quF-Ur-V7W">
